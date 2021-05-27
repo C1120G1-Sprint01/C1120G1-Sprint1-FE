@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Observable} from "rxjs";
 import {User} from "../../../model/User";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Account} from "../../../model/Account";
 import {Ward} from "../../../model/Ward";
 
@@ -9,12 +9,21 @@ import {Ward} from "../../../model/Ward";
   providedIn: 'root'
 })
 export class ServiceAdminService {
-  public API_URL_USER = "http://localhost:3000/user";
-  public API_URL_ACCOUNT = "http://localhost:3000/account";
-  public API_URL_PROVINCE = "http://localhost:3000/province";
-  public API_URL_DISTRICT = "http://localhost:3000/district";
-  public API_URL_WARD = "http://localhost:3000/ward";
-  constructor(private httpClient: HttpClient) { }
+   API_URL_USER: string = "http://localhost:8080/admin/userList";
+   API_URL_ACCOUNT: string = "http://localhost:8080/account";
+   API_URL_PROVINCE: string = "http://localhost:8080/province";
+   API_URL_DISTRICT: string = "http://localhost:8080/district";
+   API_URL_WARD: string = "http://localhost:8080/ward";
+  httpOptions:any;
+  constructor(private httpClient: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'}),
+      'Access-Control-Allow-Origin': 'http://localhost:4200/',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Credentials': "true"
+    };
+  }
 
   getAllUser(): Observable<User[]> {
       return this.httpClient.get<User[]>(this.API_URL_USER);
@@ -33,7 +42,7 @@ export class ServiceAdminService {
   }
 
   editUser(user: User, id: number): Observable<User[]> {
-    return this.httpClient.put<User[]>(this.API_URL_USER + '/' + id, user);
+    return this.httpClient.put<User[]>(this.API_URL_USER + '/edit/' + id, user);
   }
 
   deleteUser(id: number): Observable<User[]> {
