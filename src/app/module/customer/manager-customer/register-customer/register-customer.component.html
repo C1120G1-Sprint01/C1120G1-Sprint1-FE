@@ -1,1 +1,183 @@
-<p>register-customer works!</p>
+<div style="width: max-content" class="col-6">
+  <form class="form-horizontal" [formGroup]="formAddNewCustomer" (ngSubmit)="onSubmit()">
+    <p class="title text-center">Đăng kí thành viên</p>
+    <div class="form-group">
+      <label for="name" class="cols-sm-4 control-label">Họ Và Tên <span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user fa"
+                                                                      aria-hidden="true"></i></span>
+          <input type="text" class="form-control" name="name" id="name" formControlName="name"
+                 placeholder="Enter your Name"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('name').hasError('required') && formAddNewCustomer.get('name').touched"-->
+      <!--                   class="text-danger">Vui lòng nhập tên</p>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('name').hasError('pattern') && formAddNewCustomer.get('name').touched"-->
+      <!--                   class="text-danger">Vui lòng nhập đúng tên</p>-->
+      <!--              </div>-->
+    </div>
+    <div class="form-group">
+      <label for="username" class="cols-sm-4 control-label">Tên Đăng Nhập<span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-user fa"
+                                                                      aria-hidden="true"></i></span>
+          <input type="text" class="form-control" name="username" id="username" formControlName="username"
+                 placeholder="Enter your Name"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('username').hasError('required') && formAddNewCustomer.get('username').touched"-->
+      <!--                   class="text-danger">Vui lòng nhập tài khoản</p>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('username').hasError('pattern') && formAddNewCustomer.get('username').touched"-->
+      <!--                   class="text-danger">Tài khoản tối thiểu 6 kí tự gồm cả chữ và số</p>-->
+      <!--              </div>-->
+    </div>
+    <div class="form-group">
+      <label for="password" class="cols-sm-4 control-label">Mật Khẩu<span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-lock fa-lg"
+                                                                      aria-hidden="true"></i></span>
+          <input type="password" class="form-control" name="password" id="password"
+                 placeholder="Enter your Password"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p-->
+      <!--                  *ngIf="formAddNewCustomer.get('password').hasError('required') && formAddNewCustomer.get('password').touched"-->
+      <!--                  class="text-danger">Vui lòng nhập mật khẩu</p>-->
+      <!--                <p-->
+      <!--                  *ngIf="formAddNewCustomer.get('password').hasError('pattern') && formAddNewCustomer.get('password').touched"-->
+      <!--                  class="text-danger">Mật khẩu tối thiểu 6 kí tự gồm cả chữ và số</p>-->
+      <!--              </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="confirm" class="cols-sm-4 control-label">Xác Thực Mật Khẩu<span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-lock fa-lg"
+                                                                      aria-hidden="true"></i></span>
+          <input type="password" class="form-control" name="confirm" id="confirm"
+                 placeholder="Confirm your Password"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p class="text-danger " *ngIf="isMessage">Tài khoản đã tồn tài hoặc mật khẩu nhập sai</p>-->
+      <!--              </div>-->
+    </div>
+
+    <div class="form-group">
+      <label for="email" class="cols-sm-4 control-label">Email<span class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+          <span class="input-group-text"><i class="fa fa-envelope fa" aria-hidden="true"></i></span>
+          <input type="text" class="form-control" name="email" id="email" formControlName="email"
+                 placeholder="Enter your Email"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('email').hasError('required') && formAddNewCustomer.get('email').touched"-->
+      <!--                   class="text-danger">Vui lòng nhập email</p>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('email').hasError('pattern')&& formAddNewCustomer.get('email').touched"-->
+      <!--                   class="text-danger">Email không đúng định dạng</p>-->
+      <!--              </div>-->
+    </div>
+    <div class="item" style="clear: both">
+      <label class="col-2 float-left ">
+      </label>
+      <p class="text-danger">
+        {{listError.existEmail}}
+      </p>
+    </div>
+    <!--            <div class="item" style="clear: both">-->
+    <!--              <label class="col-2 float-left ">-->
+    <!--              </label>-->
+    <!--              <p *ngIf="isMessage1" class="text-danger">-->
+    <!--                Email đã được đăng ký-->
+    <!--              </p>-->
+    <!--            </div>-->
+
+    <div class="form-group">
+      <label for="phone" class="cols-sm-4 control-label">Số Điện Thoại<span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-users fa"
+                                                                      aria-hidden="true"></i></span>
+          <input type="text" class="form-control" name="phone" id="phone"
+                 placeholder="Enter your PhoneNumber"/>
+        </div>
+      </div>
+      <!--              <div>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('phone').hasError('required') && formAddNewCustomer.get('phone').touched"-->
+      <!--                   class="text-danger">Vui lòng nhập số điện thoại</p>-->
+      <!--                <p *ngIf="formAddNewCustomer.get('phone').hasError('pattern')&& formAddNewCustomer.get('phone').touched"-->
+      <!--                   class="text-danger">Số điện thoại không đúng định dạng</p>-->
+      <!--              </div>-->
+    </div>
+    <div class="form-group">
+      <label for="ward" class="cols-sm-4 control-label">Địa Chỉ<span
+        class="red_asterisk">*</span></label>
+      <div class="cols-sm-10">
+        <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-users fa"
+                                                                      aria-hidden="true"></i></span>
+          <div class="row-cols-sm-10">
+            <select class="form-control" formControlName="ward" id="ward" class="form-control">
+              <option value="" disabled>Select Ward</option>
+              <option *ngFor="let ward of listWard"
+                      [ngValue]="ward"
+                      style="color: blue">
+                {{ward.wardName}}
+              </option>
+            </select>
+          </div>
+          <div class="row-cols-sm-10">
+            <select class="form-control" formControlName="district" id="district" class="form-control">
+              <option value="" disabled>Select a District</option>
+              <option *ngFor="let district of listDistrict"
+                      [ngValue]="district"
+                      style="color: blue">
+                {{district.districtName}}
+              </option>
+            </select>
+          </div>
+          <div class="row-cols-sm-10">
+            <select class="form-control" formControlName="province" id="province" class="form-control">
+              <option value="" disabled>Select a province</option>
+              <option *ngFor="let province of listProvince"
+                      [ngValue]="province"
+                      style="color: blue">
+                {{province.provinceName}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div>
+        <!--                <p *ngIf="formAddNewCustomer.get('ward').hasError('required') && formAddNewCustomer.get('ward').touched"-->
+        <!--                   class="text-danger">Vui lòng nhập Phường</p>-->
+        <!--                <p *ngIf="formAddNewCustomer.get('district').hasError('required') && formAddNewCustomer.get('district').touched"-->
+        <!--                   class="text-danger">Vui lòng nhập Quận</p>-->
+        <!--                <p *ngIf="formAddNewCustomer.get('province').hasError('required') && formAddNewCustomer.get('province').touched"-->
+        <!--                   class="text-danger">Vui lòng nhập Thành phố / Tỉnh</p>-->
+        <!--              </div>-->
+      </div>
+
+      <div style="text-align: center;">
+        <button type="button" class="btn login-button">Đăng Kí</button>
+        <button type="button" class="btn cancel-button" (click)="onReset()">Nhập Lại</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+

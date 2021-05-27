@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { DeleteCategoyAdminComponent } from './delete-categoy-admin.component';
+import { ListCategoryComponent } from './list-category.component';
 
-describe('DeleteCategoyAdminComponent', () => {
-  let component: DeleteCategoyAdminComponent;
-  let fixture: ComponentFixture<DeleteCategoyAdminComponent>;
+describe('ListCategoryComponent', () => {
+  let component: ListCategoryComponent;
+  let fixture: ComponentFixture<ListCategoryComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ DeleteCategoyAdminComponent ]
+      declarations: [ ListCategoryComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(DeleteCategoyAdminComponent);
+    fixture = TestBed.createComponent(ListCategoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
