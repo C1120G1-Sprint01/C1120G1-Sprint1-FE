@@ -4,12 +4,19 @@ import { InformationCustomerComponent } from './information-customer/information
 import { EditInformationCustomerComponent } from './edit-information-customer/edit-information-customer.component';
 import { StatisticsCustomerComponent } from './statistics-customer/statistics-customer.component';
 
-
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {RegisterCustomerComponent} from "./register-customer/register-customer.component";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
-  declarations: [InformationCustomerComponent, EditInformationCustomerComponent, StatisticsCustomerComponent],
+
+  declarations: [InformationCustomerComponent, EditInformationCustomerComponent, StatisticsCustomerComponent,RegisterCustomerComponent],
+
   imports: [
-    CommonModule
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class ManagerCustomerModule { }

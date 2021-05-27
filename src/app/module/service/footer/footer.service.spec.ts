@@ -1,6 +1,5 @@
-import { TestBed } from '@angular/core/testing';
-
 import { FooterService } from './footer.service';
+import {TestBed} from '@angular/core/testing';
 
 describe('FooterService', () => {
   let service: FooterService;
