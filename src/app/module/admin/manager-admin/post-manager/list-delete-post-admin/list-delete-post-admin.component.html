@@ -1,0 +1,65 @@
+<div class="container-fluid">
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div>
+          <h3 class="card-title text-center">Post List</h3>
+          <table class="table table-hover">
+            <thead style="background:rgba(2,127,255,0.21)">
+            <tr>
+              <th>Id</th>
+              <th>Hình Ảnh Minh Họa</th>
+              <th>Tiêu Đề</th>
+              <th>Ngày Đăng</th>
+              <th>Tên </th>
+              <th>Chức Năng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let post of postList; let i = index">
+<!--              <td>{{i + 1}}</td>-->
+              <td>{{post.postId}}</td>
+              <td>
+                <img [src]="post.imageSet[0].url" width="80" height="60" alt="">
+              </td>
+              <td>{{post.title}}</td>
+              <td>{{post.postDateTime}}</td>
+              <td>{{post.posterName}}</td>
+              <td>
+                <div class="row option">
+                  <div>
+                    <button class="btn btn-info" [routerLink]="['/view/'+post.postId]"><i class="far fa-eye"></i></button>
+                  </div>
+                </div>
+
+                <div class="row option">
+                  <div>
+<!--                    <button class="btn btn-danger" [routerLink]="['/delete/'+post.postId]"><i class="far fa-trash-alt"></i></button>-->
+                    <button class="btn btn-danger" data-toggle="modal" data-target="#exampleModal"
+                            (click)="deleteId = post.postId; deleteName = post.posterName"><i class="far fa-trash-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Modal delete start-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-delete-post-admin [deleteId]="deleteId" [deleteName]="deleteName" (deleteComplete)="deleteSuccess()"></app-delete-post-admin>
+      </div>
+    </div>
+  </div>
+</div>
+<!--modal delete end-->
+
+</div>

@@ -4,6 +4,9 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
+import {ChartsModule} from "ng2-charts";
+import {AdminModule} from "./module/admin/admin.module";
+import {ManagerAdminModule} from "./module/admin/manager-admin/manager-admin.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import {CustomerModule} from './module/customer/customer.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CustomerModule
+    CustomerModule,
+    ChartsModule,
+    AdminModule,
+    ManagerAdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

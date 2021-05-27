@@ -1,0 +1,21 @@
+body {
+  font-family: Roboto;
+  font-size: 14px;
+}
+section {
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+.imgDel {
+  display: block;
+  max-width:80px;
+  max-height:60px;
+  width: auto;
+  height: auto;
+}
+.table th, .table td {
+  vertical-align: inherit;
+}
+
