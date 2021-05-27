@@ -20,7 +20,6 @@ import {SecurityModule} from "./module/security/security.module";
     CustomerModule,
     HeaderCustomerModule,
     SecurityModule,
-    CustomerModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
