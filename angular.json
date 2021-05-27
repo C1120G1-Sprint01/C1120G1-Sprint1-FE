@@ -29,6 +29,7 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
             ]
           },
@@ -92,9 +93,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "./node_modules/bootstrap/dist/css/bootstrap.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/jquery/dist/jquery.min.js",
+              "./node_modules/popper.js/dist/umd/popper.min.js",
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js"
+            ]
           }
         },
         "lint": {
@@ -123,6 +129,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sprint01-fe"
+    }
+  },
+  "defaultProject": "sprint01-fe",
+  "cli": {
+    "analytics": "29568c55-2b73-4ed7-ae3a-a90e10021bd3"
+  }
 }
