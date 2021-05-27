@@ -1,24 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic&subset=latin,cyrillic);
 @import url(https://zavoloklom.github.io/material-design-iconic-font/css/docs.md-iconic-font.min.css);
-
-@media only screen and (max-width: 990px) {
-  .res-2 {
-    text-align: center !important;
-  }
-
-  .res-2 img {
-    width: 8% !important;
-    height: 8% !important;
-  }
-}
-
-@media only screen and (max-width: 990px) {
-  .res-2 img {
-    width: 10% !important;
-    height: 10% !important;
-  }
-}
-
 ul li{
   list-style: none;
 }
@@ -29,6 +10,15 @@ ul li{
   right: 0;
   z-index: 998;
 
+}
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .fab {
@@ -46,7 +36,7 @@ ul li{
   position: relative;
   z-index: 998;
   overflow: hidden;
-  background: #027FFF;
+  background: #42a5f5;
 }
 
 .fab > i {
@@ -74,7 +64,7 @@ ul li{
 .fab:not(:last-child).is-visible {
   width: 40px;
   height: 40px;
-  margin: 5px auto 15px;
+  margin: 15px auto 10px;
   opacity: 1;
   visibility: visible;
 }
@@ -104,11 +94,11 @@ ul li{
   transition-delay: 80ms;
 }
 
-/*.fab(:last-child):active,*/
-/*                 .fab(:last-child):focus,*/
-/*                                  .fab(:last-child):hover {*/
-/*                                                       box-shadow: 0 0 6px rgba(0, 0, 0, .16), 0 6px 12px rgba(0, 0, 0, .32);*/
-/*                                                   }*/
+.fab(:last-child):active,
+                 .fab(:last-child):focus,
+                                  .fab(:last-child):hover {
+                                                     box-shadow: 0 0 6px rgba(0, 0, 0, .16), 0 6px 12px rgba(0, 0, 0, .32);
+                                                   }
 /*Chatbox*/
 
 .chat {
@@ -128,6 +118,7 @@ ul li{
   -webkit-transition: all .2s ease-out;
   -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
+  visibility: hidden !important;
 }
 
 .chat_fullscreen {
@@ -143,7 +134,7 @@ ul li{
   font-weight: 500;
   color: #f3f3f3;
   height: 55px;
-  background: #027FFF;
+  background: #42a5f5;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-top: 8px;
@@ -172,9 +163,11 @@ ul li{
   opacity: 1;
   -webkit-animation: zoomIn .2s cubic-bezier(.42, 0, .58, 1);
   animation: zoomIn .2s cubic-bezier(.42, 0, .58, 1);
+  visibility: visible !important;
 }
 .is-hide{
-  opacity: 0
+  opacity: 0;
+  visibility: hidden !important;
 }
 
 .chat_option {
@@ -184,6 +177,7 @@ ul li{
   position: relative;
   height: 100%;
   width: 100%;
+  text-align: relative;
   margin-right: 10px;
   letter-spacing: 0.5px;
   font-weight: 400
@@ -234,8 +228,8 @@ ul li{
   height: 450px;
 }
 .chat_login p,.chat_body li, p, a{
-  -webkit-animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);
-  animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);
+  /*-webkit-animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);*/
+  /*animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);*/
 }
 .chat_body p {
   padding: 20px;
@@ -254,7 +248,7 @@ ul li{
 
 .chat_field {
   position: relative;
-  margin: 5px 0 29px 0;
+  margin: 5px 0 5px 0;
   width: 50%;
   font-family: 'Roboto';
   font-size: 12px;
@@ -300,6 +294,15 @@ ul li{
   text-align: center;
 }
 
+.chat_category li:hover{
+  background: #83c76d;
+  color: #fff;
+}
+.chat_category li.active{
+  background: #83c76d;
+  color: #fff;
+}
+
 .tags{
   margin: 20px;
   bottom: 0px;
@@ -319,6 +322,7 @@ ul li{
 .fab_field {
   width: 100%;
   display: inline-block;
+  text-align: center;
   background: #fff;
   border-top: 1px solid #eee;
   border-bottom-right-radius: 10px;
@@ -364,7 +368,6 @@ ul li{
   color: #42a5f5;
 }
 .chat_conversion {
-
 }
 
 .chat_converse {
@@ -375,11 +378,10 @@ ul li{
   min-height: 0;
   font-size: 12px;
   line-height: 18px;
-  overflow-y: auto;
+  overflow-y: auto !important;
   width: 100%;
   float: right;
-  padding-bottom: 100px;
-  z-index: 0;
+  padding-bottom: 30px;
 }
 .chat_converse2{
   height: 100%;
@@ -391,17 +393,6 @@ ul li{
   height: 0;
 }
 
-.timeChat {
-  float: right;
-  font-family: sans-serif;
-  font-size: 10px;
-  position: relative;
-  margin: -11px 0px -11px 0;
-  display: block;
-  animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);
-  clear: both;
-  z-index: 999;
-}
 .chat_list .chat_list_item {
   opacity: 0;
   visibility: hidden;
@@ -415,24 +406,23 @@ ul li{
   display: block;
   word-wrap: break-word;
   border-radius: 3px;
-  -webkit-animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);
-  animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);
+  /*-webkit-animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);*/
+  /*animation: zoomIn .5s cubic-bezier(.42, 0, .58, 1);*/
   clear: both;
   z-index: 999;
 }
 .status {
-  margin: 45px -50px 0 0;
   float: right;
   font-size: 11px;
   opacity: 0.3;
 }
+
 .status2 {
-  margin: -10px 20px 0 0;
-  float: right;
-  display: block;
+  float: left;
   font-size: 11px;
   opacity: 0.3;
 }
+
 .chat .chat_converse .chat_msg_item .chat_avatar {
   position: absolute;
   top: 0;
@@ -465,8 +455,12 @@ ul li{
 .chat .chat_converse .chat_msg_item.chat_msg_item_user {
   margin-right: 20px;
   float: right;
-  background: #027FFF;
+  background: #42a5f5;
   color: #eceff1;
+}
+.custom-img {
+  padding: 8px 10px;
+  background: rgba(0, 0, 0, 0.03);
 }
 
 .chat .chat_converse .chat_msg_item.chat_msg_item_admin:before {
@@ -480,7 +474,7 @@ ul li{
 }
 
 .chat_form .get-notified label{
-  color: #027FFF;
+  color: #077ad6;
   font-weight: 600;
   font-size: 11px;
 }
@@ -603,8 +597,8 @@ strong.chat_time {
 
 .is-loading {
   display: block;
-  -webkit-animation: load 1s cubic-bezier(0, .99, 1, 0.6) infinite;
-  animation: load 1s cubic-bezier(0, .99, 1, 0.6) infinite;
+  /*-webkit-animation: load 1s cubic-bezier(0, .99, 1, 0.6) infinite;*/
+  /*animation: load 1s cubic-bezier(0, .99, 1, 0.6) infinite;*/
 }
 /*Animation*/
 
@@ -711,14 +705,14 @@ strong.chat_time {
 
 
 .blue .fab {
-  background: #027FFF;
+  background: #42a5f5;
   color: #fff;
 }
 
 
 
 .blue .chat {
-  background: #027FFF;
+  background: #42a5f5;
   color: #999;
 }
 

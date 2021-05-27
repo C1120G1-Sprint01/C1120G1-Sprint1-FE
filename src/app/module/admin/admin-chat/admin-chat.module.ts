@@ -1,27 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {RouterModule} from '@angular/router';
+import { AdminChatComponent } from './admin-chat/admin-chat.component';
+import { ChatRoomAdminComponent } from './chat-room-admin/chat-room-admin.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
+import {RouterModule} from '@angular/router';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
-import { ChatBoxComponent } from './chat-box/chat-box.component';
+import {ZoomComponent} from './zoom/zoom.component';
 
 @NgModule({
-  declarations: [ChatBoxComponent],
+  declarations: [AdminChatComponent, ChatRoomAdminComponent, ZoomComponent],
   imports: [
     CommonModule,
-    RouterModule,
-    ReactiveFormsModule,
     FormsModule,
+    ReactiveFormsModule,
+    RouterModule,
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatSnackBarModule
-  ],
-  exports: [ChatBoxComponent]
+  ]
 })
-export class CustomerModule { }
+export class AdminChatModule { }

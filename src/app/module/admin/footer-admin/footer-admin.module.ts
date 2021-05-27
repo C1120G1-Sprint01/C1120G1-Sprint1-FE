@@ -5,9 +5,12 @@ import {FooterAdminComponent} from './footer-admin/footer-admin.component';
 
 
 @NgModule({
-  declarations: [FooterAdminComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [FooterAdminComponent],
+    exports: [
+        FooterAdminComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class FooterAdminModule { }

@@ -5,9 +5,12 @@ import { HeaderCustomerComponent } from './header-customer/header-customer.compo
 
 
 @NgModule({
-  declarations: [HeaderCustomerComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [HeaderCustomerComponent],
+    exports: [
+        HeaderCustomerComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class HeaderCustomerModule { }
