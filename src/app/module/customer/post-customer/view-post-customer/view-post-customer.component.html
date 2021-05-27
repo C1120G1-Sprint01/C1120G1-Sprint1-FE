@@ -1,0 +1,107 @@
+<div class="col-12 col-sm-12 col-md-8 content">
+  <div class="content-header">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item"><a routerLink="/">Trang chủ</a></li>
+      <li class="breadcrumb-item"><a href="#">{{post.childCategory.category.categoryName}}</a></li>
+      <li class="breadcrumb-item"><a href="#">{{post.childCategory.childCategoryName}}</a></li>
+    </ol>
+  </div><!-- End of content-header -->
+  <div class="content-detail row m-0">
+    <div class="post-detail">
+      <div id="post-img" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item" *ngFor="let image of post.imageSet">
+            <img class="d-block w-100" [alt]="image.imageName" [src]="image.url">
+          </div>
+          <div class="carousel-caption">
+            <p>45 phút trước</p>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#product-img" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#product-img" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div><!-- End of post-img -->
+      <div class="post-title">{{post.title}}</div><!-- End of post-title -->
+      <div class="price">{{post.price}} đ</div><!-- End of price -->
+      <div class="contact-panel-2">
+        <hr class="divider mx-0 my-3">
+        <div class="user-info">
+          <div class="user row m-0">
+            <div class="img-thumbnail img-circle p-0 border-0">
+              <img alt class="img-thumbnail rounded-circle p-0" [src]="post.user.avatarUrl">
+            </div>
+            <div class="user-name pl-2 font-weight-bold">{{post.user.name}}</div>
+          </div>
+          <div class="user-detail row mx-0">
+            <div class="col-12 col-sm-6 col-md-6 mt-3 px-0">
+              <i class="far fa-phone-alt"></i> Số điện thoại: <b>{{post.user.phone}}</b>
+            </div>
+            <div class="col-12 col-sm-6 col-md-6 mt-3 px-0">
+              <i class="far fa-envelope"></i> Email:
+              <a [href]="'mailto:' + post.user.email">{{post.user.email}}</a>
+            </div>
+            <div class="col-*-12 mt-3 px-0">
+              <i class="fad fa-map-marked-alt"></i> Địa chỉ: Xuân Hà, Thanh Khê, Đà Nẵng
+            </div>
+          </div>
+          <button class="btn btn-success mt-3 px-2 w-100">
+            <span><i class="far fa-comments-alt"></i></span>
+            <span class="btn-message">CHAT VỚI NGƯỜI BÁN</span>
+          </button>
+          <hr class="divider">
+        </div>
+      </div><!-- End of contact-panel-2 -->
+      <div class="post-description">{{post.description}}</div><!-- End of post-description -->
+      <div class="contact-description my-4 row">
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="far fa-tag"></i>Loại: {{post.childCategory.childCategoryName}}
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="fas fa-paperclip"></i> Tin: Cần bán
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="far fa-user-tag"></i> Người bán: {{post.posterName}}
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="far fa-phone-alt"></i> Số điện thoại: <b>{{post.phone}}</b>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="far fa-envelope"></i> Email:
+          <a [href]="'mailto:' + post.email">{{post.email}}</a>
+        </div>
+        <div class="col-6 col-sm-6 col-md-6 col-lg-12 col-xl-6 mb-3">
+          <i class="fad fa-map-marked-alt"></i> Địa chỉ: Xuân Hà, Thanh Khê, Đà Nẵng
+        </div>
+      </div><!-- End of contact-description -->
+    </div><!-- End of post-detail -->
+    <div class="contact-panel">
+      <hr class="divider m-0 mb-3">
+      <div class="user-info">
+        <div class="user row m-0">
+          <div class="img-thumbnail img-circle p-0 border-0">
+            <img class="img-thumbnail rounded-circle p-0" alt [src]="post.user.avatarUrl">
+          </div>
+          <div class="user-name pl-2 font-weight-bold">
+            Nguyễn Văn B
+          </div>
+        </div>
+        <div class="user-detail my-2">
+          <p class="mb-2"><i class="far fa-phone-alt"></i> Số điện thoại: <b>0905456789</b></p>
+          <p class="mb-2"><i class="far fa-envelope"></i> Email:
+            <a href="mailto:nguyenvana@gmail.com">nguyenvana@gmail.com</a>
+          </p>
+          <p class="mb-2"><i class="fad fa-map-marked-alt"></i> Địa chỉ: Xuân Hà, Thanh Khê, Đà Nẵng</p>
+        </div>
+        <button class="btn btn-success px-2 w-100">
+          <span><i class="far fa-comments-alt"></i></span>
+          <span class="btn-message">CHAT VỚI NGƯỜI BÁN</span>
+        </button>
+      </div>
+    </div><!-- End of contact-panel -->
+  </div><!-- End of content-detail -->
+</div><!-- End of content -->
