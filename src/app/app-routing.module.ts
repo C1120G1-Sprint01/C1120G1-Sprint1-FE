@@ -1,12 +1,21 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
-import {AdminChatComponent} from './module/admin/admin-chat/admin-chat/admin-chat.component';
-import {ListPostCustomerComponent} from './module/customer/post-customer/list-post-customer/list-post-customer.component';
+import {RouterModule, Routes} from '@angular/router';
 import {CustomerModule} from './module/customer/customer.module';
 import {AdminModule} from './module/admin/admin.module';
+import {LoginComponent} from "./module/security/login/login.component";
+import {ListCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/list-customer-manager/list-customer-manager.component";
+import {EditCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/edit-customer-manager/edit-customer-manager.component";
+import {DeleteCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/delete-customer-manager/delete-customer-manager.component";
+import {AdminChatComponent} from "./module/admin/admin-chat/admin-chat/admin-chat.component";
+
 
 const routes: Routes = [
-  {path: '', component: AdminChatComponent}
+  {path: 'admin/chat', component: AdminChatComponent},
+  {path: 'admin', redirectTo: 'admin', pathMatch: 'full'},
+  {path: 'admin/listUser', component: ListCustomerManagerComponent},
+  {path: 'admin/listUser/edit/:id', component: EditCustomerManagerComponent},
+  {path:'admin/listUser/delete', component: DeleteCustomerManagerComponent},
+  {path: 'login', component: LoginComponent}
 ];
 
 @NgModule({
