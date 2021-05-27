@@ -16,13 +16,15 @@ import {Ward} from "../../../model/Ward";
 })
 export class ServiceAdminService {
 
+   API_URL_USER: string = "http://localhost:8080/admin/userList";
+   API_URL_ACCOUNT: string = "http://localhost:8080/account";
+   API_URL_PROVINCE: string = "http://localhost:8080/province";
+   API_URL_DISTRICT: string = "http://localhost:8080/district";
+   API_URL_WARD: string = "http://localhost:8080/ward";
   public baseUrl = 'http://localhost:8080';
-  public API_URL_USER = "http://localhost:3000/user";
-  public API_URL_ACCOUNT = "http://localhost:3000/account";
-  public API_URL_PROVINCE = "http://localhost:3000/province";
-  public API_URL_DISTRICT = "http://localhost:3000/district";
-  public API_URL_WARD = "http://localhost:3000/ward";
-  httpOptions: any;
+  httpOptions:any;
+
+
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -64,10 +66,6 @@ export class ServiceAdminService {
   }
 
 
-
-
-
-
   getAllUser(): Observable<User[]> {
       return this.httpClient.get<User[]>(this.API_URL_USER);
   }
@@ -85,7 +83,7 @@ export class ServiceAdminService {
   }
 
   editUser(user: User, id: number): Observable<User[]> {
-    return this.httpClient.put<User[]>(this.API_URL_USER + '/' + id, user);
+    return this.httpClient.put<User[]>(this.API_URL_USER + '/edit/' + id, user);
   }
 
   deleteUser(id: number): Observable<User[]> {
