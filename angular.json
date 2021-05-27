@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sprint01-fe"
+    }
+  },
+  "defaultProject": "sprint01-fe",
+  "cli": {
+    "analytics": "424c27ec-24dd-4f8e-8bf8-048c7253c646"
+  }
 }
