@@ -1,1 +1,88 @@
-<p>add-banner-manager works!</p>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
+      rel="stylesheet">
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+<div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
+  <div class="wrapper wrapper--w790">
+    <div class="card card-5">
+      <div class="card-heading">
+        <h2 class="title">Tạo Banner Quảng Cáo</h2>
+      </div>
+      <div class="card-body">
+        <form method="POST" class="ml-4" ngNoForm [formGroup]="formCreateBanner" (ngSubmit)="createBanner()">
+          <div class="form-row">
+            <div class="name">Kích thước:</div>
+            <div class="value">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <mat-form-field class="form-select" appearance="fill">
+                    <mat-label>Chọn Kích Thước</mat-label>
+                    <mat-select formControlName="size">
+                      <mat-option>Không chọn</mat-option>
+                      <mat-option value="1">152 x 203</mat-option>
+                      <mat-option value="2">279 x 356</mat-option>
+                      <mat-option value="3">297 x 420</mat-option>
+                      <mat-option value="4">420 x 594</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!--                  <div class="select-dropdown"></div> // validate-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Hình ảnh:</div>
+            <label id="input-image">
+              <i class="fa fa-image"></i>
+              <input type="file" name="myfile" style="display:none">
+            </label>
+          </div>
+          <div class="form-row">
+            <div class="name">Thời hạn:</div>
+            <div class="value">
+              <div class="input-group">
+                <mat-form-field class="form-select" appearance="fill">
+                  <mat-label>Chọn thời hạn banner</mat-label>
+                  <mat-select formControlName="duration">
+                    <mat-option>Không chọn</mat-option>
+                    <mat-option value="1">1 - tuần</mat-option>
+                    <mat-option value="2">2 - tuần</mat-option>
+                    <mat-option value="3">1 - tháng</mat-option>
+                    <mat-option value="4">2 - tháng</mat-option>
+                    <mat-option value="5">6 - tháng</mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <!--                  <div class="select-dropdown"></div> // validate-->
+              </div>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="name">Vị trí:</div>
+            <div class="value">
+              <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                  <mat-form-field class="form-select" appearance="fill">
+                    <mat-label>Chọn vị trí hiển thị banner</mat-label>
+                    <mat-select formControlName="position">
+                      <mat-option>Không chọn</mat-option>
+                      <mat-option value="1">Trên</mat-option>
+                      <mat-option value="2">Dưới</mat-option>
+                      <mat-option value="3">Phải</mat-option>
+                      <mat-option value="4">Trái</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+                  <!--<div class="select-dropdown"></div> // validate-->
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="mt-5">
+            <button class="btn btn-success ml-3 mb-1" [disabled]="formCreateBanner.invalid" type="submit">Thêm</button>
+            <button (click)="closeAddFormBanner()" class="btn btn-secondary ml-3 mb-1" type="button">Đóng</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+

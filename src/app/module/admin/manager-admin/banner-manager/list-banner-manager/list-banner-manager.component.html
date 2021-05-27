@@ -1,1 +1,44 @@
-<p>list-banner-manager works!</p>
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+      <h1 class="text-center mt-2" style="font-family: Roboto;font-size: 40px">Banner Management</h1>
+      <button (click)="openFormAddBanner()" class="btn btn-success mb-2 ml-1"><a><i style="color: white"
+                                                                                    class="fa fa-plus"></i></a>
+      </button>
+      <div class="table-responsive">
+        <table class="table table-striped border border-dark">
+          <thead class="thead-dark">
+          <tr class="text-center">
+            <th scope="col">STT</th>
+            <th scope="col">Vị trí</th>
+            <th scope="col">Kích Thước</th>
+            <th scope="col">Ảnh</th>
+            <th scope="col">Thời hạn</th>
+            <th scope="col">Thao Tác</th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let banner of listBanner,let i = index" [attr.data-index]="i">
+          <tr style="color: #027FFF" class="text-center">
+            <td>{{i + 1}}</td>
+            <td>{{banner.position}}</td>
+            <td>{{banner.size}}</td>
+            <td><img class="image-content-1 border border-dark"
+                     [src]=banner.image>
+            </td>
+            <td>{{banner.duration}}</td>
+            <td>
+              <button class="btn btn-warning mb-1"><a><i style="color: white" class="fa fa-edit"></i></a></button>
+              <button class="btn btn-danger mb-1 ml-1" data-toggle="modal" data-target="#exampleModal"><i
+                class="fa fa-trash-alt"></i></button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
