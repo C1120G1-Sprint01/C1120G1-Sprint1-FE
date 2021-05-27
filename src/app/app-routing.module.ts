@@ -1,12 +1,11 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {LoginComponent} from "./module/security/login/login.component";
+import {ChatCustomerComponent} from './module/customer/chat-customer/chat-customer/chat-customer.component';
 
 
 const routes: Routes = [
-  {
-    path: '', redirectTo: 'login', pathMatch:'full'
-  },
+  {path: '', component: ChatCustomerComponent},
   {
     path: 'login', component: LoginComponent
   }
@@ -16,4 +15,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
