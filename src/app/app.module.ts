@@ -1,7 +1,3 @@
-import { NgModule } from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {CustomerModule} from './module/customer/customer.module';
 import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule} from '@angular/fire/database';
@@ -14,15 +10,21 @@ import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {DatePipe} from '@angular/common';
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {NgModule} from '@angular/core';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {CustomerModule} from './module/customer/customer.module';
+import {HttpClientModule} from '@angular/common/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {AdminModule} from './module/admin/admin.module';
 import {SecurityModule} from "./module/security/security.module";
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserModule} from "@angular/platform-browser";
-import {AdminModule} from "./module/admin/admin.module";
+import {HeaderCustomerComponent} from "./module/customer/header-customer/header-customer/header-customer.component";
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderCustomerComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,12 +39,12 @@ import {AdminModule} from "./module/admin/admin.module";
     MatInputModule,
     MatSnackBarModule,
     BrowserAnimationsModule,
-    SecurityModule,
     CustomerModule,
+    SecurityModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    AdminModule
+    AdminModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]
