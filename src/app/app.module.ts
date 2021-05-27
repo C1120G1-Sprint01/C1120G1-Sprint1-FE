@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,6 +7,8 @@ import {CustomerModule} from './module/customer/customer.module';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {SecurityModule} from "./module/security/security.module";
 import {HttpClientModule} from "@angular/common/http";
+import {BrowserModule} from "@angular/platform-browser";
+import {AdminModule} from "./module/admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import {HttpClientModule} from "@angular/common/http";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule,
     CustomerModule,
-    FormsModule,
     SecurityModule,
-    HttpClientModule
+    CustomerModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
