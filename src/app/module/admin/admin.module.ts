@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FooterAdminModule} from './footer-admin/footer-admin.module';
 import {HeaderAdminModule} from './header-admin/header-admin.module';
+import {CategoryAdminModule} from './category-admin/category-admin.module';
 
 
 
@@ -10,7 +11,8 @@ import {HeaderAdminModule} from './header-admin/header-admin.module';
   imports: [
     CommonModule,
     FooterAdminModule,
-    HeaderAdminModule
+    HeaderAdminModule,
+    CategoryAdminModule,
   ]
 })
 export class AdminModule { }
