@@ -1,11 +1,15 @@
-import { BrowserModule } from '@angular/platform-browser';
+
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
-import {AdminModule} from './module/admin/admin.module';
 
+
+import {HttpClientModule} from "@angular/common/http";
+import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {AdminModule} from "./module/admin/admin.module";
 
 @NgModule({
   declarations: [
@@ -15,7 +19,11 @@ import {AdminModule} from './module/admin/admin.module';
     BrowserModule,
     AppRoutingModule,
     CustomerModule,
-    AdminModule,
+
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
