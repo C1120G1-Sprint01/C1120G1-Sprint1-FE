@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {ChatCustomerModule} from './chat-customer/chat-customer.module';
+import { PostCustomerModule } from './post-customer/post-customer.module';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -9,7 +12,11 @@ import {ChatCustomerModule} from './chat-customer/chat-customer.module';
   declarations: [],
   imports: [
     ChatCustomerModule,
-    CommonModule
+    PostCustomerModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class CustomerModule { }
