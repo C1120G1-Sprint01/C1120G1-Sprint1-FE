@@ -16,9 +16,12 @@ import { DeletePostAdminComponent } from './post-manager/delete-post-admin/delet
 
 
 @NgModule({
-  declarations: [DetailAdminComponent, BrowersAdminComponent, ConfirmAdminComponent, ListCustomerManagerComponent, EditCustomerManagerComponent, DeleteCustomerManagerComponent, AddCustomerManagerComponent, ListBannerManagerComponent, AddBannerManagerComponent, DeleteBannerManagerComponent, EditBannerManagerComponent, DeletePostAdminComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [DetailAdminComponent, BrowersAdminComponent, ConfirmAdminComponent, ListCustomerManagerComponent, EditCustomerManagerComponent, DeleteCustomerManagerComponent, AddCustomerManagerComponent, ListBannerManagerComponent, AddBannerManagerComponent, DeleteBannerManagerComponent, EditBannerManagerComponent, DeletePostAdminComponent],
+    exports: [
+        AddCustomerManagerComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class ManagerAdminModule { }
