@@ -11,14 +11,22 @@ import {AddBannerManagerComponent} from './banner-manager/add-banner-manager/add
 import {DeleteBannerManagerComponent} from './banner-manager/delete-banner-manager/delete-banner-manager.component';
 import {EditBannerManagerComponent} from './banner-manager/edit-banner-manager/edit-banner-manager.component';
 import {DeletePostAdminComponent} from './post-manager/delete-post-admin/delete-post-admin.component';
-
+import {RouterModule} from '@angular/router';
+import {ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-  declarations: [DetailAdminComponent, ConfirmAdminComponent, ListCustomerManagerComponent, EditCustomerManagerComponent,
-    DeleteCustomerManagerComponent, AddCustomerManagerComponent, ListBannerManagerComponent, AddBannerManagerComponent,
-    DeleteBannerManagerComponent, EditBannerManagerComponent, DeletePostAdminComponent],
+  declarations: [DetailAdminComponent, ConfirmAdminComponent,
+    ListCustomerManagerComponent, EditCustomerManagerComponent,
+    DeleteCustomerManagerComponent, AddCustomerManagerComponent,
+    ListBannerManagerComponent, AddBannerManagerComponent,
+    DeleteBannerManagerComponent, EditBannerManagerComponent,
+    DeletePostAdminComponent],
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ]
 })
 export class ManagerAdminModule {
