@@ -1,15 +1,14 @@
 
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
+import {HeaderCustomerModule} from './module/customer/header-customer/header-customer.module';
+import {SecurityModule} from "./module/security/security.module";
 
-
-import {HttpClientModule} from "@angular/common/http";
-import {BrowserModule} from "@angular/platform-browser";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {AdminModule} from "./module/admin/admin.module";
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   declarations: [
@@ -20,12 +19,13 @@ import {AdminModule} from "./module/admin/admin.module";
     AppRoutingModule,
     CustomerModule,
 
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AdminModule
+    AdminModule,
+    HeaderCustomerModule,
+    SecurityModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

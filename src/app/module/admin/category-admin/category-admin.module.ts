@@ -9,6 +9,7 @@ import { DeleteChildCategoryComponent } from './delete-child-category/delete-chi
 import { EditChildCategoryComponent } from './edit-child-category/edit-child-category.component';
 import { HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
+import {BrowserModule} from "@angular/platform-browser";
 
 
 
@@ -26,6 +27,7 @@ import {RouterModule} from '@angular/router';
     CommonModule,
     HttpClientModule,
     RouterModule,
+    BrowserModule
   ]
 })
 export class CategoryAdminModule { }
