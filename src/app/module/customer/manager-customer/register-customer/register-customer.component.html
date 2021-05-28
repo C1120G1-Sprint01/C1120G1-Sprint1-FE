@@ -134,7 +134,7 @@
             <select class="form-control" formControlName="ward" id="ward" class="form-control">
               <option value="" disabled>Select Ward</option>
               <option *ngFor="let ward of listWard"
-                      [ngValue]="ward"
+                      [ngValue]="ward.wardId"
                       style="color: blue">
                 {{ward.wardName}}
               </option>
@@ -144,7 +144,7 @@
             <select class="form-control" formControlName="district" id="district" class="form-control">
               <option value="" disabled>Select a District</option>
               <option *ngFor="let district of listDistrict"
-                      [ngValue]="district"
+                      [ngValue]="district.districtId"
                       style="color: blue">
                 {{district.districtName}}
               </option>
@@ -154,7 +154,7 @@
             <select class="form-control" formControlName="province" id="province" class="form-control">
               <option value="" disabled>Select a province</option>
               <option *ngFor="let province of listProvince"
-                      [ngValue]="province"
+                      [ngValue]="province.provinceId"
                       style="color: blue">
                 {{province.provinceName}}
               </option>
@@ -173,7 +173,7 @@
       </div>
 
       <div style="text-align: center;">
-        <button type="button" class="btn login-button">Đăng Kí</button>
+        <button type="submit" class="btn login-button">Đăng Kí</button>
         <button type="button" class="btn cancel-button" (click)="onReset()">Nhập Lại</button>
       </div>
     </div>

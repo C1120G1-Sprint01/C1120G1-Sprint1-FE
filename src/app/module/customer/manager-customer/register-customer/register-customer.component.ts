@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
-import {ServiceCustomerService} from "../../../service/service-customer/service-customer.service";
+import {AbstractControl, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
-import {District} from "../../../../model/user/Ward/District";
-import {Province} from "../../../../model/user/Ward/Province";
-import {Ward} from "../../../../model/user/Ward/Ward";
+import {UserCustomerService} from "../../../service/service-customer/user-customer.service";
+import {Ward} from "../../../../model/Ward";
+import {District} from "../../../../model/District";
+import {Province} from "../../../../model/Province";
 
 @Component({
   selector: 'app-register-customer',
@@ -22,7 +22,7 @@ export class RegisterCustomerComponent implements OnInit {
 
 
   constructor(private formBuilder:FormBuilder,
-              private userService:ServiceCustomerService,
+              private userService:UserCustomerService,
               private router:Router,
               private activatedRoute : ActivatedRoute
               ) { }
@@ -39,7 +39,7 @@ export class RegisterCustomerComponent implements OnInit {
       // avatar :new FormControl('',[Validators.required]),
       registerDate :new FormControl(''),
       password: new FormControl(''),
-      confirmPassword: new FormControl('')
+      confirmPassword: new FormControl('',[this.comparePassword])
   })
   }
 
@@ -48,14 +48,22 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
 
-  onSubmit() {
+    onSubmit() {
 
     if (this.formAddNewCustomer.valid){
       if (this.formAddNewCustomer.value.password === this.formAddNewCustomer.value.confirmPassword){
         this.userService.save(this.formAddNewCustomer.value).subscribe(res => {
+
             console.log(this.formAddNewCustomer.value)
         })
       }
     }
+  }
+
+  comparePassword(c: AbstractControl) {
+    const value = c.value;
+    return (value.newPassword === value.confirmPassword) ? null : {
+      passwordnotmatch: true
+    };
   }
 }
