@@ -6,6 +6,7 @@ import { DeletePostCustomerComponent } from './delete-post-customer/delete-post-
 import { ListPostCustomerComponent } from './list-post-customer/list-post-customer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 
 
 
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
   ]
 })
 export class PostCustomerModule { }
