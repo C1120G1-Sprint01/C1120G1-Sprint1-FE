@@ -25,7 +25,6 @@
       <span class="chat_msg_item chat_msg_item_admin">
             <div class="chat_avatar">
                <img src="./assets/image/logoChat.png"/>
-
             </div>Xin Chào! Tôi có thể giúp gì cho bạn không?</span>
       <div class="m-0" *ngFor="let chat of chats">
         <div class="m-0" *ngIf="chat.nickname === account.userName">
@@ -66,14 +65,16 @@
           <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
         </label>
         <a id="fab_send" class="fab mt-3" (click)="onFormSubmit(chatFormUser.value, 'message')"><i class="zmdi zmdi-mail-send"></i></a>
-        <input id="chatSend" name="chat_message" placeholder="Nhập tin nhắn..." formControlName="message"
-               class="chat_field chat_message">
+        <input id="chatSend" name="chat_message"
+                  placeholder="Nhập tin nhắn..." formControlName="message"
+                  class="chat_field chat_message" />
       </form>
-      <div *ngIf="selectedImages.length != 0" style="overflow: auto; height: 50px">
+      <div *ngIf="selectedImages.length != 0" style="overflow: auto; height: 75px">
         <div *ngFor="let file of selectedImages; let i = index" class="d-inline-block" style="margin: 0; overflow: auto">
-          <span><i class="fa fa-close delete-icon d-inline" (click)="deleteUpdateImage($event)"
-                   [attr.data-index]="i"></i></span>
-          <img [src]="file.url" style="margin:3px; height: 50px; width: auto; float: left">
+          <span>
+            <i class="fas fa-backspace fa-lg" (click)="deleteUpdateImage($event)" [attr.data-index]="i"></i>
+          </span>
+          <img [src]="file.url" style="margin:3px; height: 70px; width: auto; float: left">
         </div>
       </div>
     </div>

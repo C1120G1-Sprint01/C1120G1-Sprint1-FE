@@ -5,24 +5,30 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import {MatInputModule} from '@angular/material/input';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ChatBoxComponent } from './chat-box/chat-box.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ManagerCustomerModule} from "./manager-customer/manager-customer.module";
+import { PostCustomerModule } from './post-customer/post-customer.module';
+import { HttpClientModule } from '@angular/common/http';
+import {HeaderCustomerModule} from "./header-customer/header-customer.module";
 
 @NgModule({
   declarations: [ChatBoxComponent],
   imports: [
     CommonModule,
     RouterModule,
+    PostCustomerModule,
+    CommonModule,
+    HttpClientModule,
+    FormsModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,
     MatFormFieldModule,
     MatButtonModule,
     MatInputModule,
-    MatSnackBarModule,
-    ManagerCustomerModule
+    ManagerCustomerModule,
+    HeaderCustomerModule,
   ],
   exports: [ChatBoxComponent]
 })

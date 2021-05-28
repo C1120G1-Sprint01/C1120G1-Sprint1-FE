@@ -48,10 +48,10 @@ export class ChatBoxComponent implements OnInit {
   ngOnInit(): void {
     this.hideChat(0);
     this.chatFormUser = this.formBuilder.group({
-      message: [null, [Validators.required, Validators.maxLength(10000)]]
+      message: [null, [Validators.required, Validators.maxLength(50)]]
     });
     this.account = {
-      userName: 'hongson2410',
+      userName: 'chipucu123',
       password: '123456',
       registerDate: '27/05/2021'
     };
@@ -63,7 +63,7 @@ export class ChatBoxComponent implements OnInit {
       accountRoleId: 1,
       account: this.account,
       role: this.role
-  };
+    };
     this.province = {
       provinceId: 1,
       provinceName: 'Thành Phố Hà Nội'
@@ -80,8 +80,9 @@ export class ChatBoxComponent implements OnInit {
     };
     this.user = {
       userId: 1,
-      email: 'hongson@gmail.com',
-      name: 'Hồng Sơn',
+      email: 'chipucu@gmail.com',
+      name: 'Chi Pu',
+      avatar: 'https://vnn-imgs-a1.vgcloud.vn/cdn.24h.com.vn/upload/1-2020/images/2020-02-01/1580492835-617-s---thanh67-1580445576-width650height650.jpg',
       phone: '0941514430',
       account: this.account,
       ward: this.ward
@@ -100,6 +101,8 @@ export class ChatBoxComponent implements OnInit {
   }
 
   toggleFab() {
+    this.selectedImages = [];
+    this.ngOnInit();
     $('.prime').toggleClass('zmdi-comment-outline');
     $('.prime').toggleClass('zmdi-close');
     $('.prime').toggleClass('is-active');
@@ -181,11 +184,34 @@ export class ChatBoxComponent implements OnInit {
   onFormSubmit(form: any, type: string) {
     this.tempFile = this.selectedImages;
     this.selectedImages = [];
+    if ((this.chatFormUser.get('message').errors?.required && this.tempFile != null) ||
+      (this.chatFormUser.get('message').value.trim() == '' && this.tempFile != null)) {
+      this.addImageToFireBase();
+      this.chatFormUser.reset();
+      return;
+    }
+    if (this.chatFormUser.get('message').errors?.required) {
+      this.snackBar.open('Không được để trống nội dung', 'X',
+        {
+          duration: 5000,
+        });
+      this.chatFormUser.reset();
+      return;
+    }
     if (this.chatFormUser.get('message').errors?.maxlength) {
       this.snackBar.open('Tin nhắn bạn nhập quá dài', 'X',
         {
           duration: 5000,
         });
+      this.chatFormUser.reset();
+      return;
+    }
+    if (this.chatFormUser.get('message').value.trim() == '') {
+      this.snackBar.open('Không được để trống nội dung', 'X',
+        {
+          duration: 5000,
+        });
+      this.chatFormUser.reset();
       return;
     }
     this.addImageToFireBase();
@@ -197,6 +223,7 @@ export class ChatBoxComponent implements OnInit {
       chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
       chat.date = new Date().getTime();
       chat.type = type;
+      chat.message = form.message.trim();
       this.chatService.refChats.push().set(chat).then(data => {
         $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
       });
@@ -219,8 +246,17 @@ export class ChatBoxComponent implements OnInit {
     const files = $event.target.files;
     for (const file of files) {
       const name = file.type.toString();
+      const size = file.size;
       if (!name.includes('image')) {
         this.snackBar.open('Đây không phải hình ảnh', 'X',
+          {
+            duration: 5000,
+          }
+        );
+        return;
+      }
+      if (size > 1000000) {
+        this.snackBar.open('Dung lượng ảnh quá cao', 'X',
           {
             duration: 5000,
           }
@@ -280,7 +316,7 @@ export class ChatBoxComponent implements OnInit {
       return;
     }
     const index = $event.target.attributes['data-index'].value;
-    this.selectedImages = this.selectedImages.slice(0, index).concat(this.selectedImages.slice(index + 1, this.selectedImages.length));
+    this.selectedImages.splice(index, 1);
   }
 
   zoom(url) {

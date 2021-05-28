@@ -14,17 +14,14 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
-import {HttpClientModule} from '@angular/common/http';
-import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {AdminModule} from './module/admin/admin.module';
 import {SecurityModule} from "./module/security/security.module";
-import {HeaderCustomerComponent} from "./module/customer/header-customer/header-customer/header-customer.component";
+import {AdminModule} from "./module/admin/admin.module";
+import {BrowserModule} from "@angular/platform-browser";
+import {HeaderCustomerModule} from "./module/customer/header-customer/header-customer.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderCustomerComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -40,11 +37,9 @@ import {HeaderCustomerComponent} from "./module/customer/header-customer/header-
     MatSnackBarModule,
     BrowserAnimationsModule,
     CustomerModule,
-    SecurityModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
     AdminModule,
+    SecurityModule,
+    HeaderCustomerModule,
   ],
   providers: [DatePipe],
   bootstrap: [AppComponent]

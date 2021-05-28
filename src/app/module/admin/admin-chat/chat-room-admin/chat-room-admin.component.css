@@ -156,11 +156,10 @@
 .chat-admin .chat-history .message {
   color: #444;
   padding: 18px 20px;
-  line-height: 26px;
+  line-height: 27px;
   font-size: 16px;
   border-radius: 7px;
   display: inline-block;
-  position: relative
 }
 
 .chat-admin .chat-history .message:after {
@@ -178,7 +177,10 @@
 }
 
 .chat-admin .chat-history .my-message {
-  background: #efefef
+  background: #e8f1f3;
+  text-align: right;
+  padding: 7px;
+  font-size: 19px;
 }
 
 .chat-admin .chat-history .my-message:after {
@@ -197,7 +199,9 @@
 
 .chat-admin .chat-history .other-message {
   background: #e8f1f3;
-  text-align: right
+  text-align: right;
+  padding: 7px;
+  font-size: 19px;
 }
 
 .chat-admin .chat-history .other-message:after {

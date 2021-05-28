@@ -4,7 +4,7 @@
       <div class="col-lg-6" *ngIf="user">
         <a href="" data-toggle="modal"
            data-target="#view_info">
-          <img src="https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666542940?b=1&k=6&m=666542940&s=612x612&w=0&h=5Kd9ZMtzzxQbvRuWd-KwI0YATkF9I_QrezHG2Mn2VmE="
+          <img src="{{user.avatar}}"
                alt="avatar">
         </a>
         <div class="chat-about">
@@ -22,7 +22,7 @@
       <li class="clearfix" *ngFor="let chat of chats">
         <div class="message-data text-right" *ngIf="chat.nickname === roomName">
           <span class="message-data-time">{{chat.timeSkip}} </span>
-          <img src="https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666542940?b=1&k=6&m=666542940&s=612x612&w=0&h=5Kd9ZMtzzxQbvRuWd-KwI0YATkF9I_QrezHG2Mn2VmE="
+          <img src="{{user.avatar}}"
                alt="avatar">
         </div>
         <div class="message other-message float-right"
@@ -63,7 +63,7 @@
                placeholder="Nhập tin nhắn...">
       </form>
       <div class="input-group-prepend text-right" style="margin-left: 10px">
-        <label class="btn btn-outline-primary" for="file-input">
+        <label class="btn btn-outline-primary" style=" color: #ff9800;background-color: transparent;border-color: #ff9800;border-radius: 7px 7px 7px 7px;" for="file-input">
           <i class="fa fa-image"></i>
           <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
         </label>
@@ -72,8 +72,9 @@
     <div class="clearfix" style="overflow: auto; height: 100px" *ngIf="selectedImages.length !== 0">
       <div *ngFor="let file of selectedImages; let i = index" class="d-inline-block"
            style="margin: 0; overflow: auto;">
-          <span><i class="fa fa-close delete-icon d-inline" (click)="deleteUpdateImage($event)"
-                   [attr.data-index]="i"></i></span>
+          <span>
+            <i class="fas fa-backspace fa-lg" style="color: #ff3200" (click)="deleteUpdateImage($event)" [attr.data-index]="i"></i>
+          </span>
         <img [src]="file.url" style="margin:3px; height: 100px; width: auto; float: left">
       </div>
     </div>

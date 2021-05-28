@@ -86,12 +86,13 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       userId: 1,
       email: 'bichtram@gmail.com',
       name: 'Bích Trâm',
+      avatar: 'https://vnn-imgs-a1.vgcloud.vn/cdn.24h.com.vn/upload/1-2020/images/2020-02-01/1580492835-420-chi-pu--2--1580456352-width650height812.jpg',
       phone: '0941514430',
       account: this.account,
       ward: this.ward
     };
     this.chatForm = this.formBuilder.group({
-      message: [null, [Validators.required, Validators.maxLength(1000)]]
+      message: [null, [Validators.required, Validators.maxLength(100)]]
     });
 
     this.nickname = this.admin.account.userName;
@@ -103,8 +104,9 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       this.chatService.refChats.on('value', resp => {
         this.chats = this.chatService.snapshotToArray(resp).filter(x => x.roomName === this.roomName);
         this.setTimeForChat();
-        $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
-
+        setTimeout(function () {
+          $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
+        }, 2000);
       });
 
       this.chatService.refRooms.orderByChild('roomName').equalTo(this.roomName).on('child_added', (resp2: any) => {
@@ -118,11 +120,34 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
   }
 
   onFormSubmit(form: any, type: string) {
+    if ((this.chatForm.get('message').errors?.required && this.selectedImages != null) ||
+      (this.chatForm.get('message').value.trim() == '' && this.selectedImages != null)) {
+      this.addImageToFireBase();
+      this.chatForm.reset();
+      return;
+    }
+    if (this.chatForm.get('message').errors?.required) {
+      this.snackBar.open('Không được để trống nội dung', 'X',
+        {
+          duration: 5000,
+        });
+      this.chatForm.reset();
+      return;
+    }
     if (this.chatForm.get('message').errors?.maxlength) {
       this.snackBar.open('Tin nhắn bạn nhập quá dài', 'X',
         {
           duration: 5000,
         });
+      this.chatForm.reset();
+      return;
+    }
+    if (this.chatForm.get('message').value.trim() == '') {
+      this.snackBar.open('Không được để trống nội dung', 'X',
+        {
+          duration: 5000,
+        });
+      this.chatForm.reset();
       return;
     }
     this.addImageToFireBase();
@@ -134,6 +159,7 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       chat.nickname = this.nickname;
       chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
       chat.date = new Date().getTime();
+      chat.message = form.message.trim();
       chat.type = type;
       this.chatService.refChats.push().set(chat).then(data => {
         this.loadImage = false;
@@ -180,9 +206,17 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
     const files = $event.target.files;
     for (const file of files) {
       const name = file.type.toString();
+      const size = file.size;
       if (!name.includes('image')) {
-
         this.snackBar.open('Đây không phải hình ảnh', 'X',
+          {
+            duration: 5000,
+          }
+        );
+        return;
+      }
+      if (size > 1000000) {
+        this.snackBar.open('Dung lượng ảnh quá cao', 'X',
           {
             duration: 5000,
           }
@@ -243,8 +277,7 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       return;
     }
     const index = $event.target.attributes['data-index'].value;
-    this.selectedImages = this.selectedImages.slice(0, index).concat(this.selectedImages.slice(index + 1, this.selectedImages.length));
-
+    this.selectedImages.splice(index, 1);
   }
 
   zoom(url) {

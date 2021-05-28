@@ -1,13 +1,13 @@
 <div class="container-fluid">
-  <div class="card">
+  <div class="card" style="background: #293a48 !important; width: 70%">
     <div class="card-header card-header-primary">
-      <h4 class="card-title">Tư Vấn Khách Hàng</h4>
+      <h3 class="card-title">Tư Vấn Khách Hàng</h3>
     </div>
     <div class="card-body">
       <div id="typography">
         <div class="row">
-          <div class="col-lg-12">
-            <div class="card chat-app">
+          <div class="col-lg-12" style="position: relative;width: 100%;min-height: 1px;padding-right: 0px;padding-left: 0px;">
+            <div class="card chat-app" style="border: 0;margin-bottom: -3px;margin-top: -7px;border-radius: 6px;color: #343a40;width: 100%;">
               <div id="plist" class="people-list">
                 <div class="input-group">
                   <div class="input-group-prepend">
@@ -26,10 +26,7 @@
                   <li class="clearfix" *ngFor="let room of rooms" (click)="enterChatRoom(room)"
                       [ngClass]="{'active': room.active}">
                     <img *ngIf="room.user"
-                         src="https://media.istockphoto.com/vectors/default-placeholder-profile-icon-vector-id666542940?b=1&k=6&m=666542940&s=612x612&w=0&h=5Kd9ZMtzzxQbvRuWd-KwI0YATkF9I_QrezHG2Mn2VmE="
-                         alt="avatar">
-                    <img *ngIf="!room.user"
-                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIaDVphQLEDiL6PDlQULiIyHHt_s8eeBdCiw&usqp=CAU"
+                         src="{{room.user.avatar}}"
                          alt="avatar">
                     <div class="about">
                       <div *ngIf="room.user" class="name">{{room.user.account.userName}}</div>

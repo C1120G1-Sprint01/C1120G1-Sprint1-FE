@@ -3481,16 +3481,17 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-primary {
-  color: #2196f3;
+  color: #ff9800;
   background-color: transparent;
-  background-image: none;
-  border-color: #2196f3;
+  border-color: #ff9800;
+  border-radius: 12px 12px 12px 12px;
 }
 
 .btn-outline-primary:hover {
-  color: #ffffff;
-  background-color: #2196f3;
-  border-color: #2196f3;
+  color: #ff9800;
+  background-color: transparent;
+  border-color: #ff9800;
+  border-radius: 12px 12px 12px 12px;
 }
 
 .btn-outline-primary:focus,
@@ -17611,7 +17612,7 @@ label {
 .card.bg-primary,
 .card.card-rotate.bg-primary .front,
 .card.card-rotate.bg-primary .back {
-  background: linear-gradient(60deg, #ab47bc, #8e24aa);
+  background: linear-gradient(60deg, #ff9800, #8e24aa);
 }
 
 .card .card-header-info .card-icon,
@@ -17816,6 +17817,7 @@ label {
 
 .card .card-header .card-title {
   margin-bottom: 3px;
+  font-weight: revert;
 }
 
 .card .card-header .card-category {

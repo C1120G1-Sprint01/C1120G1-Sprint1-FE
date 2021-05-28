@@ -65,6 +65,7 @@ export class AdminChatComponent implements OnInit {
       userId: 1,
       email: 'bichtram@gmail.com',
       name: 'Bích Trâm',
+      avatar: 'https://vnn-imgs-a1.vgcloud.vn/cdn.24h.com.vn/upload/1-2020/images/2020-02-01/1580492835-420-chi-pu--2--1580456352-width650height812.jpg',
       phone: '0941514430',
       account: this.account,
       ward: this.ward
