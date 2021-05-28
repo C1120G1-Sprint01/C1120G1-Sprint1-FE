@@ -9,7 +9,17 @@ export class HomePageComponent implements OnInit {
 
   constructor() { }
 
+  openNav() {
+    document.getElementById("myNav").style.width = "50%";
+  }
+
+  closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+  }
+
   ngOnInit(): void {
+    this.openNav();
+    this.closeNav();
   }
 
 }
