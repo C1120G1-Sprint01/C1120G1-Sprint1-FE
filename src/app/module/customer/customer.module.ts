@@ -5,12 +5,10 @@ import { PostCustomerModule } from './post-customer/post-customer.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ManagerCustomerModule } from './manager-customer/manager-customer.module';
-
-
-
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [HomePageComponent],
   imports: [
     ChatCustomerModule,
     PostCustomerModule,
