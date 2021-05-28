@@ -31,4 +31,8 @@ export class ServiceBannerService {
   showAllSize(): Observable<any> {
     return this.http.get(this.API_BANNER + '/size');
   }
+
+  findBannerById(bannerId: number): Observable<any> {
+    return this.http.get(this.API_BANNER + '/' + bannerId);
+  }
 }

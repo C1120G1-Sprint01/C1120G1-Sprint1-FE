@@ -1,7 +1,10 @@
+import {Size} from './size';
+import {Position} from './position';
+
 export class Banner {
-  id: number;
+  bannerId: number;
   duration: any;
   image: string;
-  position: string;
-  size: string;
+  position: Position;
+  size: Size;
 }

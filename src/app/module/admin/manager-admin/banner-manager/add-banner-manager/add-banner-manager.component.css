@@ -4,6 +4,16 @@
   border-radius: 50rem;
   border: 1px solid lightgray;
 }
+.icon-hide {
+  position: relative;
+  float: left;
+  display: block;
+  left: 87%;
+  font-size: 20px;
+}
+.icon-hide:hover{
+  color: red;
+}
 
 /* ==========================================================================
    #FONT

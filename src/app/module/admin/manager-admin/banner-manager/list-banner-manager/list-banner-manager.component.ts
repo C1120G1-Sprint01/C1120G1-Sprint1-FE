@@ -2,7 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ServiceBannerService} from '../../../../service/service-banner/service-banner.service';
 import {AddBannerManagerComponent} from '../add-banner-manager/add-banner-manager.component';
+import {EditBannerManagerComponent} from '../edit-banner-manager/edit-banner-manager.component';
 import {Banner} from '../model/banner';
+import {interval} from 'rxjs';
+
 
 @Component({
   selector: 'app-list-banner-manager',
@@ -21,13 +24,32 @@ export class ListBannerManagerComponent implements OnInit {
     this.bannerManagementService.showAllAdvertiseBanner().subscribe((data) => {
       this.listBanner = data;
     });
+    const changeBySecond = interval(60000).subscribe(() => {
+      this.bannerManagementService.showAllAdvertiseBanner().subscribe((data) => {
+        this.listBanner = data;
+      });
+    });
   }
 
   openFormAddBanner() {
-    this.dialog.open(AddBannerManagerComponent, {
-      width: '1200px',
-      height: '1000px',
+    const dialogRef = this.dialog.open(AddBannerManagerComponent, {
+      width: '1000px',
+      height: '900px',
       disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.ngOnInit();
+    });
+  }
+  openFormEditBanner(bannerId) {
+    const dialogRef = this.dialog.open(EditBannerManagerComponent, {
+      width: '1000px',
+      height: '900px',
+      data: bannerId,
+      disableClose: true
+    });
+    dialogRef.afterClosed().subscribe((data) => {
+      this.ngOnInit();
     });
   }
 
@@ -44,8 +66,14 @@ export class ListBannerManagerComponent implements OnInit {
       }
     } else if (date > 0) {
       return date + ' ngày';
-    }else {
-      return '';
+    } else {
+      const hour = Math.floor((seconds % 86400) / 3600);
+      if (hour >= 1) {
+        return hour + ' giờ';
+      } else {
+        return 'sắp hết hạn';
+      }
     }
   }
+
 }

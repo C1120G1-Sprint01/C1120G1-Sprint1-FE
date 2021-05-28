@@ -5,7 +5,7 @@
     <div class="col-md-3">
     </div>
     <div class="col-md-9">
-      <h1 class="text-center mt-2" style="font-family: Roboto;font-size: 40px">Banner Management</h1>
+      <h1 class="text-center mt-2" style="font-size: 40px">Banner Management</h1>
       <button (click)="openFormAddBanner()" class="btn btn-success mb-2 ml-1"><a><i style="color: white"
                                                                                     class="fa fa-plus"></i></a>
       </button>
@@ -22,7 +22,7 @@
           </tr>
           </thead>
           <tbody *ngFor="let banner of listBanner,let i = index" [attr.data-index]="i">
-          <tr style="color: #027FFF" class="text-center">
+          <tr class="text-center">
             <td>{{i + 1}}</td>
             <td>{{banner.position.positionName}}</td>
             <td>{{banner.size.sizeName}}</td>
@@ -30,12 +30,10 @@
                      [src]=banner.image>
             </td>
             <td>{{banner.duration | date: 'dd/MM/yyyy'}}
-              <p style="color: red" *ngIf="getTimeDuration(banner.duration) !==''">{{getTimeDuration(banner.duration)}}</p>
-              <p style="color: red" *ngIf="getTimeDuration(banner.duration) ===''">
-              </p>
+              <p style="color: red">{{getTimeDuration(banner.duration)}}</p>
             </td>
             <td>
-              <button class="btn btn-warning mb-1 ml-1"><a><i style="color: white" class="fa fa-edit"></i></a></button>
+              <button (click)="openFormEditBanner(banner.bannerId)" class="btn btn-warning mb-1 ml-1"><a><i style="color: white" class="fa fa-edit"></i></a></button>
               <button class="btn btn-danger mb-1 ml-1"><i class="fa fa-trash-alt"></i></button>
             </td>
           </tr>

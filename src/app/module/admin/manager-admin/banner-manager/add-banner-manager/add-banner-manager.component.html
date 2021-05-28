@@ -18,9 +18,13 @@
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn Kích Thước</mat-label>
                     <mat-select formControlName="size">
-                      <mat-option>Không chọn</mat-option>
                       <mat-option *ngFor="let size of listSize" [value]="size">{{size.sizeName}}</mat-option>
                     </mat-select>
+                    <div *ngIf="size.invalid && (size.dirty||size.touched)">
+                      <p [hidden]="!size.errors.required" style="color: red; font-size: 11px">
+                        *Bạn vẫn chưa chọn size banner
+                      </p>
+                    </div>
                   </mat-form-field>
                 </div>
               </div>
@@ -28,10 +32,18 @@
           </div>
           <div class="form-row">
             <div class="name">Hình ảnh:</div>
-            <label id="input-image">
+            <label id="input-image" *ngIf="avatar === null">
               <i class="fa fa-image"></i>
-              <input type="file" name="myfile" style="display:none">
+              <input type="file" formControlName="image" name="myfile" accept="*.png.jpg" (change)="showImage($event)" style="display:none">
             </label>
+            <p style="color:red; font-size: 11px" class="ml-2">{{messageImageError}}</p>
+            <div *ngIf="avatar !== null">
+              <img [src]="avatar"
+                   style="width: 150px; height: 110px">
+              <div class="icon-hide">
+                <i (click)="removeImage()" class="fa fa-times-circle"></i>
+              </div>
+            </div>
           </div>
           <div class="form-row">
             <div class="name">Thời hạn:</div>
@@ -40,15 +52,18 @@
                 <mat-form-field class="form-select" appearance="fill">
                   <mat-label>Chọn thời hạn banner</mat-label>
                   <mat-select formControlName="duration">
-                    <mat-option>Không chọn</mat-option>
                     <mat-option value="1">1 - tuần</mat-option>
                     <mat-option value="2">2 - tuần</mat-option>
                     <mat-option value="3">1 - tháng</mat-option>
                     <mat-option value="4">2 - tháng</mat-option>
                     <mat-option value="5">6 - tháng</mat-option>
                   </mat-select>
+                  <div *ngIf="duration.invalid && (duration.dirty||duration.touched)">
+                    <p [hidden]="!duration.errors.required" style="color: red; font-size: 11px">
+                      *Bạn vẫn chưa chọn thời hạn banner
+                    </p>
+                  </div>
                 </mat-form-field>
-                <!--                  <div class="select-dropdown"></div> // validate-->
               </div>
             </div>
           </div>
@@ -60,17 +75,21 @@
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn vị trí hiển thị banner</mat-label>
                     <mat-select formControlName="position">
-                      <mat-option>Không chọn</mat-option>
-                      <mat-option *ngFor="let position of listPosition" [value]="position" >{{position.positionName}}</mat-option>
+                      <mat-option *ngFor="let position of listPosition"
+                                  [value]="position">{{position.positionName}}</mat-option>
                     </mat-select>
+                    <div *ngIf="position.invalid && (position.dirty||position.touched)">
+                      <p [hidden]="!position.errors.required" style="color: red; font-size: 11px">
+                        *Bạn vẫn chưa chọn vị trí banner
+                      </p>
+                    </div>
                   </mat-form-field>
-                  <!--<div class="select-dropdown"></div> // validate-->
                 </div>
               </div>
             </div>
           </div>
           <div class="mt-5">
-            <button class="btn btn-success ml-3 mb-1" [disabled]="formCreateBanner.invalid" type="submit">Thêm</button>
+            <button class="btn btn-success ml-3 mb-1" type="submit">Thêm</button>
             <button (click)="closeAddFormBanner()" class="btn btn-secondary ml-3 mb-1" type="button">Đóng</button>
           </div>
         </form>
