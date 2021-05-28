@@ -1,1 +1,184 @@
-<p>edit-post-customer works!</p>
+<div class="row">
+  <div class="col-2 pr-0" style="background-color: grey;">
+    <div class="sidebar">
+      <a href="#">Thông tin cá nhân</a>
+      <a class="active" href="#">Quản lý bài đăng</a>
+      <a href="#">Hộp tin nhắn</a>
+      <a href="#about">Đổi mật khẩu</a>
+    </div>
+  </div>
+
+  <div class="container col-8">
+
+    <h3 class="my-3">Chỉnh sửa bài đăng</h3>
+
+    <div class="card mb-3">
+
+      <div class="card-body">
+        <form [formGroup]="refPost">
+          <table class="table borderless" style="width: 100%">
+            <tbody>
+              <tr>
+                <td>
+                  <label for="name">Tên</label>
+                </td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nhập tên" formControlName="posterName">
+
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Số điện thoại</td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nhập số điện thoại" formControlName="phone">
+                    <!-- <p class="small text-danger mt-1">SĐT phải từ 10-11 số. Vui lòng nhập lại.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Email</td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nhập email" formControlName="email">
+                    <!-- <p class="small text-danger mt-1">Email có dạng somebody@gmail.com,
+                                        somebody@yahoo.com</p>
+                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Tỉnh/Thành phố</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="province" [ngModelOptions]="{standalone: true}" [compareWith]="compareProvinces" (change)="onChangeProvince()">
+                      <option *ngFor="let province of provinces" [ngValue] = "province">{{province.provinceName}}</option>
+                    </select>
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Quận/Huyện</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="district" [ngModelOptions]="{standalone: true}" [compareWith]="compareDistricts" (change)="onChangeDistrict()">
+                      <option *ngFor="let district of districts" [ngValue] = "district">{{district.districtName}}</option>
+                    </select>
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Phường/Xã</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="ward" [compareWith]="compareWards">
+                      <option *ngFor="let ward of wards" [ngValue] = "ward">{{ward.wardName}}</option>
+                    </select>
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Chuyên mục</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="childCategory">
+                      <option value="">Chuyên mục 1</option>
+                      <option value="">Chuyên mục 2</option>
+                    </select>
+                    <!-- <p class="small text-danger mt-1">Bạn chưa chọn chuyên mục. Vui lòng chọn chuyên
+                                        mục cần đăng.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Bạn đăng tin</td>
+                <td>
+                  <!-- <div class="form-group"> -->
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="postType" [value]="true"
+                        formControlName="postType" />Cần
+                      bán
+                    </label>
+                  </div>
+                  <div class="form-check-inline">
+                    <label class="form-check-label">
+                      <input type="radio" class="form-check-input" name="postType" [value]="false"
+                        formControlName="postType" />Cần
+                      mua
+                    </label>
+                  </div>
+                  <!-- <p class="small text-danger mt-1">Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn
+                                    mục.</p> -->
+                  <!-- </div> -->
+                </td>
+              </tr>
+              <tr>
+                <td>Tiêu đề</td>
+                <td>
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Nhập tiêu đề" formControlName="title">
+                    <!-- <p class="small text-danger mt-1">Vui lòng nhập tiêu đề bài viết.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Nội dung tin</td>
+                <td>
+                  <div class="form-group">
+                    <textarea class="form-control" rows="3" placeholder="Nhập nội dung tin"
+                      formControlName="description"></textarea>
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Giá</td>
+                <td>
+                  <div class="form-group">
+                    <input type="number" class="form-control" placeholder="Nhập giá" formControlName="price">
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td>Ảnh</td>
+                <td>
+                  <div class="custom-file">
+                    <!-- <input type="file" class="custom-file-input" id="inputGroupFile01">
+                                <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label> -->
+                    <!-- <img src="images/img1.png" width="40px" height="40px"
+                                        class="img-thumbnail rounded float-left" alt="...">
+                                    <img src="images/img2.jpg" width="40px" height="40px"
+                                        class="img-thumbnail rounded float-left" alt="...">
+                                    <img src="images/img3.jpg" width="40px" height="40px"
+                                        class="img-thumbnail rounded float-left" alt="...">
+                                    <img src="images/img5.jpg" width="40px" height="40px"
+                                        class="img-thumbnail rounded float-left" alt="..."> -->
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+
+          </table>
+          <button type="button" class="btn btn-success float-right ml-1">Lưu</button>
+          <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-2" style="background-color: grey;">
+    ads
+  </div>
+</div>
+
+<div style="background-color: yellowgreen; height: 100px;">
+  footer
+</div>
