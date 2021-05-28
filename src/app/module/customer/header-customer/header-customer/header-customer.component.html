@@ -15,9 +15,20 @@
             class="fas fa-search"></span> TÌM KIẾM</a>
         </li>
 
-        <li class="nav-item-lg">
-          <a class="nav-link" href="#" style="color: white; margin-right: 30px"><span
-            class="fas fa-user"></span> ĐĂNG NHẬP</a>
+        <li class="nav-item-lg" *ngIf="username == ''">
+          <a class="nav-link"
+             routerLink="login" style="color: white; margin-right: 30px">
+            <span class="fas fa-user"></span> ĐĂNG NHẬP
+          </a>
+        </li>
+        <li *ngIf="username != ''" class="d-inline-flex">
+          <p style="color: white; margin-right: 30px">
+            &nbsp;{{username}}
+          </p>
+          <a class="nav-link" routerLink="logout"
+             style="color: white; margin-right: 30px">
+            ĐĂNG XUẤT
+          </a>
         </li>
 
       </ul>
