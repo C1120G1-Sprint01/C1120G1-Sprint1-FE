@@ -9,7 +9,7 @@
         <h2 class="title">Tạo Banner Quảng Cáo</h2>
       </div>
       <div class="card-body">
-        <form method="POST" class="ml-4" ngNoForm [formGroup]="formCreateBanner" (ngSubmit)="createBanner()">
+        <form method="post" class="ml-4" ngNoForm [formGroup]="formCreateBanner" (ngSubmit)="createBanner()">
           <div class="form-row">
             <div class="name">Kích thước:</div>
             <div class="value">
@@ -19,13 +19,9 @@
                     <mat-label>Chọn Kích Thước</mat-label>
                     <mat-select formControlName="size">
                       <mat-option>Không chọn</mat-option>
-                      <mat-option value="1">152 x 203</mat-option>
-                      <mat-option value="2">279 x 356</mat-option>
-                      <mat-option value="3">297 x 420</mat-option>
-                      <mat-option value="4">420 x 594</mat-option>
+                      <mat-option *ngFor="let size of listSize" [value]="size">{{size.sizeName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
-                  <!--                  <div class="select-dropdown"></div> // validate-->
                 </div>
               </div>
             </div>
@@ -65,10 +61,7 @@
                     <mat-label>Chọn vị trí hiển thị banner</mat-label>
                     <mat-select formControlName="position">
                       <mat-option>Không chọn</mat-option>
-                      <mat-option value="1">Trên</mat-option>
-                      <mat-option value="2">Dưới</mat-option>
-                      <mat-option value="3">Phải</mat-option>
-                      <mat-option value="4">Trái</mat-option>
+                      <mat-option *ngFor="let position of listPosition" [value]="position" >{{position.positionName}}</mat-option>
                     </mat-select>
                   </mat-form-field>
                   <!--<div class="select-dropdown"></div> // validate-->

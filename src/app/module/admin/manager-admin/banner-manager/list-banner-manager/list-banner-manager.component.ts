@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {ServiceBannerService} from '../../../../service/service-banner/service-banner.service';
 import {AddBannerManagerComponent} from '../add-banner-manager/add-banner-manager.component';
@@ -22,11 +22,30 @@ export class ListBannerManagerComponent implements OnInit {
       this.listBanner = data;
     });
   }
-  openFormAddBanner(){
+
+  openFormAddBanner() {
     this.dialog.open(AddBannerManagerComponent, {
       width: '1200px',
       height: '1000px',
       disableClose: true
     });
+  }
+
+  getTimeDuration(dateDuration: Date) {
+    const seconds = (new Date(dateDuration).getTime() - new Date().getTime()) / 1000;
+    const date = Math.floor(seconds / 86400);
+    if (date >= 30) {
+      const month = Math.floor(date / 30);
+      const day = Math.floor(date % 30);
+      if (day > 0) {
+        return month + ' tháng ' + day + ' ngày';
+      } else {
+        return month + ' tháng';
+      }
+    } else if (date > 0) {
+      return date + ' ngày';
+    }else {
+      return '';
+    }
   }
 }

@@ -24,16 +24,19 @@
           <tbody *ngFor="let banner of listBanner,let i = index" [attr.data-index]="i">
           <tr style="color: #027FFF" class="text-center">
             <td>{{i + 1}}</td>
-            <td>{{banner.position}}</td>
-            <td>{{banner.size}}</td>
+            <td>{{banner.position.positionName}}</td>
+            <td>{{banner.size.sizeName}}</td>
             <td><img class="image-content-1 border border-dark"
                      [src]=banner.image>
             </td>
-            <td>{{banner.duration}}</td>
+            <td>{{banner.duration | date: 'dd/MM/yyyy'}}
+              <p style="color: red" *ngIf="getTimeDuration(banner.duration) !==''">{{getTimeDuration(banner.duration)}}</p>
+              <p style="color: red" *ngIf="getTimeDuration(banner.duration) ===''">
+              </p>
+            </td>
             <td>
-              <button class="btn btn-warning mb-1"><a><i style="color: white" class="fa fa-edit"></i></a></button>
-              <button class="btn btn-danger mb-1 ml-1" data-toggle="modal" data-target="#exampleModal"><i
-                class="fa fa-trash-alt"></i></button>
+              <button class="btn btn-warning mb-1 ml-1"><a><i style="color: white" class="fa fa-edit"></i></a></button>
+              <button class="btn btn-danger mb-1 ml-1"><i class="fa fa-trash-alt"></i></button>
             </td>
           </tr>
           </tbody>
