@@ -33,13 +33,14 @@
                                 <td><img src="{{post?.imageSet[0]?.url}}" alt="" width="50px" height="50px"></td>
                                 <td>{{post.title}}</td>
                                 <td>{{post.description}}</td>
-                                <td *ngIf="post.status.statusId === 1"><span class="badge badge-primary">{{post.status.statusName}}</span></td>
-                                <td *ngIf="post.status.statusId === 2"><span class="badge badge-secondary">{{post.status.statusName}}</span></td>
-                                <td *ngIf="post.status.statusId === 3"><span class="badge badge-danger">{{post.status.statusName}}</span></td>
-                                <td *ngIf="post.status.statusId === 4"><span class="badge badge-success">{{post.status.statusName}}</span></td>
-                                <td *ngIf="post.status.statusId === 5"><span class="badge badge-dark">{{post.status.statusName}}</span></td>
-                                <td><button class="btn btn-warning" data-toggle="modal"
-                                        data-target="#exampleModal"><i class="fas fa-edit"></i></button></td>
+                                <td [ngSwitch]="post.status.statusId">
+                                    <span *ngSwitchCase="1" class="badge badge-primary">{{post.status.statusName}}</span>
+                                    <span *ngSwitchCase="2" class="badge badge-secondary">{{post.status.statusName}}</span>
+                                    <span *ngSwitchCase="3" class="badge badge-danger">{{post.status.statusName}}</span>
+                                    <span *ngSwitchCase="4" class="badge badge-success">{{post.status.statusName}}</span>
+                                    <span *ngSwitchCase="5" class="badge badge-dark">{{post.status.statusName}}</span>
+                                </td>
+                                <td><button class="btn btn-warning" [routerLink]="['/customer/post-edit',post.postId]"><i class="fas fa-edit"></i></button></td>
                             </tr>
                         </tbody>
                         <ng-template #nodata>

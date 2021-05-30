@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Post} from "../../../model/Post";
 import {differenceInDays, differenceInHours, differenceInMinutes} from 'date-fns';
 import {ServicePostService} from "../../service/service-post/service-post.service";
 
@@ -9,7 +8,7 @@ import {ServicePostService} from "../../service/service-post/service-post.servic
   styleUrls: ['./home-page.component.css']
 })
 export class HomePageComponent implements OnInit {
-  posts ;
+  posts;
   listTime: string[] = [];
   private now: Date;
   private diff: Date;
@@ -25,7 +24,7 @@ export class HomePageComponent implements OnInit {
   onList(page: number) {
     this._postService.getListPost(page).subscribe(data => {
       this.posts = data;
-      for(let post of this.posts.content) {
+      for (let post of this.posts.content) {
         this.listTime.push(this.calculateTime(post.postDateTime))
       }
       console.log(this.listTime);
@@ -34,17 +33,17 @@ export class HomePageComponent implements OnInit {
     });
   }
 
-  calculateTime(diff: string):string{
+  calculateTime(diff: string): string {
     console.log("Get Time")
-     this.now = new Date()
-     this.diff = new Date(diff);
-     this.resultTime = differenceInMinutes(this.now, this.diff);
-     if (this.resultTime >= (24*60)) {
-       return differenceInDays(this.now, this.diff)+" ngày trước";
-     } else if (this.resultTime >= 60) {
-       return differenceInHours(this.now, this.diff)+ " giờ trước";
-     }
-     return this.resultTime + " phút trước";
+    this.now = new Date()
+    this.diff = new Date(diff);
+    this.resultTime = differenceInMinutes(this.now, this.diff);
+    if (this.resultTime >= (24 * 60)) {
+      return differenceInDays(this.now, this.diff) + " ngày trước";
+    } else if (this.resultTime >= 60) {
+      return differenceInHours(this.now, this.diff) + " giờ trước";
+    }
+    return this.resultTime + " phút trước";
   }
 
   openNav() {

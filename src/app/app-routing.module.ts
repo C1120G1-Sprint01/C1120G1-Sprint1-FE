@@ -1,11 +1,10 @@
+import {LoginComponent} from "./module/security/login/login.component";
 
-import { LoginComponent } from "./module/security/login/login.component";
-
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { EditPostCustomerComponent } from './module/customer/post-customer/edit-post-customer/edit-post-customer.component';
-import { ListPostCustomerComponent } from './module/customer/post-customer/list-post-customer/list-post-customer.component';
-import { RegisterCustomerComponent } from "./module/customer/manager-customer/register-customer/register-customer.component";
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {EditPostCustomerComponent} from './module/customer/post-customer/edit-post-customer/edit-post-customer.component';
+import {ListPostCustomerComponent} from './module/customer/post-customer/list-post-customer/list-post-customer.component';
+import {RegisterCustomerComponent} from "./module/customer/manager-customer/register-customer/register-customer.component";
 
 import {ListCategoryComponent} from './module/admin/category-admin/list-category/list-category.component';
 import {CreateCategoryComponent} from './module/admin/category-admin/create-category/create-category.component';
@@ -19,6 +18,8 @@ import {EditCustomerManagerComponent} from "./module/admin/manager-admin/custome
 import {DeleteCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/delete-customer-manager/delete-customer-manager.component";
 import {ChatCustomerComponent} from './module/customer/chat-customer/chat-customer/chat-customer.component';
 import {HomePageComponent} from "./module/customer/home-page/home-page.component";
+import {LogoutComponent} from "./module/security/logout/logout.component";
+import {GetBackPasswordComponent} from "./module/security/get-back-password/get-back-password.component";
 
 const routes: Routes = [
   {path: 'category', component: ListCategoryComponent},
@@ -28,17 +29,19 @@ const routes: Routes = [
   {path: 'child-category/create', component: CreateChildCategoryComponent},
   {path: 'child-category/edit/:id', component: EditChildCategoryComponent},
   {path: 'child-category/delete/:id', component: DeleteChildCategoryComponent},
-  { path: 'user/create', component: RegisterCustomerComponent },
-  { path: '', component: ChatCustomerComponent },
-  { path: 'admin', redirectTo: 'admin', pathMatch: 'full' },
-  { path: 'admin/listUser', component: ListCustomerManagerComponent },
-  { path: 'admin/listUser/edit/:id', component: EditCustomerManagerComponent },
-  { path: 'admin/listUser/delete', component: DeleteCustomerManagerComponent },
+  {path: 'user/create', component: RegisterCustomerComponent},
+  {path: 'chat', component: ChatCustomerComponent},
+  {path: 'admin', redirectTo: 'admin', pathMatch: 'full'},
+  {path: 'admin/listUser', component: ListCustomerManagerComponent},
+  {path: 'admin/listUser/edit/:id', component: EditCustomerManagerComponent},
+  {path: 'admin/listUser/delete', component: DeleteCustomerManagerComponent},
+  {path: "customer/post-list", component: ListPostCustomerComponent},
+  {path: "customer/post-edit/:id", component: EditPostCustomerComponent},
+  {path: '', redirectTo: 'homepage', pathMatch: 'full'},
+  {path: "homepage", component: HomePageComponent},
   {path: 'login', component: LoginComponent},
-  { path: "customer/post-list", component: ListPostCustomerComponent },
-  { path: "customer/post-edit/:id", component: EditPostCustomerComponent },
-  { path: "homepage", component: HomePageComponent}
-
+  {path: 'logout', component: LogoutComponent},
+  {path: 'login/getBackPw', component: GetBackPasswordComponent}
 ];
 
 @NgModule({
