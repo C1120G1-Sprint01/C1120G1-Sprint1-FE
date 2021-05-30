@@ -14,7 +14,7 @@
               <a class="nav-link" href="#">Quản lý thành viên</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">Quản lý chuyên mục</a>
+              <a class="nav-link" routerLink="/main-category">Quản lý chuyên mục</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Banner</a>
@@ -27,73 +27,15 @@
       </div>
     </div>
     <div class="col-md-9">
-      <br>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Tìm kiếm" aria-label="Search">
-        <button class="btn my-2 my-sm-0" style="background-color: #0D5DB6; color: white" type="submit">Tìm kiếm
-        </button>
-      </form>
-      <div class="card">
-        <div class="card-body">
-          <a href="" class="btn btn-success btn-rounded mb-4" routerLink="/create" data-toggle="modal"
-             data-target="#modalCreateCategories"><i
-            class="fas fa-plus"></i></a>
-          <br>
-          <p class="title">Quản lý chuyên mục</p>
-          <table class="table table-hover">
-            <tr>
-              <th>#</th>
-              <th>Tên chuyên mục</th>
-              <th>Tên chuyên mục cha</th>
-              <th colspan="2" style="text-align: center">Thao tác</th>
-            </tr>
-            <tr *ngFor="let item of childCategoryList">
-              <td>{{item.childCategoryId}}</td>
-              <td>{{item.childCategoryName}}</td>
-              <td>{{item.category}}</td>
-              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['edit',item.childCategoryId]" data-target="#modalEditCategories"
-                                                class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
-              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['edit',item.childCategoryId]" data-target="#modalDeleteCategories"
-                                                class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
-            </tr>
-          </table>
-          <div class="page">
-            <nav aria-label="...">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <span class="page-link">Trước</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Sau</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<hr style="border: 3px ">
-<div class="container">
-  <div class="row">
-    <div class="col-md-3">
-
-    </div>
-    <div class="col-md-9">
       <div class="card">
         <div class="card-body">
 
-          <a href="" class="btn btn-success btn-rounded mb-4" data-toggle="modal"
-             data-target="#modalCreateFatherCategories"><i
-            class="fas fa-plus"></i></a>
-          <br>
+
+
           <p class="title">Quản lý chuyên mục cha</p>
+          <a href="" class="btn btn-success btn-rounded mb-4" routerLink="create-category" data-toggle="modal"
+             data-target="#modalCreateFatherCategories">Thêm chuyên mục cha <i
+            class="fas fa-plus"></i></a>
           <table class="table table-hover">
             <tr>
               <th>#</th>
@@ -103,9 +45,9 @@
             <tr *ngFor="let item of categoryList">
               <td>{{item.categoryId}}</td>
               <td>{{item.categoryName}}</td>
-              <td style="text-align: center"><a data-toggle="modal" data-target="#modalEditFatherCategories"
+              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['edit-category',item.categoryId]" data-target="#modalEditFatherCategories"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
-              <td style="text-align: center"><a data-toggle="modal" data-target="#modalDeleteFatherCategories"
+              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['delete-category',item.categoryId]" data-target="#modalDeleteFatherCategories"
                                                 class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
             </tr>
           </table>
@@ -131,6 +73,3 @@
     </div>
   </div>
 </div>
-<nav class="navbar navbar-light">
-  <a class="navbar-brand" href="#">#</a>
-</nav>

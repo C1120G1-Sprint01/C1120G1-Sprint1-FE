@@ -18,15 +18,19 @@ import {ListCustomerManagerComponent} from "./module/admin/manager-admin/custome
 import {EditCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/edit-customer-manager/edit-customer-manager.component";
 import {DeleteCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/delete-customer-manager/delete-customer-manager.component";
 import {ChatCustomerComponent} from './module/customer/chat-customer/chat-customer/chat-customer.component';
+import {ListChildCategoryComponent} from "./module/admin/category-admin/list-child-category/list-child-category.component";
+import {MainCategoryComponent} from "./module/admin/category-admin/main-category/main-category.component";
 
 const routes: Routes = [
-  {path: 'category', component: ListCategoryComponent},
-  {path: 'category/create', component: CreateCategoryComponent},
-  {path: 'category/edit/:id', component: EditCategoryComponent},
-  {path: 'category/delete/:id', component: DeleteCategoryComponent},
-  {path: 'child-category/create', component: CreateChildCategoryComponent},
-  {path: 'child-category/edit/:id', component: EditChildCategoryComponent},
-  {path: 'child-category/delete/:id', component: DeleteChildCategoryComponent},
+  {path: 'main-category/category', component: ListCategoryComponent},
+  {path: 'main-category', component: MainCategoryComponent},
+  {path: 'main-category/child-category', component: ListChildCategoryComponent},
+  {path: 'main-category/category/create-category', component: CreateCategoryComponent},
+  {path: 'main-category/category/edit-category/:id', component: EditCategoryComponent},
+  {path: 'main-category/category/delete-category/:id', component: DeleteCategoryComponent},
+  {path: 'main-category/child-category/create-child-category', component: CreateChildCategoryComponent},
+  {path: 'main-category/child-category/edit-child-category/:id', component: EditChildCategoryComponent},
+  {path: 'main-category/child-category/delete-child-category/:id', component: DeleteChildCategoryComponent},
   { path: 'user/create', component: RegisterCustomerComponent },
   { path: '', component: ChatCustomerComponent },
   { path: 'admin', redirectTo: 'admin', pathMatch: 'full' },

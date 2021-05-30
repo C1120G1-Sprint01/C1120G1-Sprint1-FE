@@ -1,1 +1,24 @@
-<p>delete-category works!</p>
+<div class="container">
+        <table class="table">
+          <tr>
+            <th colspan="2">Bạn có muốn xóa chuyên mục này?</th>
+          </tr>
+                    <tr>
+                      <th>ID</th>
+                      <td colspan="2">{{categoryDelete.categoryId}}</td>
+                    </tr>
+                    <tr>
+                      <th>Tên chuyên mục cha</th>
+                      <td colspan="2">{{categoryDelete.categoryName}}</td>
+                    </tr>
+
+          <tr>
+            <td style="text-align: center">
+              <button type="button" (click)="deleteCategory(categoryDelete.categoryId)" class="btn btn-danger">Xóa</button>
+            </td>
+            <td style="text-align: center">
+              <a type="button" class="btn btn-secondary" routerLink="/main-category/category" data-dismiss="modal">Hủy</a>
+            </td>
+          </tr>
+        </table>
+</div>

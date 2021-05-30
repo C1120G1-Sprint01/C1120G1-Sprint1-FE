@@ -9,6 +9,7 @@ import {SecurityModule} from "./module/security/security.module";
 
 import {AdminModule} from "./module/admin/admin.module";
 import {BrowserModule} from "@angular/platform-browser";
+import {ServiceAdminService} from "./module/service/service-admin/service-admin.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import {BrowserModule} from "@angular/platform-browser";
     SecurityModule,
     AdminModule,
   ],
-  providers: [],
+  providers: [ServiceAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -23,6 +23,7 @@ export class ServiceAdminService {
   public API_URL_DISTRICT = "http://localhost:3000/district";
   public API_URL_WARD = "http://localhost:3000/ward";
   httpOptions: any;
+  // private searchBaseUrl: string;
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
@@ -34,35 +35,52 @@ export class ServiceAdminService {
   }
 
   getAllCategory(): Observable<Category[]> {
-    return this.httpClient.get<Category[]>(this.baseUrl + '/category/');
+    return this.httpClient.get<Category[]>(this.baseUrl + '/main-category/category/');
   }
 
-  getAllChildCategory(): Observable<ChildCategory[]> {
-    return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/child_category/');
+  getAllChildCategory(index : number): Observable<ChildCategory[]> {
+    return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/main-category/child-category/' + '?index' + index);
+  }
+
+  getCategoryById(id:number): Observable<Category> {
+    return this.httpClient.get<Category>(this.baseUrl + '/main-category' + '/category/' + id)
+  }
+
+  getChildCategoryById(id:number): Observable<ChildCategory> {
+    return this.httpClient.get<ChildCategory>(this.baseUrl + '/main-category' + '/child-category/' + id)
   }
 
   createCategory(category: Category): Observable<Category> {
-    return this.httpClient.post<Category>(this.baseUrl + '/category' + '/create' , category);
+    return this.httpClient.post<Category>(this.baseUrl + '/main-category/category' + '/create-category' , category);
   }
 
   createChildCategory(childCategory: ChildCategory): Observable<ChildCategory> {
-    return this.httpClient.post<ChildCategory>(this.baseUrl + '/child_category' + '/create' , childCategory);
+    return this.httpClient.post<ChildCategory>(this.baseUrl + '/main-category/child-category' + '/create-child-category' , childCategory);
   }
 
-  updateCategory(id, category): Observable<Category> {
-    return this.httpClient.put<Category>(this.baseUrl + '/category' + '/edit' + id, category);
+  updateCategory(category): Observable<Category> {
+    return this.httpClient.put<Category>(this.baseUrl + '/main-category/category' + '/edit-category', category);
   }
-  updateChildCategory(id, childCategory): Observable<ChildCategory> {
-    return this.httpClient.put<ChildCategory>(this.baseUrl + '/child_category' + '/edit' + id, childCategory);
+  updateChildCategory(childCategory): Observable<ChildCategory> {
+    return this.httpClient.put<ChildCategory>(this.baseUrl + '/main-category/child-category' + '/edit-child-category', childCategory);
   }
 
   deleteCategory(id: number) {
-    return this.httpClient.delete<Category>(this.baseUrl + '/category' + '/create' + id);
+    return this.httpClient.delete<Category>(this.baseUrl + '/main-category/category' + '/delete-category/' + id);
   }
   deleteChildCategory(id: number) {
-    return this.httpClient.delete<Category>(this.baseUrl + '/child_category' + '/create' + id);
+    return this.httpClient.delete<Category>(this.baseUrl + '/main-category/child-category' + '/delete-child-category/' + id);
   }
-
+  getAllChildByChildNameAndName(childCategoryName: string, categoryName: string): Observable<ChildCategory[]> {
+    if (!categoryName){
+      categoryName = '';
+    }
+    if (!childCategoryName){
+      childCategoryName = '';
+    }
+    return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/main-category/child-category/search?' +
+      'childCategoryName=' + childCategoryName + '&categoryName=' + categoryName)
+  }
 
 
 
@@ -91,4 +109,7 @@ export class ServiceAdminService {
   deleteUser(id: number): Observable<User[]> {
     return this.httpClient.delete<User[]>(this.API_URL_USER + '/delete/' + id);
   }
+
+
+
 }

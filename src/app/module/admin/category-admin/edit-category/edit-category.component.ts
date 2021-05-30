@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
+import {Category} from "../../../../model/Category";
 
 @Component({
   selector: 'app-edit-category',
@@ -6,10 +10,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-category.component.css']
 })
 export class EditCategoryComponent implements OnInit {
+  formEdit: FormGroup;
+  categoryEdit: Category;
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private _fb: FormBuilder,
+              private router: Router,
+              private serviceAdminService: ServiceAdminService,
+              private active: ActivatedRoute) {
   }
 
+  ngOnInit(): void {
+    let id = this.active.snapshot.params['id'];
+    this.formEdit = this._fb.group({
+      categoryId: [''],
+      categoryName: ['', [Validators.required, Validators.pattern(/^[0-9a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐ\s]*$/)]],
+    });
+
+    this.serviceAdminService.getCategoryById(id).subscribe((data: Category) => {
+      this.categoryEdit = data;
+      this.formEdit.patchValue(this.categoryEdit);
+    });
+
+  }
+
+  save() {
+    this.serviceAdminService.updateCategory(this.formEdit.getRawValue()).subscribe(data => {
+      console.log('chuyên mục đã được tạo!');
+      this.router.navigateByUrl('main-category/category')
+    })
+  }
+
+  back() {
+    this.formEdit.patchValue(this.formEdit);
+  }
 }

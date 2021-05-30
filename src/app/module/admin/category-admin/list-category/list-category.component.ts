@@ -11,26 +11,17 @@ import {Router} from '@angular/router';
 })
 export class ListCategoryComponent implements OnInit {
   categoryList: Category[] = [];
-  childCategoryList: ChildCategory[] = [];
   constructor(private serviceAdminService: ServiceAdminService,
               private router: Router) { }
 
   ngOnInit(): void {
+
     this.getDataCategory();
-    this.getDataChildCategory();
   }
 
-  getDataCategory(){
+  getDataCategory() {
     this.serviceAdminService.getAllCategory().subscribe(data => {
       this.categoryList = data;
-    }, error => {
-      console.log('lấy dữ liệu bị lỗi');
-    });
-  }
-
-  private getDataChildCategory() {
-    this.serviceAdminService.getAllChildCategory().subscribe(data => {
-      this.childCategoryList = data;
     }, error => {
       console.log('lấy dữ liệu bị lỗi');
     });

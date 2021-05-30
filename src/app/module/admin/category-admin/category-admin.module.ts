@@ -10,6 +10,9 @@ import { EditChildCategoryComponent } from './edit-child-category/edit-child-cat
 import { HttpClientModule} from '@angular/common/http';
 import {RouterModule} from '@angular/router';
 import {BrowserModule} from "@angular/platform-browser";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { ListChildCategoryComponent } from './list-child-category/list-child-category.component';
+import { MainCategoryComponent } from './main-category/main-category.component';
 
 
 
@@ -21,13 +24,17 @@ import {BrowserModule} from "@angular/platform-browser";
     DeleteCategoryComponent,
     CreateChildCategoryComponent,
     DeleteChildCategoryComponent,
-    EditChildCategoryComponent
+    EditChildCategoryComponent,
+    ListChildCategoryComponent,
+    MainCategoryComponent
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     RouterModule,
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
   ]
 })
 export class CategoryAdminModule { }
