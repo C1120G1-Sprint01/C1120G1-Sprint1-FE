@@ -19,7 +19,7 @@ export class ListPostCustomerComponent implements OnInit {
   onList(page: number) {
     this._serviceCustomer.findAllPostByUsername(page).subscribe(data => {
       this.posts = data;
-      console.log(this.posts);
+      console.log("List post", this.posts);
     }, error => {
       console.log("error");
     });
