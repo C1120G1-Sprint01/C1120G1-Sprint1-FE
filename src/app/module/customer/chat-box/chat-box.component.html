@@ -13,9 +13,7 @@
         <span class="agent">(Đang hoạt động)</span>
         <span id="chat_fullscreen_loader" class="chat_fullscreen_loader" (click)="fullscreen()"><i
           class="fullscreen zmdi zmdi-window-maximize"></i></span>
-
       </div>
-
     </div>
     <div class="chat_body chat_login">
       <a id="chat_first_screen" class="fab" (click)="hideChat(1)"><i class="zmdi zmdi-arrow-right"></i></a>
@@ -43,12 +41,15 @@
             </div>
             {{chat.message}}
           </div>
-          <div class="chat_msg_item chat_msg_item_admin mb-0 mt-3 p-0 bg-white" style="content: inherit" *ngIf="chat.type === 'image'" >
+          <div class="chat_msg_item chat_msg_item_admin mb-0 mt-3 p-0 bg-white" style="content: inherit"
+               *ngIf="chat.type === 'image'">
             <div class="chat_avatar">
               <img src="./assets/image/logoChat.png"/>
             </div>
-            <img src="{{chat.message}}" class="custom-img" alt="" style="width: 60%; height: 60%" (click)="zoom(chat.message)">
-            <div *ngIf="loadImage" class="spinner-border text-black-50" style="margin-left: 5rem !important; text-align: center" role="status">
+            <img src="{{chat.message}}" class="custom-img" alt="" style="width: 60%; height: 60%"
+                 (click)="zoom(chat.message)">
+            <div *ngIf="loadImage" class="spinner-border text-black-50"
+                 style="margin-left: 5rem !important; text-align: center" role="status">
               <span class="sr-only">Loading...</span>
             </div>
           </div>
@@ -58,19 +59,25 @@
       </div>
     </div>
     <div class="fab_field">
-      <form action="" [formGroup]="chatFormUser" (ngSubmit)="onFormSubmit(chatFormUser.value, 'message')" style="width: 90%"
+      <form action="" [formGroup]="chatFormUser" (ngSubmit)="onFormSubmit(chatFormUser.value, 'message')"
+            style="width: 90%"
             class="m-auto">
-        <label id="fab_camera" class="fab mt-3" for="file-input">
+        <label id="fab_camera" class="fab" for="file-input">
           <i class="zmdi zmdi-image"></i>
           <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
         </label>
-        <a id="fab_send" class="fab mt-3" (click)="onFormSubmit(chatFormUser.value, 'message')"><i class="zmdi zmdi-mail-send"></i></a>
+        <div class="custom-dropdown">
+          <i class="far fa-smile-wink fa-lg custom-hover" (click)="show()"></i>
+          <a id="fab_send" class="fab" (click)="onFormSubmit(chatFormUser.value, 'message')"><i
+            class="zmdi zmdi-mail-send"></i></a>
+        </div>
         <input id="chatSend" name="chat_message"
-                  placeholder="Nhập tin nhắn..." formControlName="message"
-                  class="chat_field chat_message" />
+               placeholder="Nhập tin nhắn..." formControlName="message"
+               class="chat_field chat_message"/>
       </form>
       <div *ngIf="selectedImages.length != 0" style="overflow: auto; height: 75px">
-        <div *ngFor="let file of selectedImages; let i = index" class="d-inline-block" style="margin: 0; overflow: auto">
+        <div *ngFor="let file of selectedImages; let i = index" class="d-inline-block"
+             style="margin: 0; overflow: auto">
           <span>
             <i class="fas fa-backspace fa-lg" (click)="deleteUpdateImage($event)" [attr.data-index]="i"></i>
           </span>
@@ -79,6 +86,8 @@
       </div>
     </div>
   </div>
+  <emoji-mart class="dropdown-content {{emojiPickerVisible}}" [darkMode]="false" set="google"
+              (emojiSelect)="addEmoji($event)"></emoji-mart>
   <p class="badge badge-danger position-absolute ml-5" *ngIf="notifications.length !== 0">{{notifications.length}}</p>
   <a id="primeCustom" class="fab mt-1" (click)="toggleFab()">
     <i class="prime zmdi zmdi-comment-outline"></i>

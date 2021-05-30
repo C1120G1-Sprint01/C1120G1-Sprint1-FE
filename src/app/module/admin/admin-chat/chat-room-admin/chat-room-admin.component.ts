@@ -14,6 +14,7 @@ import {ZoomComponent} from '../zoom/zoom.component';
 import {Account, AccountRole, Role} from '../../../models/account';
 import {District, Province, Ward} from '../../../models/address';
 import * as $ from 'jquery';
+import {EmojiEvent} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 
 @Component({
   selector: 'app-chat-room-admin',
@@ -38,6 +39,9 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
   tempFile = [];
   loadImage: boolean;
   notifications = new Array<Notification>();
+
+  emojiPickerVisible = "";
+  isEmojiPickerVisible = true;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -120,30 +124,22 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
   }
 
   onFormSubmit(form: any, type: string) {
-    if ((this.chatForm.get('message').errors?.required && this.selectedImages != null) ||
-      (this.chatForm.get('message').value.trim() == '' && this.selectedImages != null)) {
-      this.addImageToFireBase();
-      this.chatForm.reset();
-      return;
-    }
-    if (this.chatForm.get('message').errors?.required) {
-      this.snackBar.open('Không được để trống nội dung', 'X',
-        {
-          duration: 5000,
-        });
-      this.chatForm.reset();
-      return;
+    if (this.chatForm.get('message').errors?.required || this.chatForm.get('message').value.trim() == '') {
+      if (this.selectedImages.length !== 0) {
+        this.addImageToFireBase();
+        this.chatForm.reset();
+        return;
+      } else {
+        this.snackBar.open('Không được để trống nội dung', 'X',
+          {
+            duration: 5000,
+          });
+        this.chatForm.reset();
+        return;
+      }
     }
     if (this.chatForm.get('message').errors?.maxlength) {
       this.snackBar.open('Tin nhắn bạn nhập quá dài', 'X',
-        {
-          duration: 5000,
-        });
-      this.chatForm.reset();
-      return;
-    }
-    if (this.chatForm.get('message').value.trim() == '') {
-      this.snackBar.open('Không được để trống nội dung', 'X',
         {
           duration: 5000,
         });
@@ -285,5 +281,24 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       data: url,
       panelClass: 'custom-modalbox'
     });
+  }
+
+  addEmoji($event: EmojiEvent) {
+    const value = this.chatForm.get("message");
+    if (this.chatForm.get("message").value == null) {
+      this.chatForm.get("message").setValue($event.emoji.native);
+    } else {
+      this.chatForm.get("message").setValue(value.value + $event.emoji.native);
+    }
+  }
+
+  show() {
+    if (this.isEmojiPickerVisible) {
+      this.emojiPickerVisible = "show";
+      this.isEmojiPickerVisible = false
+    } else {
+      this.emojiPickerVisible = "";
+      this.isEmojiPickerVisible = true
+    }
   }
 }

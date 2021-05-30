@@ -15,6 +15,7 @@ import {ZoomComponent} from '../../admin/admin-chat/zoom/zoom.component';
 import {MatDialog} from '@angular/material/dialog';
 import {User} from '../../models/user';
 import {District, Province, Ward} from '../../models/address';
+import {EmojiEvent} from "@ctrl/ngx-emoji-mart/ngx-emoji";
 
 @Component({
   selector: 'app-chat-box',
@@ -36,6 +37,9 @@ export class ChatBoxComponent implements OnInit {
   loadImage: boolean;
   selectedImages = [];
   tempFile = [];
+
+  emojiPickerVisible = "";
+  isEmojiPickerVisible = true;
 
   constructor(private formBuilder: FormBuilder,
               private datePipe: DatePipe,
@@ -184,30 +188,22 @@ export class ChatBoxComponent implements OnInit {
   onFormSubmit(form: any, type: string) {
     this.tempFile = this.selectedImages;
     this.selectedImages = [];
-    if ((this.chatFormUser.get('message').errors?.required && this.tempFile != null) ||
-      (this.chatFormUser.get('message').value.trim() == '' && this.tempFile != null)) {
-      this.addImageToFireBase();
-      this.chatFormUser.reset();
-      return;
-    }
-    if (this.chatFormUser.get('message').errors?.required) {
-      this.snackBar.open('Không được để trống nội dung', 'X',
-        {
-          duration: 5000,
-        });
-      this.chatFormUser.reset();
-      return;
+    if (this.chatFormUser.get('message').errors?.required || this.chatFormUser.get('message').value.trim() == '') {
+      if (this.tempFile.length != 0) {
+        this.addImageToFireBase();
+        this.chatFormUser.reset();
+        return;
+      } else {
+        this.snackBar.open('Không được để trống nội dung', 'X',
+          {
+            duration: 5000,
+          });
+        this.chatFormUser.reset();
+        return;
+      }
     }
     if (this.chatFormUser.get('message').errors?.maxlength) {
       this.snackBar.open('Tin nhắn bạn nhập quá dài', 'X',
-        {
-          duration: 5000,
-        });
-      this.chatFormUser.reset();
-      return;
-    }
-    if (this.chatFormUser.get('message').value.trim() == '') {
-      this.snackBar.open('Không được để trống nội dung', 'X',
         {
           duration: 5000,
         });
@@ -281,7 +277,6 @@ export class ChatBoxComponent implements OnInit {
       Promise.all(this.tempFile.map(file =>
         new Promise((resolve) => {
           this.loadImage = true;
-          console.log(this.loadImage);
           const name = file.file.name;
           const fileRef = this.storage.ref(name);
           this.storage.upload(name, file.file).snapshotChanges().pipe(
@@ -297,7 +292,6 @@ export class ChatBoxComponent implements OnInit {
                   chat.type = 'image';
                   this.chatService.refChats.push().set(chat).then(data => {
                     this.loadImage = false;
-                    console.log(this.loadImage);
                     $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
                   });
                   resolve(1);
@@ -324,5 +318,24 @@ export class ChatBoxComponent implements OnInit {
       data: url,
       panelClass: 'custom-modalbox'
     });
+  }
+
+  addEmoji($event: EmojiEvent) {
+    const value = this.chatFormUser.get("message");
+    if (this.chatFormUser.get("message").value == null) {
+      this.chatFormUser.get("message").setValue($event.emoji.native);
+    } else {
+      this.chatFormUser.get("message").setValue(value.value + $event.emoji.native);
+    }
+  }
+
+  show() {
+    if (this.isEmojiPickerVisible) {
+      this.emojiPickerVisible = "show";
+      this.isEmojiPickerVisible = false
+    } else {
+      this.emojiPickerVisible = "";
+      this.isEmojiPickerVisible = true
+    }
   }
 }
