@@ -9,6 +9,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AdminModule} from './module/admin/admin.module';
 import {SecurityModule} from "./module/security/security.module";
+import {FooterCustomerModule} from './module/customer/footer-customer/footer-customer.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import {SecurityModule} from "./module/security/security.module";
     FormsModule,
     ReactiveFormsModule,
     AdminModule,
+    FooterCustomerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

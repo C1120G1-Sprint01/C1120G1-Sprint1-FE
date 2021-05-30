@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderCustomerComponent } from './header-customer/header-customer.component';
+import {RouterModule} from '@angular/router';
 
 
 
@@ -9,8 +10,9 @@ import { HeaderCustomerComponent } from './header-customer/header-customer.compo
   exports: [
     HeaderCustomerComponent
   ],
-  imports: [
-    CommonModule
-  ]
+    imports: [
+        CommonModule,
+        RouterModule
+    ]
 })
 export class HeaderCustomerModule { }

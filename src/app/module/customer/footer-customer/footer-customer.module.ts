@@ -5,9 +5,12 @@ import { FooterCustomerComponent } from './footer-customer/footer-customer.compo
 
 
 @NgModule({
-  declarations: [FooterCustomerComponent],
-  imports: [
-    CommonModule
-  ]
+    declarations: [FooterCustomerComponent],
+    exports: [
+        FooterCustomerComponent
+    ],
+    imports: [
+        CommonModule
+    ]
 })
 export class FooterCustomerModule { }
