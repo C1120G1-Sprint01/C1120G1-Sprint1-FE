@@ -1,240 +1,93 @@
 <div class="row">
-    <div class="col-2 pr-0" style="background-color: grey;">
-        <div class="sidebar">
-            <a href="#">Thông tin cá nhân</a>
-            <a class="active" href="#">Quản lý bài đăng</a>
-            <a href="#">Hộp tin nhắn</a>
-            <a href="#about">Đổi mật khẩu</a>
+  <div class="col-2 pr-0" style="background-color: grey;">
+    <div class="sidebar">
+      <a href="#">Thông tin cá nhân</a>
+      <a class="active" href="#">Quản lý bài đăng</a>
+      <a href="#">Hộp tin nhắn</a>
+      <a href="#about">Đổi mật khẩu</a>
+    </div>
+  </div>
+
+  <div class="container col-8">
+
+    <h3 class="my-3">Quản lý bài đăng</h3>
+
+    <div class="card mb-3">
+
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover tablecustom">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tiêu đề</th>
+                <th scope="col">Nội dung</th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="posts; else nodata">
+              <tr *ngFor="let post of posts.content; let i = index;">
+                <th scope="row">{{i + 1}}</th>
+                <td><img src="{{post?.imageSet[0]?.url}}" alt="" width="50px" height="50px"></td>
+                <td>{{post.title}}</td>
+                <td>{{post.description}}</td>
+                <td [ngSwitch]="post.status.statusId">
+                  <span *ngSwitchCase="1" class="badge badge-primary">{{post.status.statusName}}</span>
+                  <span *ngSwitchCase="2" class="badge badge-secondary">{{post.status.statusName}}</span>
+                  <span *ngSwitchCase="3" class="badge badge-danger">{{post.status.statusName}}</span>
+                  <span *ngSwitchCase="4" class="badge badge-success">{{post.status.statusName}}</span>
+                  <span *ngSwitchCase="5" class="badge badge-dark">{{post.status.statusName}}</span>
+                </td>
+                <td><button class="btn btn-warning" [routerLink]="['/customer/post-edit',post.postId]"><i
+                      class="fas fa-edit"></i></button></td>
+              </tr>
+            </tbody>
+            <ng-template #nodata>
+              <tbody>
+                <tr>
+                  <td style="color: red; text-align: center;" colspan="9">No data available in table</td>
+                </tr>
+              </tbody>
+            </ng-template>
+          </table>
         </div>
+        <nav aria-label="Page navigation example" class="float-right">
+          <ul class="pagination">
+            <li class="page-item">
+              <button class="page-link" [hidden]="posts?.pageable?.pageNumber == 0"
+                (click)="onList(posts.pageable.pageNumber - 1)">Trước
+              </button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" [hidden]="posts?.pageable?.pageNumber == 0"
+                (click)="onList(posts.pageable.pageNumber - 1)">{{posts?.pageable?.pageNumber}}</button>
+            </li>
+            <li class="page-item active">
+              <button class="page-link">{{posts?.pageable?.pageNumber + 1}}</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" [hidden]="posts?.pageable?.pageNumber >=  posts?.totalPages - 1"
+                (click)="onList(posts.pageable.pageNumber + 1)">{{posts?.pageable?.pageNumber + 2}}</button>
+            </li>
+            <li class="page-item">
+              <button class="page-link" [hidden]="posts?.pageable?.pageNumber >=  posts?.totalPages - 1"
+                (click)="onList(posts.pageable.pageNumber + 1)">Tiếp
+              </button>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </div>
 
-    <div class="container col-8">
+  </div>
 
-        <h3 class="my-3">Quản lý bài đăng</h3>
-
-        <div class="card mb-3">
-
-            <div class="card-body">
-                <div class="table-responsive">
-                    <table class="table table-hover tablecustom">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Hình ảnh</th>
-                                <th scope="col">Tiêu đề</th>
-                                <th scope="col">Nội dung</th>
-                                <th scope="col">Trạng thái</th>
-                                <th scope="col">Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody *ngIf="posts; else nodata">
-                            <tr *ngFor="let post of posts.content; let i = index;">
-                                <th scope="row">{{i + 1}}</th>
-                                <td><img src="{{post?.imageSet[0]?.url}}" alt="" width="50px" height="50px"></td>
-                                <td>{{post.title}}</td>
-                                <td>{{post.description}}</td>
-                                <td [ngSwitch]="post.status.statusId">
-                                    <span *ngSwitchCase="1" class="badge badge-primary">{{post.status.statusName}}</span>
-                                    <span *ngSwitchCase="2" class="badge badge-secondary">{{post.status.statusName}}</span>
-                                    <span *ngSwitchCase="3" class="badge badge-danger">{{post.status.statusName}}</span>
-                                    <span *ngSwitchCase="4" class="badge badge-success">{{post.status.statusName}}</span>
-                                    <span *ngSwitchCase="5" class="badge badge-dark">{{post.status.statusName}}</span>
-                                </td>
-                                <td><button class="btn btn-warning" [routerLink]="['/customer/post-edit',post.postId]"><i class="fas fa-edit"></i></button></td>
-                            </tr>
-                        </tbody>
-                        <ng-template #nodata>
-                            <tbody>
-                              <tr>
-                                <td style="color: red; text-align: center;" colspan="9">No data available in table</td>
-                              </tr>
-                            </tbody>
-                          </ng-template>
-                    </table>
-                </div>
-                <nav aria-label="Page navigation example" class="float-right">
-                    <ul class="pagination">
-                        <li class="page-item">
-                            <button class="page-link" [hidden]="posts?.pageable?.pageNumber == 0"
-                              (click)="onList(posts.pageable.pageNumber - 1)">Trước
-                            </button>
-                          </li>
-                          <li class="page-item">
-                            <div class="input-group">
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1">{{posts?.pageable?.pageNumber + 1}}</span>
-                              </div>
-                
-                              <div class="input-group-prepend">
-                                <span class="input-group-text" id="basic-addon1"> /{{posts?.totalPages}}</span>
-                              </div>
-                            </div>
-                          </li>
-                          <li class="page-item">
-                            <button class="page-link" [hidden]="posts?.pageable?.pageNumber >=  posts?.totalPages - 1"
-                              (click)="onList(posts.pageable.pageNumber + 1)">Tiếp
-                            </button>
-                          </li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-
-    </div>
-
-    <div class="col-2" style="background-color: grey;">
-        ads
-    </div>
+  <div class="col-2" style="background-color: grey;">
+    ads
+  </div>
 </div>
 
 <div style="background-color: yellowgreen; height: 100px;">
-    footer
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Chỉnh sửa bài đăng</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <table class="table borderless" style="width: 100%">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <label for="name">Tên</label>
-                            </td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nhập tên">
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Số điện thoại</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nhập số điện thoại">
-                                    <p class="small text-danger mt-1">SĐT phải từ 10-11 số. Vui lòng nhập lại.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nhập email">
-                                    <p class="small text-danger mt-1">Email có dạng somebody@gmail.com,
-                                        somebody@yahoo.com</p>
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Địa chỉ</td>
-                            <td>
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <option value="">Đà Nẵng</option>
-                                        <option value="">Hà Nội</option>
-                                    </select>
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Chuyên mục</td>
-                            <td>
-                                <div class="form-group">
-                                    <select class="form-control">
-                                        <option value="">Chuyên mục 1</option>
-                                        <option value="">Chuyên mục 2</option>
-                                    </select>
-                                    <p class="small text-danger mt-1">Bạn chưa chọn chuyên mục. Vui lòng chọn chuyên
-                                        mục cần đăng.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Bạn đăng tin</td>
-                            <td>
-                                <!-- <div class="form-group"> -->
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="optradio" value="" />Cần
-                                        bán
-                                    </label>
-                                </div>
-                                <div class="form-check-inline">
-                                    <label class="form-check-label">
-                                        <input type="radio" class="form-check-input" name="optradio" value="1" />Cần
-                                        mua
-                                    </label>
-                                </div>
-                                <p class="small text-danger mt-1">Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn
-                                    mục.</p>
-                                <!-- </div> -->
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Tiêu đề</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Nhập tiêu đề">
-                                    <p class="small text-danger mt-1">Vui lòng nhập tiêu đề bài viết.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Nội dung tin</td>
-                            <td>
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="3"
-                                        placeholder="Nhập nội dung tin"></textarea>
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Giá</td>
-                            <td>
-                                <div class="form-group">
-                                    <input type="number" class="form-control" placeholder="Nhập giá">
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-                                </div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Ảnh</td>
-                            <td>
-                                <div class="custom-file">
-                                    <!-- <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label> -->
-                                    <!-- <img src="images/img1.png" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img2.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img3.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img5.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="..."> -->
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
-                <button type="button" class="btn btn-success">Lưu</button>
-            </div>
-        </div>
-    </div>
+  footer
 </div>
