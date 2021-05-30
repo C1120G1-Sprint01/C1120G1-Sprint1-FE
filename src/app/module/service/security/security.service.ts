@@ -28,4 +28,9 @@ export class SecurityService {
     return this.http.post<any>(API_URL + 'login', authLogin , this.httpOptions);
   }
 
+  checkEmail(email:string):Observable<string>{
+    console.log("Email on service : " + email);
+    return this.http.get<string>(API_URL+'checkEmail/'+ email);
+  }
+
 }
