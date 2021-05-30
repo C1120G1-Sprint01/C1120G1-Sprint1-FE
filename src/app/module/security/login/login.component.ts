@@ -52,8 +52,8 @@ export class LoginComponent implements OnInit {
     return this.form.get('password');
   }
 
-  public login(userInfo) {
-    this.securityService.login(userInfo).subscribe(
+  public login(authLogin) {
+    this.securityService.login(authLogin).subscribe(
       data => {
         if (this.form.value.remember_me) {
           this.tokenStorageService.saveTokenLocal(data.accessToken);
@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
         this.roles = this.tokenStorageService.getUser().roles;
         this.form.reset();
         console.log("Login Success");
-        // this.router.navigateByUrl("index");
+        this.router.navigateByUrl("homepage"); //index
 
       },
       err => {
