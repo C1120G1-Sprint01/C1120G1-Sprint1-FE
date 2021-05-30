@@ -18,6 +18,7 @@ import {ListCustomerManagerComponent} from "./module/admin/manager-admin/custome
 import {EditCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/edit-customer-manager/edit-customer-manager.component";
 import {DeleteCustomerManagerComponent} from "./module/admin/manager-admin/customer-manager/delete-customer-manager/delete-customer-manager.component";
 import {ChatCustomerComponent} from './module/customer/chat-customer/chat-customer/chat-customer.component';
+import {HomePageComponent} from "./module/customer/home-page/home-page.component";
 
 const routes: Routes = [
   {path: 'category', component: ListCategoryComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   { path: "customer/post-list", component: ListPostCustomerComponent },
   { path: "customer/post-edit/:id", component: EditPostCustomerComponent },
-
+  { path: "homepage", component: HomePageComponent}
 
 ];
 
