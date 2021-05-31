@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/model/CustomerPost';
@@ -8,11 +8,21 @@ import { User } from "../../../model/user/User";
   providedIn: 'root'
 })
 export class ServiceCustomerService {
-  private API_URL = "http://localhost:8080/";
+  httpOptions: any;
 
+  private API_URL = "http://localhost:8080/";
   private API_URL_LIST = "http://localhost:8080/api/posts";
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Credentials': "true"
+    }
+  }
 
   findAllPostByUsername(page: number): Observable<Post[]> {
     return this.httpClient.get<Post[]>(`${this.API_URL_LIST}/cus-post-list?page=${page}`);
@@ -32,8 +42,10 @@ export class ServiceCustomerService {
 
   }
 
-  savePost(post: Post): Observable<Post> {
-    return this.httpClient.post<Post>(`${this.API_URL_LIST}/createPost`, post);
+  savePost(post: Post): Observable<void> {
+    console.log("Title"+post.title)
+    console.log("Child"+post.childCategory)
+    return this.httpClient.post<void>(`${this.API_URL_LIST}/createPost`, post);
   }
 
 }
