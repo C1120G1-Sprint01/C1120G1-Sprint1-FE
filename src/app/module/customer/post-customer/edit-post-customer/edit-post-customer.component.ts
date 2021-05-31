@@ -115,42 +115,42 @@ export class EditPostCustomerComponent implements OnInit {
     });
   }
 
-  // submitForm() {
-  //   if (this.refPost.valid) {
-  //     this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
-  //       this._router.navigateByUrl("/customer/post-list");
-  //       this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
-  //     }, error => {
-  //       this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
-  //     })
-  //   }
-  // }
-
   submitForm() {
-    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
-    const fileRef = this.storage.ref(nameImg);
-    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe((url) => {
+    if (this.refPost.valid) {
+      this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
+        this._router.navigateByUrl("/customer/post-list");
+        this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
+      }, error => {
+        this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
+      })
+    }
+  }
 
-          // this.refPost.patchValue({imageSet: url});
+  // submitForm() {
+  //   const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+  //   const fileRef = this.storage.ref(nameImg);
+  //   this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+  //     finalize(() => {
+  //       fileRef.getDownloadURL().subscribe((url) => {
+
+  //         // this.refPost.patchValue({imageSet: url});
           
 
-          // Call API to create vaccine
-          if (this.refPost.valid) {
-            this.refPost.value.imageSet[0].url = url; 
-            this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
-              this._router.navigateByUrl("/customer/post-list");
-              this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
-            }, error => {
-              this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
-            })
-          }
-        });
-      })
-    ).subscribe();
+  //         // Call API to create vaccine
+  //         if (this.refPost.valid) {
+  //           this.refPost.value.imageSet[0].url = url; 
+  //           this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
+  //             this._router.navigateByUrl("/customer/post-list");
+  //             this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
+  //           }, error => {
+  //             this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
+  //           })
+  //         }
+  //       });
+  //     })
+  //   ).subscribe();
     
-  }
+  // }
 
   getCurrentDateTime(): string {
     return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
