@@ -5,7 +5,7 @@
       <div class="text-center">
         <p class="title">Đăng nhập</p>
       </div>
-      <form [formGroup]="form" (ngSubmit)="submitForm(form)"
+      <form [formGroup]="form" (ngSubmit)="submitForm()"
             class="form-container p-3 px-5
                    align-items-center">
 
@@ -71,7 +71,7 @@
           </button>
         </div>
         <div>
-          <a routerLink="">Quên mật khẩu?</a>
+          <a routerLink="getBackPw">Quên mật khẩu?</a>
         </div>
 
         <!--                login via-->
