@@ -22,6 +22,7 @@ import {MainCategoryComponent} from "./module/admin/category-admin/main-category
 import {HomePageComponent} from "./module/customer/home-page/home-page.component";
 import {LogoutComponent} from "./module/security/logout/logout.component";
 import {GetBackPasswordComponent} from "./module/security/get-back-password/get-back-password.component";
+import {AddPostCustomerComponent} from "./module/customer/post-customer/add-post-customer/add-post-customer.component";
 
 const routes: Routes = [
   {path: 'main-category/category', component: ListCategoryComponent},
@@ -52,6 +53,7 @@ const routes: Routes = [
   {path: 'admin/listUser', component: ListCustomerManagerComponent},
   {path: 'admin/listUser/edit/:id', component: EditCustomerManagerComponent},
   {path: 'admin/listUser/delete', component: DeleteCustomerManagerComponent},
+  {path: "customer/post-add", component: AddPostCustomerComponent},
   {path: "customer/post-list", component: ListPostCustomerComponent},
   {path: "customer/post-edit/:id", component: EditPostCustomerComponent},
   {path: '', redirectTo: 'homepage', pathMatch: 'full'},
