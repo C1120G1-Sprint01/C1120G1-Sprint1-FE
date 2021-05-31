@@ -31,4 +31,9 @@ export class ServiceCustomerService {
     return this.httpClient.post<User>(this.API_URL + "user/create", user)
 
   }
+
+  savePost(post: Post): Observable<Post> {
+    return this.httpClient.post<Post>(`${this.API_URL_LIST}/createPost`, post);
+  }
+
 }
