@@ -14,9 +14,11 @@ input::-webkit-input-placeholder {
 .bg-blue {
   background-color: #027fff; /*navbar background*/
 }
+
 .btn-blue {
   background-color: #0d5db6; /*button*/
 }
+
 .btn-blue:hover {
   background-color: #688cff;
 }
@@ -121,6 +123,7 @@ input::-webkit-input-placeholder {
   .overlay a {
     font-size: 20px;
   }
+
   .overlay .closebtn {
     top: 15px;
     right: 35px;
@@ -141,6 +144,11 @@ input::-webkit-input-placeholder {
 
   .open-overlay:hover {
     color: #688cff;
+  }
+
+  .main-content-frame {
+    margin-left: 3rem !important;
+    margin-right: 3rem !important;
   }
 }
 
@@ -163,6 +171,7 @@ input::-webkit-input-placeholder {
 ::-webkit-scrollbar-thumb:hover {
   background-color: #a8bbbf;
 }
+
 /* END custom scrollbar */
 
 /* -------------------- custom content */
