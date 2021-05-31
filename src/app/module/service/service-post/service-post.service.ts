@@ -1,20 +1,35 @@
 import {Injectable} from '@angular/core';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Post} from '../../../model/Post';
-import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServicePostService {
+  httpOptions: any;
+  private _API_BASE_URL = 'http://localhost:8080/api/posts';
+  private API_URL_POST = 'http://localhost:8080/api/posts/listPost';
+  private API_URL_CATEGORY = 'http://localhost:8080/listCategory';
+  private API_URL_CHILD_CATEGORY = 'http://localhost:8080/listChildCategory';
 
-  private _API_URL_POSTS = 'http://localhost:8080/api/posts';
+  constructor(private httpClient: HttpClient) {
+    this.httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      }),
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
+      'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE,PATCH,OPTIONS',
+      'Access-Control-Allow-Credentials': 'true'
+    };
+  }
 
-  constructor(private _httpClient: HttpClient) {
+  getListPost(page: number): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.API_URL_POST}?page=${page}`);
   }
 
   getPostById(id: number): Observable<Post> {
-    return this._httpClient.get<Post>(`${this._API_URL_POSTS}/${id}`);
+    return this.httpClient.get<Post>(`${this._API_BASE_URL}/${id}`);
   }
-
 }
+
