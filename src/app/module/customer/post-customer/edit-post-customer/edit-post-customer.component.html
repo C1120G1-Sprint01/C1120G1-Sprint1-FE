@@ -15,17 +15,20 @@
     <div class="card mb-3">
 
       <div class="card-body">
-        <form [formGroup]="refPost">
+        <form [formGroup]="refPost" (ngSubmit)="submitForm()">
           <table class="table borderless" style="width: 100%">
             <tbody>
               <tr>
                 <td>
-                  <label for="name">Tên</label>
+                  <label for="name">Họ tên</label>
                 </td>
                 <td>
                   <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Nhập tên" formControlName="posterName">
-
+                    <input type="text" class="form-control" placeholder="Nhập họ tên" formControlName="posterName">
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('posterName').touched && refPost.controls.posterName.errors?.required">
+                      Họ tên không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -34,7 +37,10 @@
                 <td>
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập số điện thoại" formControlName="phone">
-                    <!-- <p class="small text-danger mt-1">SĐT phải từ 10-11 số. Vui lòng nhập lại.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('phone').touched && refPost.controls.phone.errors?.required">
+                      Số điện thoại không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -50,48 +56,55 @@
                 </td>
               </tr>
               <tr>
-                <td>Tỉnh/Thành phố</td>
+                <td>Địa chỉ</td>
                 <td>
                   <div class="form-group">
-                    <select class="form-control" [(ngModel)]="province" [ngModelOptions]="{standalone: true}" [compareWith]="compareProvinces" (change)="onChangeProvince()">
-                      <option *ngFor="let province of provinces" [ngValue] = "province">{{province.provinceName}}</option>
+                    <select class="form-control" [(ngModel)]="province" [ngModelOptions]="{standalone: true}"
+                      [compareWith]="compareProvinces" (change)="onChangeProvince()">
+                      <option *ngFor="let province of provinces" [ngValue]="province">{{province.provinceName}}</option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Quận/Huyện</td>
-                <td>
+
                   <div class="form-group">
-                    <select class="form-control" [(ngModel)]="district" [ngModelOptions]="{standalone: true}" [compareWith]="compareDistricts" (change)="onChangeDistrict()">
-                      <option *ngFor="let district of districts" [ngValue] = "district">{{district.districtName}}</option>
+                    <select class="form-control" [(ngModel)]="district" [ngModelOptions]="{standalone: true}"
+                      [compareWith]="compareDistricts" (change)="onChangeDistrict()">
+                      <option *ngFor="let district of districts" [ngValue]="district">{{district.districtName}}</option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
                   </div>
-                </td>
-              </tr>
-              <tr>
-                <td>Phường/Xã</td>
-                <td>
+
                   <div class="form-group">
                     <select class="form-control" formControlName="ward" [compareWith]="compareWards">
-                      <option *ngFor="let ward of wards" [ngValue] = "ward">{{ward.wardName}}</option>
+                      <option *ngFor="let ward of wards" [ngValue]="ward">{{ward.wardName}}</option>
+                    </select>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('ward').touched && refPost.controls.ward.errors?.required">Địa
+                      chỉ không được để trống</span>
+                  </div>
+
+                </td>
+              </tr>
+              <tr>
+                <td>Chuyên mục cha</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" [(ngModel)]="category" [ngModelOptions]="{standalone: true}"
+                      [compareWith]="compareCategories" (change)="onChangeCategory()">
+                      <option *ngFor="let category of categories" [ngValue]="category">{{category.categoryName}}
+                      </option>
                     </select>
                     <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
                   </div>
                 </td>
               </tr>
               <tr>
-                <td>Chuyên mục</td>
+                <td>Chuyên mục con</td>
                 <td>
                   <div class="form-group">
-                    <select class="form-control" formControlName="childCategory">
-                      <option value="">Chuyên mục 1</option>
-                      <option value="">Chuyên mục 2</option>
+                    <select class="form-control" formControlName="childCategory" [compareWith]="compareChildCategories">
+                      <option *ngFor="let childCategory of childCategories" [ngValue]="childCategory">
+                        {{childCategory.childCategoryName}}</option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Bạn chưa chọn chuyên mục. Vui lòng chọn chuyên
-                                        mục cần đăng.</p> -->
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
                   </div>
                 </td>
               </tr>
@@ -147,27 +160,36 @@
                 </td>
               </tr>
               <tr>
+                <td>Trạng thái</td>
+                <td>
+                  <div class="form-group">
+                    <select class="form-control" formControlName="status" [compareWith]="compareStatus">
+                      <!-- <option
+                        [disabled]="statusItem.statusId === 1 || statusItem.statusId === 3 || statusItem.statusId === 6"
+                        *ngFor="let statusItem of status" [ngValue]="statusItem">{{statusItem.statusName}}
+                      </option> -->
+                      <option *ngFor="let statusItem of status" [ngValue]="statusItem">{{statusItem.statusName}}
+                      </option>
+                    </select>
+                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                  </div>
+                </td>
+              </tr>
+              <tr>
                 <td>Ảnh</td>
                 <td>
                   <div class="custom-file">
-                    <!-- <input type="file" class="custom-file-input" id="inputGroupFile01">
-                                <label class="custom-file-label" for="inputGroupFile01">Chọn ảnh</label> -->
-                    <!-- <img src="images/img1.png" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img2.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img3.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="...">
-                                    <img src="images/img5.jpg" width="40px" height="40px"
-                                        class="img-thumbnail rounded float-left" alt="..."> -->
+                    <input type="file" class="form-control-file pb-1">
+                    <img *ngFor="let img of images" src="{{img.url}}" width="50px" height="50px"
+                      class="img-thumbnail rounded float-left mr-1" alt="...">
                   </div>
                 </td>
               </tr>
             </tbody>
 
           </table>
-          <button type="button" class="btn btn-success float-right ml-1">Lưu</button>
-          <button type="button" class="btn btn-secondary float-right" data-dismiss="modal">Hủy</button>
+          <button type="submit" class="btn btn-success float-right ml-1" [disabled]="refPost.invalid">Lưu</button>
+          <button type="button" class="btn btn-secondary float-right" (click)="cancelUpdate()">Hủy</button>
         </form>
       </div>
     </div>
