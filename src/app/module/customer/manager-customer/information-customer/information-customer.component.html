@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Title</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
-        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+<!--  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"-->
+<!--        integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">-->
+<!--  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"-->
+<!--        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>-->
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -61,10 +61,23 @@
   <div class="col-md-6">
     <table class="table table-hover">
       <h1 class="text-center">Thông tin cá nhân</h1>
-      <tbody>
-      <tr>
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Họ Và Tên:</th>-->
+<!--        <th>Avatar:</th>-->
+<!--        <th>Số Điện Thoại:</th>-->
+<!--        <th>Email:</th>-->
+<!--        <th>FaceBook:</th>-->
+<!--        <th>Tutor</th>-->
+<!--        <th>Email</th>-->
+<!--        <th>Phone</th>-->
+<!--        <th>Options</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+      <tbody *ngFor="let user of listUser">
+      <tr >
         <td><label>Họ Và Tên: </label></td>
-        <td><label>long</label></td>
+        <td><label>{{user.name}}</label></td>
       </tr>
       <tr>
         <td>Avatar:</td>
@@ -75,27 +88,23 @@
       </tr>
       <tr>
         <td><label>Số Điện Thoại: </label></td>
-        <td><label>0356501796</label></td>
+        <td><label>{{user.phone}}</label></td>
       </tr>
       <tr>
         <td><label>Email: </label></td>
-        <td><label>long</label></td>
-      </tr>
-      <tr>
-        <td><label>FaceBook: </label></td>
-        <td><label>fb.com/honhatlong14</label></td>
+        <td><label>{{user.email}}</label></td>
       </tr>
       <tr>
         <td><label>Địa chỉ: </label></td>
-        <td><label>Huế</label></td>
+        <td><label>{{user.ward}}</label></td>
       </tr>
       <tr>
         <td><label>Giới tính: </label></td>
-        <td><label>Nam</label></td>
+        <td><label>{{user.gender}}</label></td>
       </tr>
       <tr>
         <td><label>Ngày Sinh: </label></td>
-        <td><label>01/01/1999</label></td>
+        <td><label>{{user.birthDay}}</label></td>
       </tr>
       <tr class="text-center">
         <td></td>
@@ -108,9 +117,9 @@
   </div>
 </div>
 </body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
-        crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.6.0.min.js"-->
+<!--        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"-->
+<!--        integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"-->
+<!--        crossorigin="anonymous"></script>-->
 </html>

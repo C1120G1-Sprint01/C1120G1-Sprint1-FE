@@ -10,4 +10,6 @@ export class User {
   ward :Ward;
   avatar :string;
   account :Account;
+  gender: string;
+  birthDay: string;
 }

@@ -14,7 +14,10 @@ export class ServiceCustomerService {
 
 
   save(user: User): Observable<User> {
-    console.log(user)
+    console.log(user);
     return this.httpClient.post<User>(this.API_URL + "user/create", user)
+  }
+  getListUser(): Observable<User[]> {
+    return this.httpClient.get<User[]>(this.API_URL);
   }
 }
