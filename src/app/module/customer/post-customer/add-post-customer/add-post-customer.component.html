@@ -1,308 +1,240 @@
-<div>
-  <!-- fake navbar, real navbar will be taken by ThinhTHB -->
-  <nav class="navbar navbar-expand-sm bg-blue navbar-dark sticky-top">
-    <!-- Brand -->
-    <a class="navbar-brand" href="index.html">C1120G1</a>
-
-    <!-- Links -->
-    <ul class="navbar-nav">
-      <li class="nav-item">
-        <a class="btn btn-blue text-light" href="#">Mục đăng tin</a>
-      </li>
-    </ul>
-  </nav>
-  <!-- END fake navbar -->
-  <br/>
-  <div class="d-inline-flex col-md-12 px-0">
-    <!-- menu left -->
-    <div class="col-md-2 px-0">
-      <!-- content menu left full-size -->
-      <div class="position-fixed col-md-2 menu-left border-right">
-        <!-- category -->
-        <p class="title-text">Chuyên mục</p>
-        <div>
-          <a class="btn menu-left_item col-12 bg-light" data-toggle="collapse" data-target="#ctgy1">
-            <span>-&nbsp;</span>
-            Xe cộ
-          </a>
-          <ul id="ctgy1" class="collapse list-group list-group-flush ml-2">
-            <li class="list-group-item"><span>+&nbsp;</span>Xe máy</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Ô tô</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Xe đạp</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Xe tải, xe khác</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Phụ tùng</li>
-          </ul>
-        </div>
-        <!-- END category -->
-        <!-- category -->
-        <div>
-          <a class="btn menu-left_item col-12 bg-light" data-toggle="collapse" data-target="#ctgy2">
-            <span>-&nbsp;</span>
-            Bất động sản
-          </a>
-          <ul id="ctgy2" class="collapse list-group list-group-flush ml-2">
-            <li class="list-group-item"><span>+&nbsp;</span>Đất mặt tiền</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Biệt thự</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Chung cư</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Đất canh tác</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Đất mặt tiền</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Biệt thự</li>
-          </ul>
-        </div>
-        <!-- END category -->
-        <!-- category -->
-        <div>
-          <a class="btn menu-left_item col-12 bg-light" data-toggle="collapse" data-target="#ctgy3">
-            <span>-&nbsp;</span>
-            Đồ điện tử
-          </a>
-          <ul id="ctgy3" class="collapse list-group list-group-flush ml-2">
-            <li class="list-group-item"><span>+&nbsp;</span>Điện thoại</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Tivi</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Máy lạnh</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Laptop</li>
-            <li class="list-group-item"><span>+&nbsp;</span>Linh kiện</li>
-          </ul>
-        </div>
-        <!-- END category -->
-      </div>
-      <!--END content menu left full-size -->
-      <!-- content menu left under 768px -->
-      <span class="open-overlay position-fixed col-1 col-sm-1" onclick="openNav()">&#9776;</span>
-      <div id="myNav" class="overlay">
-        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <div class="overlay-content">
-          <!-- category -->
-          <div>
-            <a class="btn title-text" data-toggle="collapse" data-target="#ctgy1">
-              <span>-&nbsp;</span>
-              Xe cộ
-            </a>
-            <ul id="ctgy1" class="collapse list-group list-group-flush ml-2">
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Xe máy</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Ô tô</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Xe đạp</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Xe tải, xe khác</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Phụ tùng</li>
-            </ul>
-          </div>
-          <!-- END category -->
-          <!-- category -->
-          <div>
-            <a class="btn title-text" data-toggle="collapse" data-target="#ctgy2">
-              <span>-&nbsp;</span>
-              Bất động sản
-            </a>
-            <ul id="ctgy2" class="collapse list-group list-group-flush ml-2">
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất mặt tiền</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Biệt thự</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Chung cư</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất canh tác</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất mặt tiền</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Biệt thự</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Chung cư</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất canh tác</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất mặt tiền</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Biệt thự</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Chung cư</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Đất canh tác</li>
-            </ul>
-          </div>
-          <!-- END category -->
-          <!-- category -->
-          <div>
-            <a class="btn title-text" data-toggle="collapse" data-target="#ctgy3">
-              <span>-&nbsp;</span>
-              Đồ điện tử
-            </a>
-            <ul id="ctgy3" class="collapse list-group list-group-flush ml-2">
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Điện thoại</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Tivi</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Máy lạnh</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Laptop</li>
-              <li class="list-group-item list-item-overlay"><span>+&nbsp;</span>Linh kiện</li>
-            </ul>
-          </div>
-          <!-- END category -->
-        </div>
-      </div>
-      <!--END content menu left under 768px -->
-    </div>
-    <!-- END menu left -->
-    <!-- main content -->
-    <div class="col-10 col-sm-10 col-md-8">
-      <!-- content here -->
-      <div class="d-flex justify-content-center col-12">
-        <div class="col-sm-12 col-md-8">
-          <p class="title-text text-uppercase">Đăng tin</p>
-          <table class="table">
-            <tbody>
-            <tr>
-              <td>
-                <label for="name">
-                  Tên
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <input type="text" class="form-control" placeholder="Nhập vào tên của bạn" id="name"/>
-                <p class="invalid-feedback">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="phone">
-                  Số điện thoại
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <input type="text" class="form-control" placeholder="Nhập vào số điện thoại" id="phone"/>
-                <p class="invalid-feedback">Số điện thoại là số và phải từ 10-11 số. Vui lòng nhập lại.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="email">
-                  Email
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <input type="email" class="form-control" placeholder="Nhập vào email của bạn" id="email"/>
-                <p class="invalid-feedback">Email có dạng somebody@gmail.com, somebody@yahoo.com</p>
-                <p class="invalid-feedback">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="address">
-                  Địa chỉ
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <span class="d-inline-flex col-md-12 px-0">
-                    <select class="custom-select custom-select-sm col-5 col-md-4">
-                        <option selected disabled>Chọn tỉnh thành</option>
-                        <option value="0">Toàn quốc</option>
-                        <option value="1">Hà Nội</option>
-                        <option value="2">Huế</option>
-                        <option value="3">Thành phố Hồ Chí Minh</option>
-                    </select>
-                    <input type="text" class="form-control col-7 col-md-8" placeholder="Nhập vào địa chỉ" id="address"/>
+<!-- main content -->
+<div class="d-flex justify-content-center col-12 col-sm-12 col-md-12">
+  <!-- content here -->
+  <div class="d-flex justify-content-center col-12 mt-5 pt-3">
+    <div class="col-sm-12 col-md-9">
+      <p class="title-text text-uppercase">Đăng tin</p>
+      <!--      <form>-->
+      <form [formGroup]="form" (ngSubmit)="submitForm()">
+        <table class="table">
+          <tbody>
+          <tr>
+            <td>
+              <label for="name">
+                Tên
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control" placeholder="Nhập vào tên của bạn" id="name"
+                     formControlName="posterName"/>
+              <p class="invalid-feedback" *ngIf="form.controls.posterName.touched">
+                <span *ngIf="form.controls.posterName.errors?.required">Hãy nhập dữ liệu vào trường bắt buộc.</span>
+                <span *ngIf="form.controls.posterName.errors?.pattern">Tên không hợp lệ.</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="phone">
+                Số điện thoại
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control" placeholder="Nhập vào số điện thoại" id="phone"
+                     formControlName="phone"/>
+              <p class="invalid-feedback" *ngIf="form.controls.phone.touched">
+                <span *ngIf="form.controls.phone.errors?.required">
+                  Hãy nhập dữ liệu vào trường bắt buộc.
                 </span>
-                <p class="invalid-feedback">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="category">
-                  Chuyên mục
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <select class="form-control" id="category">
-                  <option selected disabled>Chọn chuyên mục</option>
-                  <option>Xe cộ</option>
-                  <option>Đồ điện tử</option>
-                  <option>Bất động sản</option>
+                <span *ngIf="form.controls.phone.errors?.pattern">
+                  Số điện thoại là số và phải từ 10-11 số. Vui lòng nhập lại.
+                </span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="email">
+                Email
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input type="email" class="form-control" placeholder="Nhập vào email của bạn" id="email"
+                     formControlName="email"/>
+              <p class="invalid-feedback" *ngIf="form.controls.email.touched">
+                <span *ngIf="form.controls.email.errors?.required">
+                  Hãy nhập dữ liệu vào trường bắt buộc.
+                </span>
+                <span *ngIf="form.controls.email.errors?.pattern">
+                  Email có dạng somebody@gmail.com, somebody@yahoo.com
+                </span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>
+                Địa chỉ
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+            <span>
+                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="province"
+                        [ngModelOptions]="{standalone: true}" (change)="onChangeProvince()">
+                    <option selected disabled>Chọn tỉnh thành</option>
+                    <option *ngFor="let province of provinces" [ngValue]="province">{{province.provinceName}}</option>
                 </select>
-                <p class="invalid-feedback">Bạn chưa chọn chuyên mục. Vui lòng chọn chuyên mục cần đăng.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label>
-                  Bạn đăng tin
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <span class="form-check-inline d-flex justify-content-around">
-                    <label class="form-check-label"><input type="radio" class="form-check-input" name="optradio"/>
-                      Cần bán
-                    </label>
-                    <label class="form-check-label"><input type="radio" class="form-check-input" name="optradio"/>
-                      Cần mua
-                    </label>
+                <br/>
+                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="district"
+                        [ngModelOptions]="{standalone: true}" (change)="onChangeDistrict()">
+                    <option selected disabled>Chọn quận/huyện</option>
+                    <option *ngFor="let district of districts" [ngValue]="district">{{district.districtName}}</option>
+                </select>
+                <br/>
+                <select class="custom-select custom-select-sm mb-1" formControlName="ward">
+                    <option selected disabled>Chọn xã/phường</option>
+                    <option *ngFor="let ward of wards" [ngValue]="ward">{{ward.wardName}}</option>
+                </select>
+            </span>
+              <p class="invalid-feedback" *ngIf="form.controls.ward.touched">
+                <span *ngIf="form.controls.ward.errors?.required">
+                  Hãy nhập dữ liệu vào trường bắt buộc.
                 </span>
-                <p class="invalid-feedback">Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn mục.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="title">
-                  Tiêu đề
-                  <span class="asterisk-red">*</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="category">
+                Chuyên mục
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <select class="form-control" id="category" [(ngModel)]="category" [ngModelOptions]="{standalone: true}"
+                      (change)="onChangeCategory()">
+                <option selected disabled>Chọn chuyên mục</option>
+                <option *ngFor="let category of categories" [ngValue]="category">{{category.categoryName}}</option>
+              </select>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="child_category">
+                Chuyên mục con
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <select class="form-control" id="child_category" formControlName="childCategory">
+                <option selected disabled>Chọn chuyên mục</option>
+                <option *ngFor="let childCategory of childCategories" [ngValue]="childCategory">
+                  {{childCategory.childCategoryName}}</option>
+              </select>
+              <p class="invalid-feedback" *ngIf="form.controls.childCategory.touched">
+                <span *ngIf="form.controls.childCategory.errors?.required">
+                  Bạn chưa chọn chuyên mục. Vui lòng chọn chuyên mục cần đăng.
+                </span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>
+                Bạn đăng tin
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+            <span class="form-check-inline d-flex justify-content-around">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="postType" formControlName="postType"/>Cần bán
                 </label>
-              </td>
-              <td>
-                <input type="text" class="form-control" placeholder="Nhập vào tiêu đề bài viết" id="title"/>
-                <p class="invalid-feedback">Vui lòng nhập tiêu đề bài viết.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="content">
-                  Nội dung tin
-                  <span class="asterisk-red">*</span>
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" name="postType" formControlName="postType"/>Cần mua
                 </label>
-              </td>
-              <td>
-                <textarea class="form-control" rows="5" id="content" name="text" placeholder="Nhập vào nội dung tin">
-                </textarea>
-                <p class="invalid-feedback">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="price">
-                  Giá
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <input type="number" class="form-control" placeholder="Nhập vào giá sản phẩm" id="price" min="0"/>
-                <p class="invalid-feedback">Hãy nhập dữ liệu vào trường bắt buộc.</p>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <label for="price">
-                  Ảnh
-                  <span class="asterisk-red">*</span>
-                </label>
-              </td>
-              <td>
-                <input class="form-control col-md-10" id="formFile" type="file" accept="image/*"/>
-              </td>
-            </tr>
-            <tr>
-              <td></td>
-              <td class="d-flex justify-content-center">
-                <a class="btn btn-success col-md-6" href="#deleteEmployeeModal" data-toggle="modal">Đăng tin</a>
-              </td>
-            </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
+            </span>
+<!--              <p class="invalid-feedback" *ngIf="form.controls.postType.touched">-->
+<!--                <span *ngIf="form.controls.postType.errors?.required">-->
+<!--                  Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn mục.-->
+<!--                </span>-->
+<!--              </p>-->
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="title">
+                Tiêu đề
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input type="text" class="form-control" placeholder="Nhập vào tiêu đề bài viết" id="title"
+              formControlName="title"/>
+              <p class="invalid-feedback" *ngIf="form.controls.title.touched">
+                <span *ngIf="form.controls.title.errors?.required">
+                  Vui lòng nhập tiêu đề bài viết.
+                </span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="content">
+                Nội dung tin
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+            <textarea class="form-control" rows="5" id="content" name="text" placeholder="Nhập vào nội dung tin"
+            formControlName="description">
+            </textarea>
+              <p class="invalid-feedback" *ngIf="form.controls.description.touched">
+                <span *ngIf="form.controls.description.errors?.required">
+                  Hãy nhập dữ liệu vào trường bắt buộc.
+                </span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label for="price">
+                Giá
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input type="number" class="form-control" placeholder="Nhập vào giá sản phẩm" id="price" min="0"
+              formControlName="price"/>
+              <p class="invalid-feedback" *ngIf="form.controls.price.touched">
+                <span *ngIf="form.controls.price.errors?.pattern">Giá không hợp lệ.</span>
+              </p>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <label>
+                Ảnh
+                <span class="asterisk-red">*</span>
+              </label>
+            </td>
+            <td>
+              <input class="form-control col-md-10" id="formFile" type="file" accept="image/*"/>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <a class="btn btn-danger col-md-6" (click)="cancelUpdate()">Huỷ</a>
+            </td>
+            <td class="d-flex justify-content-center">
+              <button type="submit" class="btn btn-success col-md-6" [disabled]="form.invalid">Đăng tin</button>
+<!--              <button type="submit" class="btn btn-success col-md-6">Đăng tin</button>-->
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </form>
     </div>
-    <!-- END main content -->
-    <!-- ads right -->
-    <div class="col-md-2 pl-0">
-      <div class="position-fixed col-md-2 menu-right border-left">
-        <p class="text-danger">ADS</p>
-      </div>
-    </div>
-    <!-- END ads right -->
   </div>
 </div>
-
-<!-- Delete Modal HTML -->
-<div id="deleteEmployeeModal" class="modal fade">
+<!-- END main content -->
+<a href="#notificationModal" data-toggle="modal" style="display: none"></a>
+<!-- Modal notification -->
+<div id="notificationModal" class="modal fade">
   <div class="modal-dialog">
     <div class="modal-content">
       <div>
@@ -314,7 +246,7 @@
           <p>Bạn có muốn tiếp tục đăng tin mới?</p>
           <div class="d-inline-flex col-md-12">
             <button type="button" class="btn btn-success col-md-6 mr-1" data-dismiss="modal">Có</button>
-            <button type="submit" class="btn btn-primary col-md-6">Không, đưa tôi về trang chủ</button>
+            <a routerLink="../.." class="btn btn-primary col-md-6" data-dismiss="modal">Không, đưa tôi về trang chủ</a>
           </div>
         </div>
       </div>
