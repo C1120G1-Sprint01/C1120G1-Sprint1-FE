@@ -1,0 +1,68 @@
+<div class="container-fluid">
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark sticky-top">
+    <!-- Brand -->
+    <a class="navbar-brand" href="#">Logo</a>
+
+    <!-- Links -->
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 1</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Link 2</a>
+      </li>
+      <li class="nav-item">
+        <a class="btn btn-blue text-light" href="#">Mục đăng tin</a>
+      </li>
+
+      <!-- Dropdown -->
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown"> Dropdown link </a>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Link 1</a>
+          <a class="dropdown-item" href="#">Link 2</a>
+          <a class="dropdown-item" href="#">Link 3</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline" action="">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search"/>
+      <button class="btn btn-blue text-light" type="submit">Search</button>
+    </form>
+  </nav>
+  <div class="row">
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="btn blue" data-toggle="collapse" routerLink="/admin">Trang chủ</a>
+            <!--                        <a class="nav-link active" href="#">Trang chủ</a>-->
+          </li>
+          <li class="nav-item dropdown">
+            <a class="btn blue" data-toggle="collapse" data-target="#ctgy1">Xem và duyệt tin rao vặt</a>
+            <ul id="ctgy1" class="collapse list-group list-group-flush ml-2">
+              <li class="list-group-item"><a routerLink="/admin/listDetail" class="dropdown-item blue" data-toggle="collapse">+&nbsp; Xem
+                tin rao vặt</a></li>
+              <li class="list-group-item"><a href="#xyz" routerLink="/admin/listApprove" class="dropdown-item blue" data-toggle="collapse">+&nbsp; Duyệt
+                tin rao vặt</a></li>
+              <li class="list-group-item"><a href="#" class="dropdown-item blue" data-toggle="collapse">+&nbsp; Danh sách
+                để sau</a></li>
+            </ul>
+          </li>
+<!--          <li class="nav-item">-->
+<!--            <a class="btn blue" data-toggle="collapse" data-target="#ctgy2">Xem và xoá tin rao vặt</a>-->
+<!--            <ul id="ctgy2" class="collapse list-group list-group-flush ml-2">-->
+<!--              <li class="list-group-item"><a href="#" class="dropdown-item blue" data-toggle="collapse">+&nbsp; Xem tin-->
+<!--                rao vặt</a></li>-->
+<!--              <li class="list-group-item"><a href="#" class="dropdown-item blue" data-toggle="collapse">+&nbsp; Xoá tin-->
+<!--                rao vặt</a></li>-->
+<!--            </ul>-->
+<!--          </li>-->
+<!--          <li class="nav-item">-->
+<!--            <a class="btn blue" data-toggle="collapse">Chuyên mục</a>-->
+<!--          </li>-->
+        </ul>
+      </div>
+    </nav>
+  </div>
+</div>

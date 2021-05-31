@@ -4,12 +4,12 @@ import {ServicePostService} from '../../../../service/service-post/service-post.
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
-  selector: 'app-detail-admin',
-  templateUrl: './detail-admin.component.html',
-  styleUrls: ['./detail-admin.component.css']
+  selector: 'app-confirm-wait',
+  templateUrl: './confirm-wait.component.html',
+  styleUrls: ['./confirm-wait.component.css']
 })
-export class DetailAdminComponent implements OnInit {
-  public postDetail: Post;
+export class ConfirmWaitComponent implements OnInit {
+  public postApprove: Post;
 
   constructor(private _postService: ServicePostService,
               private _activatedRoute: ActivatedRoute,
@@ -17,10 +17,14 @@ export class DetailAdminComponent implements OnInit {
 
   ngOnInit(): void {
     let index = this._activatedRoute.snapshot.params["postId"];
-    this._postService.getPostDetailByIndex(index).subscribe(data => {
-      this.postDetail = data;
-    })
+    this._postService.getPostWaitByIndex(index).subscribe(data => {
+      this.postApprove = data;
+    });
   }
 
-
+  onApprove() {
+    this._postService.approveWait(this.postApprove.postId).subscribe(data => {
+      this._router.navigateByUrl("/admin/listWait");
+    });
+  }
 }

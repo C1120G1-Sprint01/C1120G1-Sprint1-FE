@@ -4,6 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
+import {HttpClientModule} from '@angular/common/http';
+import {AdminModule} from './module/admin/admin.module';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -12,7 +16,11 @@ import {CustomerModule} from './module/customer/customer.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CustomerModule
+    CustomerModule,
+    AdminModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
