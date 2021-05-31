@@ -1,7 +1,4 @@
-<!--<nav class="navbar navbar-light">-->
-<!--  <a class="navbar-brand">Logo</a>-->
-<!--</nav>-->
-<div class="container">
+<div class="container-fluid body">
   <div class="row">
     <div class="col-md-3">
       <div class="card">
@@ -14,7 +11,7 @@
               <a class="nav-link" href="#">Quản lý thành viên</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/main-category">Quản lý chuyên mục</a>
+              <a class="nav-link bg-light" routerLink="/main-category">Quản lý chuyên mục</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Banner</a>
@@ -29,10 +26,7 @@
     <div class="col-md-9">
       <div class="card">
         <div class="card-body">
-
-
-
-          <p class="title">Quản lý chuyên mục cha</p>
+          <p class="title mt-4">Quản lý chuyên mục cha</p>
           <a href="" class="btn btn-success btn-rounded mb-4" routerLink="create-category" data-toggle="modal"
              data-target="#modalCreateFatherCategories">Thêm chuyên mục cha <i
             class="fas fa-plus"></i></a>
@@ -42,32 +36,18 @@
               <th>Tên chuyên mục cha</th>
               <th colspan="2" style="text-align: center">Thao tác</th>
             </tr>
-            <tr *ngFor="let item of categoryList">
+            <tr *ngFor="let item of categoryList| paginate:{ itemsPerPage: 5, currentPage: p } ">
               <td>{{item.categoryId}}</td>
               <td>{{item.categoryName}}</td>
-              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['edit-category',item.categoryId]" data-target="#modalEditFatherCategories"
-                                                class="btn btn-warning"><i class="fas fa-edit"></i></a></td>
-              <td style="text-align: center"><a data-toggle="modal" [routerLink]="['delete-category',item.categoryId]" data-target="#modalDeleteFatherCategories"
-                                                class="btn btn-danger"><i class="fas fa-trash-alt"></i></a></td>
+              <td style="text-align: center">
+                <a [routerLink]="['edit-category',item.categoryId]"
+                                                class="btn btn-warning"><i class="fas fa-edit"></i></a>
+                <a [routerLink]="['delete-category',item.categoryId]"
+                   class="btn btn-danger ml-3"><i class="fas fa-trash-alt"></i></a>
+              </td>
             </tr>
           </table>
-          <div class="page">
-            <nav aria-label="...">
-              <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                  <span class="page-link">Trước</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                  <span class="page-link">2</span>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                  <a class="page-link" href="#">Sau</a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
       </div>
     </div>

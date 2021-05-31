@@ -1,4 +1,4 @@
-<div class="container body">
+<div class="container-fluid body">
   <div class="row">
     <div class="col-md-3">
       <div class="card">
@@ -11,7 +11,7 @@
               <a class="nav-link" href="#">Quản lý thành viên</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" routerLink="/main-category">Quản lý chuyên mục</a>
+              <a class="nav-link bg-light" routerLink="/main-category">Quản lý chuyên mục</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Banner</a>
@@ -24,26 +24,21 @@
       </div>
     </div>
     <div class="col-md-9">
-      <br>
-      <form class="form-inline">
-
-      </form>
       <div class="card">
         <div class="card-body">
-
-          <p class="title">Thêm mới chuyên mục</p>
+          <p class="title mt-2">Thêm mới chuyên mục</p>
           <form [formGroup]="formCreate" (ngSubmit)="save()">
             <table class="table table-striped">
               <tr>
                 <td>Tên chuyên mục cha</td>
-              <td>
-                <input type="text" formControlName="categoryName" class="form-control">
-                <div class="error alert alert-danger" role="alert"
-                     *ngIf="formCreate.get('categoryName').invalid && formCreate.get('categoryName').dirty">
-                  <span *ngIf="formCreate.get('categoryName').hasError('required')">Tên chuyên mục cha không được để trống.</span>
-                  <span *ngIf="formCreate.get('categoryName').hasError('pattern')">Tên chuyên mục cha không được có kí tự đặc biệt</span>
-                </div>
-              </td>
+                <td>
+                  <input type="text" formControlName="categoryName" class="form-control">
+                  <div class="error alert alert-danger" role="alert"
+                       *ngIf="formCreate.get('categoryName').invalid && formCreate.get('categoryName').dirty">
+                    <span *ngIf="formCreate.get('categoryName').hasError('required')">Tên chuyên mục cha không được để trống.</span>
+                    <span *ngIf="formCreate.get('categoryName').hasError('pattern')">Tên chuyên mục cha không được có kí tự đặc biệt</span>
+                  </div>
+                </td>
               </tr>
               <tr>
                 <td style="text-align: center">

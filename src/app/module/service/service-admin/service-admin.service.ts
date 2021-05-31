@@ -1,15 +1,11 @@
 import { Injectable } from '@angular/core';
-
-
 import {Category} from '../../../model/Category';
 import {ChildCategory} from '../../../model/ChildCategory';
-
 import {Observable} from "rxjs";
 import {User} from "../../../model/User";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Account} from "../../../model/Account";
 import {Ward} from "../../../model/Ward";
-
 
 @Injectable({
   providedIn: 'root'
@@ -40,8 +36,8 @@ export class ServiceAdminService {
     return this.httpClient.get<Category[]>(this.baseUrl + '/main-category/category/');
   }
 
-  getAllChildCategory(index : number): Observable<ChildCategory[]> {
-    return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/main-category/child-category/' + '?index' + index);
+  getAllChildCategory(): Observable<ChildCategory[]> {
+    return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/main-category/child-category/');
   }
 
   getCategoryById(id:number): Observable<Category> {
@@ -68,18 +64,13 @@ export class ServiceAdminService {
   }
 
   deleteCategory(id: number) {
-    return this.httpClient.delete<Category>(this.baseUrl + '/main-category/category' + '/delete-category/' + id);
+    return this.httpClient.delete<Category>(this.baseUrl + '/main-category/category/delete-category/' + id);
   }
-  deleteChildCategory(id: number) {
-    return this.httpClient.delete<Category>(this.baseUrl + '/main-category/child-category' + '/delete-child-category/' + id);
+  deleteChildCategory(id: number): Observable<ChildCategory> {
+    return this.httpClient.get(this.baseUrl + '/main-category/child-category' + '/delete-child-category/' + id);
   }
   getAllChildByChildNameAndName(childCategoryName: string, categoryName: string): Observable<ChildCategory[]> {
-    if (!categoryName){
-      categoryName = '';
-    }
-    if (!childCategoryName){
-      childCategoryName = '';
-    }
+
     return this.httpClient.get<ChildCategory[]>(this.baseUrl + '/main-category/child-category/search?' +
       'childCategoryName=' + childCategoryName + '&categoryName=' + categoryName)
   }

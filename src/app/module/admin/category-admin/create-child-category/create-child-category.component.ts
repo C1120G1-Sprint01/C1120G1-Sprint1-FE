@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
 import {Category} from "../../../../model/Category";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-child-category',
@@ -15,7 +16,8 @@ export class CreateChildCategoryComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
               private router: Router,
-              private serviceAdminService: ServiceAdminService) {
+              private serviceAdminService: ServiceAdminService,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class CreateChildCategoryComponent implements OnInit {
     console.log(this.formCreate.getRawValue());
     //Khi a submit thì form sẽ được đưa xuống gồm name và thằng cha
     this.serviceAdminService.createChildCategory(this.formCreate.getRawValue()).subscribe(data => {
-      console.log('chuyên mục cha đã được tạo!');
+      this.toast.success("Chuyên mục đã được tạo");
       this.router.navigateByUrl('main-category/child-category')
     })
   }

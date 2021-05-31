@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {ActivatedRoute, Router} from "@angular/router";
 import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
 import {Category} from "../../../../model/Category";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-category',
@@ -16,7 +17,8 @@ export class EditCategoryComponent implements OnInit {
   constructor(private _fb: FormBuilder,
               private router: Router,
               private serviceAdminService: ServiceAdminService,
-              private active: ActivatedRoute) {
+              private active: ActivatedRoute,
+              private toast: ToastrService) {
   }
 
   ngOnInit(): void {
@@ -35,7 +37,7 @@ export class EditCategoryComponent implements OnInit {
 
   save() {
     this.serviceAdminService.updateCategory(this.formEdit.getRawValue()).subscribe(data => {
-      console.log('chuyên mục đã được tạo!');
+      this.toast.success("Chuyên mục cha đã được chỉnh sửa");
       this.router.navigateByUrl('main-category/category')
     })
   }

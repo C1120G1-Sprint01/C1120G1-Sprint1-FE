@@ -3,16 +3,13 @@
   font-weight: bold;
 
 }
-body{
+.body{
   width: 100%;
   height: 100%;
   font-family: "Roboto Light",sans-serif;
-  font-size: 13px;
+  font-size: 14px;
   background: #f7f7ff;
   margin-top:-20px;
-}
-td,th{
-  /*text-align: center;*/
 }
 .col-md-3 {
   border-right: black 1px solid;
@@ -24,8 +21,8 @@ td,th{
 .page{
   text-align: center;
 }
-.navbar{
-  background-color: #027FFF;
+.nav-item .nav-link:hover{
+  background-color: lightgray;
 }
 .card {
   position: relative;

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Category} from '../../../../model/Category';
-import {ChildCategory} from '../../../../model/ChildCategory';
 import {ServiceAdminService} from '../../../service/service-admin/service-admin.service';
-import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-list-category',
@@ -11,11 +9,10 @@ import {Router} from '@angular/router';
 })
 export class ListCategoryComponent implements OnInit {
   categoryList: Category[] = [];
-  constructor(private serviceAdminService: ServiceAdminService,
-              private router: Router) { }
+  p = 1;
+  constructor(private serviceAdminService: ServiceAdminService) { }
 
   ngOnInit(): void {
-
     this.getDataCategory();
   }
 

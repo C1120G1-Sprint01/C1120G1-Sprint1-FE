@@ -4,6 +4,7 @@ import {ActivatedRoute, ParamMap, Router} from "@angular/router";
 import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
 import {Category} from "../../../../model/Category";
 import {ChildCategory} from "../../../../model/ChildCategory";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-edit-child-category',
@@ -19,7 +20,8 @@ export class EditChildCategoryComponent implements OnInit {
   constructor(private _fb: FormBuilder,
               private router: Router,
               private serviceAdminService: ServiceAdminService,
-              private active: ActivatedRoute) {
+              private active: ActivatedRoute,
+              private toast: ToastrService) {
 
     //lấy danh sách category hiển thị cho người dùng chọn lại
     this.serviceAdminService.getAllCategory().subscribe(data => {
@@ -58,9 +60,9 @@ export class EditChildCategoryComponent implements OnInit {
 
   save() {
     console.log(this.formEdit.getRawValue());
-    //Khi a submit thì form sẽ được đưa xuống gồm name và thằng cha
+    //Khi submit thì form sẽ được đưa xuống gồm child_name và thằng category
     this.serviceAdminService.updateChildCategory(this.formEdit.getRawValue()).subscribe(data => {
-      console.log('chuyên mục cha đã được chỉnh sửa!');
+      this.toast.success("Chuyên mục đã được chỉnh sửa");
       this.router.navigateByUrl('main-category/child-category')
     })
   }

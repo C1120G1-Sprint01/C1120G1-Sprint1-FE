@@ -13,6 +13,7 @@ import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { ListChildCategoryComponent } from './list-child-category/list-child-category.component';
 import { MainCategoryComponent } from './main-category/main-category.component';
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 
@@ -35,6 +36,7 @@ import { MainCategoryComponent } from './main-category/main-category.component';
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxPaginationModule,
   ]
 })
 export class CategoryAdminModule { }

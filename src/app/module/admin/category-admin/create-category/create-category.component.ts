@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-create-category',
@@ -13,18 +14,20 @@ export class CreateCategoryComponent implements OnInit {
 
   constructor(private _fb: FormBuilder,
               private router: Router,
-              private serviceAdminService: ServiceAdminService) { }
+              private serviceAdminService: ServiceAdminService,
+              private toast: ToastrService) { }
 
   ngOnInit(): void {
     this.formCreate = this._fb.group({
       categoryName: ['', [Validators.required, Validators.pattern(/^[0-9a-zA-ZàáạảãâầấậẩẫăằắặẳẵèéẹẻẽêềếệểễìíịỉĩòóọỏõôồốộổỗơờớợởỡùúụủũưừứựửữỳýỵỷỹđĐ\s]*$/)]],
+      category: [''],
     })
   }
 
   save() {
     console.log(this.formCreate.getRawValue());
     this.serviceAdminService.createCategory(this.formCreate.getRawValue()).subscribe(data => {
-      console.log('chuyên mục đã được tạo!');
+      this.toast.success("Chuyên mục đã cha đã được tạo");
       this.router.navigateByUrl('main-category/category')
     })
   }

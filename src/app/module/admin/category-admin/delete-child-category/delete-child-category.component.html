@@ -1,41 +1,8 @@
-<!--<div class="modal fade" id="modalDeleteCategories" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"-->
-<!--     aria-hidden="true">-->
-<!--  <div class="modal-dialog" role="document">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="text-center">-->
-<!--        <h4 class="modal-title w-100 font-weight-bold">Xóa chuyên mục</h4>-->
-
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<div class="container">
-        <table class="table">
-          <tr>
-            <th colspan="2" style="text-align: center">Bạn có muốn xóa chuyên mục này?</th>
-          </tr>
-                    <tr>
-                      <th>ID</th>
-                      <td colspan="2">{{childCategoryDelete.childCategoryId}}</td>
-                    </tr>
-                    <tr>
-                      <th>Tên chuyên mục cha</th>
-                      <td colspan="2">{{childCategoryDelete.category.categoryName}}</td>
-                    </tr>
-                    <tr>
-                      <th>Tên chuyên mục</th>
-                      <td colspan="2">{{childCategoryDelete.childCategoryName}}</td>
-                    </tr>
-
-          <tr>
-            <td style="text-align: center">
-              <button type="button" (click)="deleteChildCategory(childCategoryDelete.childCategoryId)" class="btn btn-danger">Xóa</button>
-            </td>
-            <td style="text-align: center">
-              <a type="button" class="btn btn-secondary" routerLink="/main-category/child-category" data-dismiss="modal">Hủy</a>
-            </td>
-          </tr>
-        </table>
+<h3 style="color: red">Xác Nhận Xóa !</h3>
+<hr>
+<h5>Bạn Có Chắc Muốn Xóa chuyên mục <label style="color: red"> {{deleteName}}</label> Không ?</h5>
+<p style="color: red">Hành động này không thể được hoàn tác !</p>
+<div class="row d-flex justify-content-end">
+  <button class="btn btn-success" style="width: 100px;margin-right: 20px" data-dismiss="modal" id="closeModal"  >Hoàn Tác</button>
+  <button class="btn btn-danger mr-3" style="width: 100px" (click)="deleteChildCategory()"  data-dismiss="modal">Xóa</button>
 </div>
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
