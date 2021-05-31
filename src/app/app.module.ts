@@ -9,11 +9,14 @@ import {SecurityModule} from "./module/security/security.module";
 
 import {AdminModule} from "./module/admin/admin.module";
 import {BrowserModule} from "@angular/platform-browser";
+import {ServiceAdminService} from "./module/service/service-admin/service-admin.service";
+// @ts-ignore
 import {AngularFireModule} from '@angular/fire';
+// @ts-ignore
 import {AngularFireStorageModule} from '@angular/fire/storage';
+// @ts-ignore
 import {AngularFireDatabaseModule} from '@angular/fire/database';
 import {environment} from "../environments/environment";
-
 
 @NgModule({
   declarations: [
@@ -30,7 +33,7 @@ import {environment} from "../environments/environment";
     HeaderCustomerModule,
     SecurityModule
   ],
-  providers: [],
+  providers: [ServiceAdminService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
