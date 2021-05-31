@@ -49,9 +49,10 @@
                 <td>
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập email" formControlName="email">
-                    <!-- <p class="small text-danger mt-1">Email có dạng somebody@gmail.com,
-                                        somebody@yahoo.com</p>
-                                    <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('phone').touched && refPost.controls.email.errors?.required">
+                      Email không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -92,7 +93,6 @@
                       <option *ngFor="let category of categories" [ngValue]="category">{{category.categoryName}}
                       </option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
                   </div>
                 </td>
               </tr>
@@ -104,14 +104,16 @@
                       <option *ngFor="let childCategory of childCategories" [ngValue]="childCategory">
                         {{childCategory.childCategoryName}}</option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('childCategory').touched && refPost.controls.childCategory.errors?.required">
+                      Chuyên mục không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
               <tr>
                 <td>Bạn đăng tin</td>
                 <td>
-                  <!-- <div class="form-group"> -->
                   <div class="form-check-inline">
                     <label class="form-check-label">
                       <input type="radio" class="form-check-input" name="postType" [value]="true"
@@ -126,9 +128,10 @@
                       mua
                     </label>
                   </div>
-                  <!-- <p class="small text-danger mt-1">Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn
-                                    mục.</p> -->
-                  <!-- </div> -->
+                  <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('postType').touched && refPost.controls.postType.errors?.required">
+                      Vui lòng chọn tin bán hay tin mua
+                    </span>
                 </td>
               </tr>
               <tr>
@@ -136,7 +139,10 @@
                 <td>
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" formControlName="title">
-                    <!-- <p class="small text-danger mt-1">Vui lòng nhập tiêu đề bài viết.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('title').touched && refPost.controls.title.errors?.required">
+                      Tiêu đề không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -146,7 +152,10 @@
                   <div class="form-group">
                     <textarea class="form-control" rows="3" placeholder="Nhập nội dung tin"
                       formControlName="description"></textarea>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                      <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('description').touched && refPost.controls.description.errors?.required">
+                      Nội dung tin không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -155,7 +164,10 @@
                 <td>
                   <div class="form-group">
                     <input type="number" class="form-control" placeholder="Nhập giá" formControlName="price">
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('price').touched && refPost.controls.price.errors?.required">
+                      Giá không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -171,7 +183,10 @@
                       <option *ngFor="let statusItem of status" [ngValue]="statusItem">{{statusItem.statusName}}
                       </option>
                     </select>
-                    <!-- <p class="small text-danger mt-1">Hãy nhập dữ liệu vào trường bắt buộc.</p> -->
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('status').touched && refPost.controls.status.errors?.required">
+                      Trạng thái không được để trống
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -179,9 +194,9 @@
                 <td>Ảnh</td>
                 <td>
                   <div class="custom-file">
-                    <input type="file" class="form-control-file pb-1">
+                    <input type="file" class="form-control-file pb-1" (change)="showPreview($event)">
                     <img *ngFor="let img of images" src="{{img.url}}" width="50px" height="50px"
-                      class="img-thumbnail rounded float-left mr-1" alt="...">
+                      class="img-thumbnail rounded mr-1" alt="...">
                   </div>
                 </td>
               </tr>

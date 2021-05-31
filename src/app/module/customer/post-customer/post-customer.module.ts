@@ -7,6 +7,9 @@ import { ListPostCustomerComponent } from './list-post-customer/list-post-custom
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from './environments/environment';
+import { AngularFireStorageModule } from '@angular/fire/storage';
 
 
 
@@ -18,7 +21,9 @@ import { RouterModule } from '@angular/router';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule
+    RouterModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFireStorageModule
   ]
 })
 export class PostCustomerModule { }

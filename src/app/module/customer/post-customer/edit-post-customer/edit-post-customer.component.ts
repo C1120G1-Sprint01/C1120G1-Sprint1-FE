@@ -1,10 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { formatDate } from '@angular/common';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AddressService } from 'src/app/module/service/service-customer/address.service';
 import { CategoryService } from 'src/app/module/service/service-customer/category.service';
 import { ServiceCustomerService } from 'src/app/module/service/service-customer/service-customer.service';
+import {AngularFireStorage} from '@angular/fire/storage';
+import {finalize} from "rxjs/operators";
 
 @Component({
   selector: 'app-edit-post-customer',
@@ -39,6 +42,7 @@ export class EditPostCustomerComponent implements OnInit {
     }
   ];
   images;
+  selectedImage: any = null;
 
   constructor(private _formBuilder: FormBuilder,
     private _serviceCustomer: ServiceCustomerService,
@@ -46,7 +50,8 @@ export class EditPostCustomerComponent implements OnInit {
     private _activatedRoute: ActivatedRoute,
     private _addressService: AddressService,
     private _categoryService: CategoryService,
-    private _toastr: ToastrService) { }
+    private _toastr: ToastrService,
+    @Inject(AngularFireStorage) private storage: AngularFireStorage) { }
 
   ngOnInit(): void {
 
@@ -87,6 +92,7 @@ export class EditPostCustomerComponent implements OnInit {
         this.childCategories = data;
       });
     })
+    
   }
 
   formInit() {
@@ -109,15 +115,49 @@ export class EditPostCustomerComponent implements OnInit {
     });
   }
 
+  // submitForm() {
+  //   if (this.refPost.valid) {
+  //     this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
+  //       this._router.navigateByUrl("/customer/post-list");
+  //       this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
+  //     }, error => {
+  //       this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
+  //     })
+  //   }
+  // }
+
   submitForm() {
-    if (this.refPost.valid) {
-      this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
-        this._router.navigateByUrl("/customer/post-list");
-        this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
-      }, error => {
-        this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
+    const nameImg = this.getCurrentDateTime() + this.selectedImage.name;
+    const fileRef = this.storage.ref(nameImg);
+    this.storage.upload(nameImg, this.selectedImage).snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe((url) => {
+
+          // this.refPost.patchValue({imageSet: url});
+          
+
+          // Call API to create vaccine
+          if (this.refPost.valid) {
+            this.refPost.value.imageSet[0].url = url; 
+            this._serviceCustomer.updatePost(this.id, this.refPost.value).subscribe(data => {
+              this._router.navigateByUrl("/customer/post-list");
+              this._toastr.success("Chỉnh sửa bài đăng thành công!", "Thành công!");
+            }, error => {
+              this._toastr.error("Đã có lỗi xảy ra!", "Lỗi!");
+            })
+          }
+        });
       })
-    }
+    ).subscribe();
+    
+  }
+
+  getCurrentDateTime(): string {
+    return formatDate(new Date(), 'dd-MM-yyyyhhmmssa', 'en-US');
+  }
+
+  showPreview(event: any) {
+    this.selectedImage = event.target.files[0];
   }
 
   cancelUpdate() {
