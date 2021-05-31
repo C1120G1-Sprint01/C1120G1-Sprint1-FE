@@ -1,6 +1,8 @@
+import {User} from "./User";
 
-export interface Account {
+export class Account {
   username: string;
   password: string;
-  register_date: string;
+  registerDate: string
+  user: User
 }
