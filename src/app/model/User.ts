@@ -1,11 +1,12 @@
-import {Account} from "./Account";
-import {Ward} from "./Ward";
+import {Account} from './Account';
+import {Ward} from './Ward';
 
 export interface User {
-  user_id: number;
-  email: string;
+  userId: number;
   name: string;
   phone: string;
-  account: Account;
+  email: string;
+  avatarUrl: string;
   ward: Ward;
+  account: Account;
 }

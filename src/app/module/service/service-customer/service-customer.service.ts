@@ -2,7 +2,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/model/CustomerPost';
-import { User } from "../../../model/user/User";
+import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {Post} from 'src/app/model/CustomerPost';
 
 @Injectable({
   providedIn: 'root'
@@ -34,12 +36,6 @@ export class ServiceCustomerService {
 
   updatePost(id: number, post: Post): Observable<Post> {
     return this.httpClient.post<Post>(`${this.API_URL_LIST}/cus-post-edit/${id}`, post);
-  }
-
-  save(user: User): Observable<User> {
-    console.log(user)
-    return this.httpClient.post<User>(this.API_URL + "user/create", user)
-
   }
 
   savePost(post: Post): Observable<void> {
