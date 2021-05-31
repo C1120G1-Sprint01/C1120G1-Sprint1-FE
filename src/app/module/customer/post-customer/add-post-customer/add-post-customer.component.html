@@ -5,7 +5,7 @@
     <div class="col-sm-12 col-md-9">
       <p class="title-text text-uppercase">Đăng tin</p>
       <!--      <form>-->
-      <form [formGroup]="form" (ngSubmit)="submitForm()">
+      <form [formGroup]="form" (ngSubmit)=submitForm(form)>
         <table class="table">
           <tbody>
           <tr>
@@ -73,14 +73,14 @@
             </td>
             <td>
             <span>
-                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="province"
-                        [ngModelOptions]="{standalone: true}" (change)="onChangeProvince()">
+                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="province" (change)="onChangeProvince()"
+                        [ngModelOptions]="{standalone: true}">
                     <option selected disabled>Chọn tỉnh thành</option>
                     <option *ngFor="let province of provinces" [ngValue]="province">{{province.provinceName}}</option>
                 </select>
                 <br/>
-                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="district"
-                        [ngModelOptions]="{standalone: true}" (change)="onChangeDistrict()">
+                <select class="custom-select custom-select-sm mb-1" [(ngModel)]="district" (change)="onChangeDistrict()"
+                        [ngModelOptions]="{standalone: true}">
                     <option selected disabled>Chọn quận/huyện</option>
                     <option *ngFor="let district of districts" [ngValue]="district">{{district.districtName}}</option>
                 </select>
@@ -105,7 +105,8 @@
               </label>
             </td>
             <td>
-              <select class="form-control" id="category" [(ngModel)]="category" [ngModelOptions]="{standalone: true}"
+              <select class="form-control" id="category" [(ngModel)]="category"
+                      [ngModelOptions]="{standalone: true}"
                       (change)="onChangeCategory()">
                 <option selected disabled>Chọn chuyên mục</option>
                 <option *ngFor="let category of categories" [ngValue]="category">{{category.categoryName}}</option>
@@ -142,17 +143,21 @@
             <td>
             <span class="form-check-inline d-flex justify-content-around">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="postType" formControlName="postType"/>Cần bán
+                  <input type="radio" class="form-check-input"
+                         value=true name="postType"
+                         formControlName="postType"/>Cần bán
                 </label>
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="postType" formControlName="postType"/>Cần mua
+                  <input type="radio" class="form-check-input"
+                         value=false name="postType"
+                         formControlName="postType"/>Cần mua
                 </label>
             </span>
-<!--              <p class="invalid-feedback" *ngIf="form.controls.postType.touched">-->
-<!--                <span *ngIf="form.controls.postType.errors?.required">-->
-<!--                  Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn mục.-->
-<!--                </span>-->
-<!--              </p>-->
+              <p class="invalid-feedback" *ngIf="form.controls.postType.touched">
+                 <span *ngIf="form.controls.postType.errors?.required">
+                    Bạn chưa chọn mục cần bán hay mua. Vui lòng chọn mục.
+                 </span>
+              </p>
             </td>
           </tr>
           <tr>
@@ -164,7 +169,7 @@
             </td>
             <td>
               <input type="text" class="form-control" placeholder="Nhập vào tiêu đề bài viết" id="title"
-              formControlName="title"/>
+                     formControlName="title"/>
               <p class="invalid-feedback" *ngIf="form.controls.title.touched">
                 <span *ngIf="form.controls.title.errors?.required">
                   Vui lòng nhập tiêu đề bài viết.
@@ -181,7 +186,7 @@
             </td>
             <td>
             <textarea class="form-control" rows="5" id="content" name="text" placeholder="Nhập vào nội dung tin"
-            formControlName="description">
+                      formControlName="description">
             </textarea>
               <p class="invalid-feedback" *ngIf="form.controls.description.touched">
                 <span *ngIf="form.controls.description.errors?.required">
@@ -199,7 +204,7 @@
             </td>
             <td>
               <input type="number" class="form-control" placeholder="Nhập vào giá sản phẩm" id="price" min="0"
-              formControlName="price"/>
+                     formControlName="price"/>
               <p class="invalid-feedback" *ngIf="form.controls.price.touched">
                 <span *ngIf="form.controls.price.errors?.pattern">Giá không hợp lệ.</span>
               </p>
@@ -213,7 +218,43 @@
               </label>
             </td>
             <td>
-              <input class="form-control col-md-10" id="formFile" type="file" accept="image/*"/>
+              <button class="btn btn-success" (click)="addImage()" type="button">
+                <i class="fas fa-folder-plus"></i>
+              </button>
+              <section class="d-block">
+                <section style="display: none" id="addImg1">
+                  <section class="d-inline-flex imgAdd">
+                    <input class="form-control col-md-10" type="file" accept="image/*"/>
+                    <button class="btn btn-danger ml-2" type="button" (click)="removeImg('addImg1')">
+                      <i class="fas fa-folder-minus"></i>
+                    </button>
+                  </section>
+                </section>
+                <section style="display: none" id="addImg2">
+                  <section class="d-inline-flex imgAdd">
+                    <input class="form-control col-md-10" type="file" accept="image/*"/>
+                    <button class="btn btn-danger ml-2" type="button" (click)="removeImg('addImg2')">
+                      <i class="fas fa-folder-minus"></i>
+                    </button>
+                  </section>
+                </section>
+                <section style="display: none" id="addImg3">
+                  <section class="d-inline-flex imgAdd">
+                    <input class="form-control col-md-10" type="file" accept="image/*"/>
+                    <button class="btn btn-danger ml-2" type="button" (click)="removeImg('addImg3')">
+                      <i class="fas fa-folder-minus"></i>
+                    </button>
+                  </section>
+                </section>
+                <section style="display: none" id="addImg4">
+                  <section class="d-inline-flex imgAdd">
+                    <input class="form-control col-md-10" type="file" accept="image/*"/>
+                    <button class="btn btn-danger ml-2" type="button" (click)="removeImg('addImg4')">
+                      <i class="fas fa-folder-minus"></i>
+                    </button>
+                  </section>
+                </section>
+              </section>
             </td>
           </tr>
           <tr>
@@ -222,7 +263,7 @@
             </td>
             <td class="d-flex justify-content-center">
               <button type="submit" class="btn btn-success col-md-6" [disabled]="form.invalid">Đăng tin</button>
-<!--              <button type="submit" class="btn btn-success col-md-6">Đăng tin</button>-->
+              <!--              <button type="submit" class="btn btn-success col-md-6">Đăng tin</button>-->
             </td>
           </tr>
           </tbody>
