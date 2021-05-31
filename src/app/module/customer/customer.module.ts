@@ -6,6 +6,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ManagerCustomerModule } from './manager-customer/manager-customer.module';
 import { HomePageComponent } from './home-page/home-page.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [HomePageComponent],
@@ -16,7 +18,9 @@ import { HomePageComponent } from './home-page/home-page.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    ManagerCustomerModule
+    ManagerCustomerModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
   ]
 })
 export class CustomerModule { }
