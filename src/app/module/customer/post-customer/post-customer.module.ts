@@ -6,14 +6,18 @@ import {DeletePostCustomerComponent} from './delete-post-customer/delete-post-cu
 import {ListPostCustomerComponent} from './list-post-customer/list-post-customer.component';
 import {ViewPostCustomerComponent} from './view-post-customer/view-post-customer.component';
 import {RouterModule} from '@angular/router';
-
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [AddPostCustomerComponent, EditPostCustomerComponent, DeletePostCustomerComponent, ListPostCustomerComponent,
     ViewPostCustomerComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PostCustomerModule {

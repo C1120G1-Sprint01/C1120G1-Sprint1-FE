@@ -17,6 +17,8 @@ import {SecurityModule} from './module/security/security.module';
     BrowserModule,
     AppRoutingModule,
     CustomerModule,
+
+    AdminModule,
     HeaderCustomerModule,
     SecurityModule,
     HttpClientModule,
@@ -27,5 +29,6 @@ import {SecurityModule} from './module/security/security.module';
   providers: [],
   bootstrap: [AppComponent]
 })
+
 export class AppModule {
 }
