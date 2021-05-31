@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {SecurityService} from "../../../service/security/security.service";
 import {TokenStorageService} from "../../../service/security/token-storage.service";
 
@@ -7,7 +7,7 @@ import {TokenStorageService} from "../../../service/security/token-storage.servi
   templateUrl: './header-customer.component.html',
   styleUrls: ['./header-customer.component.css']
 })
-export class HeaderCustomerComponent implements OnInit {
+export class HeaderCustomerComponent implements OnInit, OnChanges {
 
   roles: string[] = [];
   username: string = '';
@@ -28,6 +28,10 @@ export class HeaderCustomerComponent implements OnInit {
       console.log("Reset username")
       this.username = '';
     }
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    this.ngOnInit();
   }
 
 }
