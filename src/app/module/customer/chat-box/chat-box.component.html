@@ -59,17 +59,15 @@
       </div>
     </div>
     <div class="fab_field">
-      <form action="" [formGroup]="chatFormUser" (ngSubmit)="onFormSubmit(chatFormUser.value, 'message')"
-            style="width: 90%"
-            class="m-auto">
+      <form action="" [formGroup]="chatFormUser" style="width: 90%" class="m-auto">
         <label id="fab_camera" class="fab" for="file-input">
           <i class="zmdi zmdi-image"></i>
           <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
         </label>
         <div class="custom-dropdown">
           <i class="far fa-smile-wink fa-lg custom-hover" (click)="show()"></i>
-          <a id="fab_send" class="fab" (click)="onFormSubmit(chatFormUser.value, 'message')"><i
-            class="zmdi zmdi-mail-send"></i></a>
+          <button id="fab_send" class="fab-abc btn-sm" (click)="onFormSubmit(chatFormUser.value, 'message')"><i style="font-size: x-large !important;"
+            class="zmdi zmdi-mail-send"></i></button>
         </div>
         <input id="chatSend" name="chat_message"
                placeholder="Nhập tin nhắn..." formControlName="message"

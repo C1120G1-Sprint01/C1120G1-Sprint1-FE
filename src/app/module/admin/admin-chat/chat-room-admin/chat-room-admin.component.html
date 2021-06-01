@@ -17,7 +17,7 @@
       </div>
     </div>
   </div>
-  <div class="chat-history" (scroll)="readAllNoti()">
+  <div class="chat-history" style="height: 340px !important;" (scroll)="readAllNoti()">
     <ul class="m-b-0">
       <li class="clearfix" *ngFor="let chat of chats">
         <div class="message-data text-right" *ngIf="chat.nickname === roomName">
@@ -58,18 +58,17 @@
     <div class="input-group mb-0">
       <form action="" [formGroup]="chatForm" (ngSubmit)="onFormSubmit(chatForm.value, 'message')" style="width: 80%">
         <input type="text" class="form-control m-0 text-white" formControlName="message"
-               placeholder="Nhập tin nhắn...">
+               placeholder="Nhập tin nhắn..." style="width: 111% !important;">
       </form>
-      <div class="input-group-prepend text-right" style="margin-left: 10px">
-        <label class="btn btn-outline-primary"
-               style=" color: #ff9800;background-color: transparent;border-color: #ff9800;border-radius: 7px 7px 7px 7px;"
+      <div class="input-group-prepend text-right" style="margin-left: 64px">
+        <label class=""
                for="file-input">
-          <i class="fa fa-image"></i>
+          <i class="fa fa-image fa-2x"></i>
           <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
         </label>
-        <div class="custom-dropdown btn btn-outline-primary"
-             style="background-color: transparent;border-radius: 7px 7px 7px 7px;" (click)="show()">
-          <i class="far fa-smile-wink fa-2x"></i>
+        <div class="custom-dropdown "
+              (click)="show()" style="margin-left: 12px">
+          <i class="far fa-smile-wink fa-2x" style="color: white"></i>
         </div>
       </div>
     </div>

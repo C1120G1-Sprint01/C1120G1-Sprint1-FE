@@ -49,7 +49,7 @@ export class ChatBoxComponent implements OnInit {
               private dialog: MatDialog) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.hideChat(0);
     this.chatFormUser = this.formBuilder.group({
       message: [null, [Validators.required, Validators.maxLength(50)]]
@@ -91,7 +91,7 @@ export class ChatBoxComponent implements OnInit {
       account: this.account,
       ward: this.ward
     };
-    this.chatService.refChats.on('value', resp => {
+    await this.chatService.refChats.on('value', resp => {
       this.chats = this.chatService.snapshotToArray(resp).filter(x => x.roomName === this.account.userName);
       this.setTimeForChat();
     });
@@ -101,7 +101,7 @@ export class ChatBoxComponent implements OnInit {
     });
     setTimeout(() => {
       $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
-    }, 500);
+    }, 2000);
   }
 
   toggleFab() {
@@ -185,12 +185,15 @@ export class ChatBoxComponent implements OnInit {
     }
   }
 
-  onFormSubmit(form: any, type: string) {
+  async onFormSubmit(form: any, type: string) {
     this.tempFile = this.selectedImages;
     this.selectedImages = [];
     if (this.chatFormUser.get('message').errors?.required || this.chatFormUser.get('message').value.trim() == '') {
       if (this.tempFile.length != 0) {
-        this.addImageToFireBase();
+        await this.addImageToFireBase();
+        setTimeout(() => {
+          $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
+        }, 2000);
         this.chatFormUser.reset();
         return;
       } else {
