@@ -3,13 +3,13 @@
     <div class="chat_header">
       <div class="chat_option">
         <div class="header_img">
-          <img src="./assets/image/logoChat.png"/>
+          <img src="./assets/image/chatbot+avatar+Cute_V1.png"/>
         </div>
         <span id="chat_head">Trung Tâm Tư Vấn</span>
         <br>
         <span class="agent">
-                    <i style="color: #4ffc1e" class="fas fa-circle"></i>
-                </span>
+          <i style="color: #4ffc1e" class="fas fa-circle"></i>
+        </span>
         <span class="agent">(Đang hoạt động)</span>
         <span id="chat_fullscreen_loader" class="chat_fullscreen_loader" (click)="fullscreen()"><i
           class="fullscreen zmdi zmdi-window-maximize"></i></span>
@@ -22,7 +22,7 @@
     <div id="chat_converse" class="chat_conversion chat_converse" (scroll)="readAllNoti()">
       <span class="chat_msg_item chat_msg_item_admin">
             <div class="chat_avatar">
-               <img src="./assets/image/logoChat.png"/>
+               <img src="./assets/image/chatbot+avatar+Cute_V1.png"/>
             </div>Xin Chào! Tôi có thể giúp gì cho bạn không?</span>
       <div class="m-0" *ngFor="let chat of chats">
         <div class="m-0" *ngIf="chat.nickname === account.userName">
@@ -37,14 +37,14 @@
         <div class="m-0" *ngIf="chat.nickname !== account.userName">
           <div class="chat_msg_item chat_msg_item_admin mb-0 mt-3" *ngIf="chat.type === 'message'">
             <div class="chat_avatar">
-              <img src="./assets/image/logoChat.png"/>
+              <img src="./assets/image/chatbot+avatar+Cute_V1.png"/>
             </div>
             {{chat.message}}
           </div>
           <div class="chat_msg_item chat_msg_item_admin mb-0 mt-3 p-0 bg-white" style="content: inherit"
                *ngIf="chat.type === 'image'">
             <div class="chat_avatar">
-              <img src="./assets/image/logoChat.png"/>
+              <img src="./assets/image/chatbot+avatar+Cute_V1.png"/>
             </div>
             <img src="{{chat.message}}" class="custom-img" alt="" style="width: 60%; height: 60%"
                  (click)="zoom(chat.message)">
@@ -54,20 +54,23 @@
             </div>
           </div>
           <div class="clearfix"></div>
-          <div><p class="status2 ml-5 pl-3">{{chat.timeSkip}}</p></div>
+          <div><p class="status2" style="margin-left: 39px">{{chat.timeSkip}}</p></div>
         </div>
       </div>
     </div>
     <div class="fab_field">
       <form action="" [formGroup]="chatFormUser" style="width: 90%" class="m-auto">
-        <label id="fab_camera" class="fab" for="file-input">
-          <i class="zmdi zmdi-image"></i>
-          <input type="file" (change)="importImages($event)" id="file-input" multiple class="inputfile">
-        </label>
+
         <div class="custom-dropdown">
-          <i class="far fa-smile-wink fa-lg custom-hover" (click)="show()"></i>
-          <button id="fab_send" class="fab-abc btn-sm" (click)="onFormSubmit(chatFormUser.value, 'message')"><i style="font-size: x-large !important;"
-            class="zmdi zmdi-mail-send"></i></button>
+          <label id="fab_camera" class="fab-abc" for="file-input">
+            <i class="fas fa-images" style="font-size: medium;margin-right: 4px;margin-top: 2px; color: #efb508"></i>
+            <input type="file" (change)="importImages($event)" id="file-input" multiple hidden>
+          </label>
+          <i class="far fa-smile-wink fa-lg custom-hover" (click)="show()" style="margin-left: 2px; color: #efb508"></i>
+          <button id="fab_send" class="fab-abc btn-sm" (click)="onFormSubmit(chatFormUser.value, 'message')">
+            <i style="font-size: 21px !important; color: #f9bc05"
+            class="zmdi zmdi-mail-send"></i>
+          </button>
         </div>
         <input id="chatSend" name="chat_message"
                placeholder="Nhập tin nhắn..." formControlName="message"

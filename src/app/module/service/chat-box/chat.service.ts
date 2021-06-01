@@ -3,13 +3,21 @@ import firebase from 'firebase';
 import {Notification} from '../../models/notification';
 import {Room} from '../../models/room';
 import {Chat} from '../../models/chat';
+import {HttpClient} from "@angular/common/http";
+import {Observable} from "rxjs";
+import {Bot} from "../../models/bot";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChatService {
+  baseUrl = 'http://localhost:8080/api/bot';
 
-  constructor() {
+  constructor(private http: HttpClient) {
+  }
+
+  findAnswerByBot(question: string): Observable<any> {
+    return this.http.post(this.baseUrl, question)
   }
 
   snapshotToArray = (snapshot: any) => {
@@ -20,7 +28,7 @@ export class ChatService {
       returnArr.push(item);
     });
     return returnArr;
-  }
+  };
 
 
   get refRooms() {

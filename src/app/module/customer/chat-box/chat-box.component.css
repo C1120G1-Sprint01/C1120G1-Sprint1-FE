@@ -37,7 +37,7 @@ ul li {
   position: relative;
   z-index: 998;
   overflow: hidden;
-  background: #42a5f5;
+  background: #f9bc05;
 }
 
 .fab-abc {
@@ -142,12 +142,12 @@ ul li {
 
 .chat_header {
   /* margin: 10px; */
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Roboto';
   font-weight: 500;
   color: #f3f3f3;
   height: 55px;
-  background: #42a5f5;
+  background: #f9bc05;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   padding-top: 8px;
@@ -194,10 +194,9 @@ ul li {
   position: relative;
   height: 100%;
   width: 100%;
-  text-align: relative;
   margin-right: 10px;
   letter-spacing: 0.5px;
-  font-weight: 400
+  font-weight: 800
 }
 
 
@@ -286,12 +285,15 @@ ul li {
 }
 
 .chat_field.chat_message {
-  height: 60px;
+  height: 42px;
   resize: none;
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 400;
-  margin-top: -17px;
-  padding: 0;
+  margin-top: -11px;
+  padding: 5px;
+  border: 1px solid #eee;
+  width: 105%;
+  margin-left: -6px;
 }
 
 .chat_category {
@@ -351,12 +353,11 @@ ul li {
 .fab_field {
   width: 100%;
   display: inline-block;
-  /*text-align: center;*/
   background: #fff;
   border-top: 1px solid #eee;
   border-bottom-right-radius: 10px;
   border-bottom-left-radius: 10px;
-
+  height: 88px;
 }
 
 .fab_field2 {
@@ -413,11 +414,11 @@ ul li {
   overflow-y: auto !important;
   width: 100%;
   float: right;
-  padding-bottom: 30px;
+  padding-bottom: 18px;
 }
 
 .chat_converse2 {
-  height: 100%;
+  height: 76%;
   max-height: 800px
 }
 
@@ -464,7 +465,7 @@ ul li {
 }
 
 .chat .chat_converse .chat_msg_item.chat_msg_item_admin .chat_avatar {
-  left: -52px;
+  left: -40px;
   background: rgba(0, 0, 0, 0.03);
 }
 
@@ -481,7 +482,7 @@ ul li {
 }
 
 .chat .chat_converse .chat_msg_item.chat_msg_item_admin {
-  margin-left: 60px;
+  margin-left: 38px;
   float: left;
   background: rgba(0, 0, 0, 0.03);
   color: #666;
@@ -834,7 +835,7 @@ strong.chat_time {
 .custom-dropdown {
   display: flow-root;
   padding-top: 7px;
-  margin-bottom: 15px;
+  margin-bottom: 4px;
 }
 
 .dropdown-content {

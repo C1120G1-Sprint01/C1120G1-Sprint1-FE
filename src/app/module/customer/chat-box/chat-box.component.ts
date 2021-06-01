@@ -16,6 +16,8 @@ import {MatDialog} from '@angular/material/dialog';
 import {User} from '../../models/user';
 import {District, Province, Ward} from '../../models/address';
 import {EmojiEvent} from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import {Bot} from "../../models/bot";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-chat-box',
@@ -37,6 +39,7 @@ export class ChatBoxComponent implements OnInit {
   loadImage: boolean;
   selectedImages = [];
   tempFile = [];
+  bot: Bot;
 
   emojiPickerVisible = "";
   isEmojiPickerVisible = true;
@@ -99,7 +102,7 @@ export class ChatBoxComponent implements OnInit {
       this.notifications = this.chatService.snapshotToArray(resp)
         .filter(x => x.isRead === false && x.chat.roomName === this.account.userName);
     });
-    setTimeout(() => {
+    setTimeout(function () {
       $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
     }, 2000);
   }
@@ -114,6 +117,8 @@ export class ChatBoxComponent implements OnInit {
     $('#prime').toggleClass('is-float');
     $('.chat').toggleClass('is-visible');
     $('.fab').toggleClass('is-visible');
+    this.emojiPickerVisible = "";
+    this.isEmojiPickerVisible = true
   }
 
   hideChat(hide) {
@@ -147,6 +152,7 @@ export class ChatBoxComponent implements OnInit {
   fullscreen() {
     $('.fullscreen').toggleClass('zmdi-window-maximize');
     $('.fullscreen').toggleClass('zmdi-window-restore');
+    $('.fullscreen').toggleClass('zmdi zmdi-image');
     $('.chat').toggleClass('chat_fullscreen');
     $('.fab').toggleClass('is-hide');
     $('.header_img').toggleClass('change_img');
@@ -186,12 +192,13 @@ export class ChatBoxComponent implements OnInit {
   }
 
   async onFormSubmit(form: any, type: string) {
+    let messageUser: string;
     this.tempFile = this.selectedImages;
     this.selectedImages = [];
     if (this.chatFormUser.get('message').errors?.required || this.chatFormUser.get('message').value.trim() == '') {
       if (this.tempFile.length != 0) {
         await this.addImageToFireBase();
-        setTimeout(() => {
+        setTimeout(function () {
           $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
         }, 2000);
         this.chatFormUser.reset();
@@ -237,9 +244,37 @@ export class ChatBoxComponent implements OnInit {
         this.room.newMess++;
         firebase.database().ref('rooms').child(this.room.key).child('newMess').set(this.room.newMess++);
       });
+      messageUser = form.message;
       this.chatFormUser.reset();
+      let that = this;
+      setTimeout(function () {
+        that.botRepMessage(messageUser);
+      }, 2000);
+      // this.botRepMessage(messageUser);
     }
   }
+
+  botRepMessage(messageUser: string) {
+    let chat: Chat = new Chat();
+    this.chatService.findAnswerByBot(messageUser).subscribe(data => {
+      let mess: string;
+      if (data) {
+        mess = data.answer;
+      } else {
+        mess = 'Vui lòng đợi trong giây lát!!';
+      }
+      chat.roomName = this.account.userName;
+      chat.nickname = 'abc';
+      chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
+      chat.date = new Date().getTime();
+      chat.type = 'message';
+      chat.message = mess;
+      this.chatService.refChats.push().set(chat).then(data => {
+        $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
+      });
+    });
+  }
+
 
   importImages($event) {
     const files = $event.target.files;
