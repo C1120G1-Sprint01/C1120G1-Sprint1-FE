@@ -40,6 +40,9 @@
           </tr>
           </tbody>
         </table>
+        <div *ngIf="lengthListBanner === 0">
+          <p class="text-center" style="color: red; height: 500px">Hiện tại không có banner để hiển thị</p>
+        </div>
         <ng-template #content let-modal>
           <div class="modal-header" style="background-color: #1a1a1a">
             <h1 class="modal-title" style="color: white; font-weight: 600">Xác Nhận Xóa Banner</h1>

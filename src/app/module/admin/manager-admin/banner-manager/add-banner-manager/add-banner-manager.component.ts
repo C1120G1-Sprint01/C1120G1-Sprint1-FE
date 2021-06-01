@@ -9,6 +9,7 @@ import {Position} from '../model/position';
 import {finalize} from 'rxjs/operators';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {LoadingComponent} from '../loading/loading.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-add-banner-manager',
@@ -19,10 +20,11 @@ export class AddBannerManagerComponent implements OnInit {
   constructor(private bannerManagementService: ServiceBannerService,
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
-              private storage: AngularFireStorage) {
+              private storage: AngularFireStorage,
+              private modalService: NgbModal) {
   }
 
-  public messageImageError;
+  public messageImageError: string;
   public imageBanner = null;
   public selectedImage: any = null;
   public listPosition: Position[];
@@ -30,9 +32,24 @@ export class AddBannerManagerComponent implements OnInit {
   public banner: Banner;
   public dayTime;
   public formCreateBanner: FormGroup;
-  public checkListBanner: Banner[];
+  public listBannerTop: number;
+  public listBannerBot: number;
+  public listBannerLeft: number;
+  public listBannerRight: number;
 
   ngOnInit(): void {
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(1).subscribe((data) => {
+      this.listBannerTop = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(2).subscribe((data) => {
+      this.listBannerBot = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(3).subscribe((data) => {
+      this.listBannerRight = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(4).subscribe((data) => {
+      this.listBannerLeft = data.length;
+    });
     this.bannerManagementService.showAllPosition().subscribe((data) => {
       this.listPosition = data;
     });
@@ -51,26 +68,26 @@ export class AddBannerManagerComponent implements OnInit {
   }
 
 
-  createBanner() {
-    if (this.formCreateBanner.valid && this.imageBanner !== null) {
-      switch (this.formCreateBanner.value.duration) {
-        case '1':
-          this.dayTime = 7;
-          break;
-        case '2':
-          this.dayTime = 14;
-          break;
-        case '3':
-          this.dayTime = 30;
-          break;
-        case '4':
-          this.dayTime = 60;
-          break;
-        case '5':
-          this.dayTime = 180;
-          break;
-        default:
-      }
+  createBanner(content) {
+    switch (this.formCreateBanner.value.duration) {
+      case '1':
+        this.dayTime = 7;
+        break;
+      case '2':
+        this.dayTime = 14;
+        break;
+      case '3':
+        this.dayTime = 30;
+        break;
+      case '4':
+        this.dayTime = 60;
+        break;
+      case '5':
+        this.dayTime = 180;
+        break;
+      default:
+    }
+    if (this.formCreateBanner.valid && this.imageBanner !== null && this.checkPositionBanner(this.formCreateBanner.value.positionId) === true) {
       const milliseconds = new Date().getTime() + this.dayTime * 60 * 60 * 24 * 1000;
       this.formCreateBanner.value.duration = new Date(milliseconds);
       const name = this.selectedImage.name;
@@ -91,6 +108,9 @@ export class AddBannerManagerComponent implements OnInit {
             );
           })).subscribe();
       }
+    }
+    if (this.checkPositionBanner(this.formCreateBanner.value.positionId) === false && this.formCreateBanner.valid && this.imageBanner !== null) {
+      this.modalService.open(content, {windowClass: 'dark-modal'});
     }
     if (this.imageBanner === null) {
       this.messageImageError = '*Không được bỏ trống ảnh';
@@ -134,6 +154,21 @@ export class AddBannerManagerComponent implements OnInit {
     this.imageBanner = null;
     this.selectedImage = null;
   }
+
+  checkPositionBanner(positionId: number) {
+    switch (positionId) {
+      case 1:
+        return this.listBannerTop === 0;
+      case 2:
+        return this.listBannerBot === 0;
+      case 3:
+        return this.listBannerRight === 0;
+      case 4:
+        return this.listBannerLeft === 0;
+      default:
+    }
+  }
+
 
   get duration() {
     return this.formCreateBanner.get('duration');

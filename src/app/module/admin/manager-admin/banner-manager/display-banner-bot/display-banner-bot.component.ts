@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ServiceBannerService} from '../../../../service/service-banner/service-banner.service';
+import {Banner} from '../model/banner';
 
 @Component({
   selector: 'app-display-banner-bot',
@@ -7,9 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayBannerBotComponent implements OnInit {
 
-  constructor() { }
+  constructor(private bannerManagementService: ServiceBannerService) {
+  }
+
+  public listBanner: Banner[];
+  public banner: Banner;
 
   ngOnInit(): void {
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(2).subscribe((data) => {
+      this.listBanner = data;
+      this.banner = this.listBanner[0];
+    });
   }
 
 }

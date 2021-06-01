@@ -9,6 +9,7 @@ import {Banner} from '../model/banner';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {finalize} from 'rxjs/operators';
 import {LoadingComponent} from '../loading/loading.component';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-banner-manager',
@@ -20,7 +21,8 @@ export class EditBannerManagerComponent implements OnInit {
               private dialog: MatDialog,
               private snackBar: MatSnackBar,
               private storage: AngularFireStorage,
-              @Inject(MAT_DIALOG_DATA) public data: any) {
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              private modalService: NgbModal) {
   }
 
   public messageImageError;
@@ -31,9 +33,24 @@ export class EditBannerManagerComponent implements OnInit {
   public banner: Banner;
   public dayTime;
   public formEditBanner: FormGroup;
-  public checkListBanner: Banner[];
+  public listBannerTop: number;
+  public listBannerBot: number;
+  public listBannerLeft: number;
+  public listBannerRight: number;
 
   ngOnInit(): void {
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(1).subscribe((data) => {
+      this.listBannerTop = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(2).subscribe((data) => {
+      this.listBannerBot = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(3).subscribe((data) => {
+      this.listBannerRight = data.length;
+    });
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(4).subscribe((data) => {
+      this.listBannerLeft = data.length;
+    });
     this.bannerManagementService.findBannerById(this.data).subscribe((data) => {
       this.banner = data;
       this.imageBanner = this.banner.image;
@@ -55,7 +72,7 @@ export class EditBannerManagerComponent implements OnInit {
     });
   }
 
-  editBanner() {
+  editBanner(content) {
     switch (this.formEditBanner.value.duration) {
       case '1':
         this.dayTime = 7;
@@ -79,7 +96,7 @@ export class EditBannerManagerComponent implements OnInit {
       const milliseconds = new Date().getTime() + this.dayTime * 60 * 60 * 24 * 1000;
       this.formEditBanner.value.duration = new Date(milliseconds);
     }
-    if (this.formEditBanner.valid && this.selectedImage !== null && this.imageBanner !== null && this.checkFormEdit() === true) {
+    if (this.formEditBanner.valid && this.selectedImage !== null && this.imageBanner !== null && this.checkPositionBanner(this.formEditBanner.value.positionId) === true) {
       const name = this.selectedImage.name;
       const stringImage = name.substring(name.length - 3).toLowerCase();
       if (stringImage === 'png' || stringImage === 'jpg') {
@@ -98,7 +115,7 @@ export class EditBannerManagerComponent implements OnInit {
             );
           })).subscribe();
       }
-    } else if (this.formEditBanner.valid && this.imageBanner !== null) {
+    } else if (this.formEditBanner.valid && this.imageBanner !== null && this.checkPositionBanner(this.formEditBanner.value.positionId) === true) {
       this.openLoading();
       setTimeout(() => {
         this.bannerManagementService.editAdvertiseBanner(this.formEditBanner.value).subscribe((data) => {
@@ -106,6 +123,9 @@ export class EditBannerManagerComponent implements OnInit {
           this.snackBar.open('Chỉnh sửa Banner Thành Công', 'Ẩn đi', {duration: 6000});
         });
       }, 1500);
+    }
+    if (this.checkPositionBanner(this.formEditBanner.value.positionId) === false && this.formEditBanner.valid && this.imageBanner !== null) {
+      this.modalService.open(content, {windowClass: 'dark-modal'});
     }
     if (this.imageBanner === null) {
       this.messageImageError = '*Không được bỏ trống ảnh';
@@ -160,12 +180,20 @@ export class EditBannerManagerComponent implements OnInit {
   }
 
   checkPositionBanner(positionId: number) {
-    // this.bannerManagementService.showAllAdvertiseBannerByPosition(positionId).subscribe((data) => {
-    //   this.checkListBanner = data.length;
-    //   if (this.checkListBanner > ) {
-    //
-    //   }
-    // });
+    if (this.banner.position.positionId !== positionId) {
+      switch (positionId) {
+        case 1:
+          return this.listBannerTop === 0;
+        case 2:
+          return this.listBannerBot === 0;
+        case 3:
+          return this.listBannerRight === 0;
+        case 4:
+          return this.listBannerLeft === 0;
+        default:
+      }
+    }
+    return true;
   }
 
   get duration() {

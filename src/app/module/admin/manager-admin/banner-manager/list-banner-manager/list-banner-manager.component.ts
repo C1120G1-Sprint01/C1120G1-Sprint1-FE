@@ -26,11 +26,12 @@ export class ListBannerManagerComponent implements OnInit {
   public listBanner: Banner[];
   public banner: Banner;
   public bannerCheck: Banner;
-
+  public lengthListBanner: number;
 
   ngOnInit(): void {
     this.bannerManagementService.showAllAdvertiseBanner().subscribe((data) => {
       this.listBanner = data;
+      this.lengthListBanner = this.listBanner.length;
     });
     const changeBySecond = interval(60000).subscribe(() => {
       this.bannerManagementService.showAllAdvertiseBanner().subscribe((data) => {

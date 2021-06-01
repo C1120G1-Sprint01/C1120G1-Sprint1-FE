@@ -1,7 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-      rel="stylesheet">
-<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-      integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
   <div class="wrapper wrapper--w790">
     <div class="card card-5">
@@ -10,7 +6,7 @@
       </div>
       <div class="card-body">
         <form method="post" class="ml-4" ngNoForm *ngIf="formEditBanner" [formGroup]="formEditBanner"
-              (ngSubmit)="editBanner()">
+              (ngSubmit)="editBanner(content)">
           <div class="form-row">
             <div class="name">Kích thước:</div>
             <div class="value">
@@ -18,7 +14,7 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn Kích Thước</mat-label>
-                    <mat-select  formControlName="sizeId">
+                    <mat-select formControlName="sizeId">
                       <mat-option *ngFor="let size of listSize" [value]="size.sizeId">{{size.sizeName}}</mat-option>
                     </mat-select>
                     <div *ngIf="size.invalid && (size.dirty||size.touched)">
@@ -67,7 +63,7 @@
                   </div>
                   <p [hidden]="formEditBanner.value.duration !== banner.duration"
                      style="color: red;font-size: 11px">
-                    *{{banner.duration| date: 'dd/MM/yyyy'}}
+                    *{{banner.duration| date: 'dd/MM/yyyy'}}<span style="color: black"> (Thời hạn cũ)</span>
                   </p>
                 </mat-form-field>
               </div>
@@ -80,7 +76,7 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn vị trí hiển thị banner</mat-label>
-                    <mat-select  formControlName="positionId">
+                    <mat-select formControlName="positionId">
                       <mat-option *ngFor="let position of listPosition"
                                   [value]="position.positionId">{{position.positionName}}</mat-option>
                     </mat-select>
@@ -95,10 +91,25 @@
             </div>
           </div>
           <div class="mt-5">
-            <button [disabled]="checkFormEdit() === false" class="btn btn-warning ml-3 mb-1" type="submit">Chỉnh sửa</button>
+            <button [disabled]="checkFormEdit() === false" class="btn btn-warning ml-3 mb-1" type="submit">Chỉnh sửa
+            </button>
             <button (click)="closeEditFormBanner()" class="btn btn-secondary ml-3 mb-1" type="button">Đóng</button>
           </div>
         </form>
+        <ng-template #content let-modal>
+          <div class="modal-header">
+            <h1 class="modal-title text-info ml-3" style="font-weight: 600">Thông Báo</h1>
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true" style="color: white">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body ml-3">
+            <p style="font-weight: 600">Hiện tại vị trí banner đã có rồi !</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light text-danger" (click)="modal.close('Close click')">OK</button>
+          </div>
+        </ng-template>
       </div>
     </div>
   </div>

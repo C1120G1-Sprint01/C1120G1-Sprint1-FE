@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {ServiceBannerService} from '../../../../service/service-banner/service-banner.service';
+import {Banner} from '../model/banner';
 
 @Component({
   selector: 'app-display-banner-left',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DisplayBannerLeftComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor(private bannerManagementService: ServiceBannerService) {
   }
 
+  public listBanner: Banner[];
+  public banner: Banner;
+
+  ngOnInit(): void {
+    this.bannerManagementService.showAllAdvertiseBannerByPosition(4).subscribe((data) => {
+      this.listBanner = data;
+      this.banner = this.listBanner[0];
+    });
+  }
 }
