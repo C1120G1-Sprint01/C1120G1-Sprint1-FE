@@ -42,13 +42,22 @@
               <td style="text-align: center">
                 <a [routerLink]="['edit-category',item.categoryId]"
                                                 class="btn btn-warning"><i class="fas fa-edit"></i></a>
-                <a [routerLink]="['delete-category',item.categoryId]"
-                   class="btn btn-danger ml-3"><i class="fas fa-trash-alt"></i></a>
+                <a data-toggle="modal" data-target="#exampleModal"
+                   (click)="deleteId = item.categoryId; deleteName = item.categoryName" class="btn btn-danger ml-2"><i class="fas fa-trash-alt"></i></a>
               </td>
             </tr>
           </table>
           <pagination-controls (pageChange)="p = $event"></pagination-controls>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <app-delete-category [deleteId]="deleteId" [deleteName]="deleteName" (deleteComplete)="deleteSuccess()"></app-delete-category>
       </div>
     </div>
   </div>
