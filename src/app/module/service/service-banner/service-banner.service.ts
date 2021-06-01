@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Banner} from '../../admin/manager-admin/banner-manager/model/banner';
+import {BannerDTO} from '../../admin/manager-admin/banner-manager/model/bannerDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +21,16 @@ export class ServiceBannerService {
     return this.http.get(this.API_BANNER);
   }
 
-  addAdvertiseBanner(banner: Banner): Observable<any> {
-    return this.http.post(this.API_BANNER + '/add', banner, this.httpOptions);
+  showAllAdvertiseBannerByPosition(positionId: number): Observable<any> {
+    return this.http.get(this.API_BANNER + '/position/' + positionId);
+  }
+
+  addAdvertiseBanner(bannerDTO: BannerDTO): Observable<any> {
+    return this.http.post(this.API_BANNER + '/add', bannerDTO, this.httpOptions);
+  }
+
+  editAdvertiseBanner(bannerDTO: BannerDTO): Observable<any> {
+    return this.http.put(this.API_BANNER + '/edit', bannerDTO, this.httpOptions);
   }
 
   showAllPosition(): Observable<any> {
@@ -34,5 +43,9 @@ export class ServiceBannerService {
 
   findBannerById(bannerId: number): Observable<any> {
     return this.http.get(this.API_BANNER + '/' + bannerId);
+  }
+
+  deleteAdvertiseBanner(bannerId: number): Observable<any> {
+    return this.http.delete(this.API_BANNER + '/delete/' + bannerId);
   }
 }

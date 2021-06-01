@@ -1,4 +1,4 @@
-export class Size {
+export interface Size {
   sizeId: number;
   sizeName: string;
 }

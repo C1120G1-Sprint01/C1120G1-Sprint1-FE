@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {CustomerModule} from './module/customer/customer.module';
 import {AdminModule} from './module/admin/admin.module';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -16,6 +17,7 @@ import {AdminModule} from './module/admin/admin.module';
     AppRoutingModule,
     CustomerModule,
     AdminModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

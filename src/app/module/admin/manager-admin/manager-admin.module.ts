@@ -8,7 +8,6 @@ import {DeleteCustomerManagerComponent} from './customer-manager/delete-customer
 import {AddCustomerManagerComponent} from './customer-manager/add-customer-manager/add-customer-manager.component';
 import {ListBannerManagerComponent} from './banner-manager/list-banner-manager/list-banner-manager.component';
 import {AddBannerManagerComponent} from './banner-manager/add-banner-manager/add-banner-manager.component';
-import {DeleteBannerManagerComponent} from './banner-manager/delete-banner-manager/delete-banner-manager.component';
 import {EditBannerManagerComponent} from './banner-manager/edit-banner-manager/edit-banner-manager.component';
 import {DeletePostAdminComponent} from './post-manager/delete-post-admin/delete-post-admin.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -23,10 +22,16 @@ import {AngularFireStorageModule} from '@angular/fire/storage';
 import {AngularFireModule} from '@angular/fire';
 import {environment} from '../../../../environments/environment';
 import { LoadingComponent } from './banner-manager/loading/loading.component';
+import { DisplayBannerTopComponent } from './banner-manager/display-banner-top/display-banner-top.component';
+import { DisplayBannerBotComponent } from './banner-manager/display-banner-bot/display-banner-bot.component';
+import { DisplayBannerLeftComponent } from './banner-manager/display-banner-left/display-banner-left.component';
+import { DisplayBannerRightComponent } from './banner-manager/display-banner-right/display-banner-right.component';
+import { HomeTestComponent } from './banner-manager/home-test/home-test.component';
+import {NgbCarouselModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   // tslint:disable-next-line:max-line-length
-  declarations: [DetailAdminComponent, ConfirmAdminComponent, ListCustomerManagerComponent, EditCustomerManagerComponent, DeleteCustomerManagerComponent, AddCustomerManagerComponent, ListBannerManagerComponent, AddBannerManagerComponent, DeleteBannerManagerComponent, EditBannerManagerComponent, DeletePostAdminComponent, LoadingComponent],
+  declarations: [DetailAdminComponent, ConfirmAdminComponent, ListCustomerManagerComponent, EditCustomerManagerComponent, DeleteCustomerManagerComponent, AddCustomerManagerComponent, ListBannerManagerComponent, AddBannerManagerComponent, EditBannerManagerComponent, DeletePostAdminComponent, LoadingComponent, DisplayBannerTopComponent, DisplayBannerBotComponent, DisplayBannerLeftComponent, DisplayBannerRightComponent, HomeTestComponent],
   imports: [
     CommonModule,
     HttpClientModule,
@@ -38,7 +43,8 @@ import { LoadingComponent } from './banner-manager/loading/loading.component';
     ReactiveFormsModule,
     MatSnackBarModule,
     AngularFireStorageModule,
-    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud')
+    AngularFireModule.initializeApp(environment.firebaseConfig, 'cloud'),
+    NgbCarouselModule,
   ]
 })
 export class ManagerAdminModule {

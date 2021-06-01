@@ -1,5 +1,3 @@
-<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i"
-      rel="stylesheet">
 <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
       integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
 <div class="page-wrapper bg-gra-03 p-t-45 p-b-50">
@@ -17,8 +15,8 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn Kích Thước</mat-label>
-                    <mat-select formControlName="size">
-                      <mat-option *ngFor="let size of listSize" [value]="size">{{size.sizeName}}</mat-option>
+                    <mat-select formControlName="sizeId">
+                      <mat-option *ngFor="let size of listSize" [value]="size.sizeId">{{size.sizeName}}</mat-option>
                     </mat-select>
                     <div *ngIf="size.invalid && (size.dirty||size.touched)">
                       <p [hidden]="!size.errors.required" style="color: red; font-size: 11px">
@@ -32,13 +30,13 @@
           </div>
           <div class="form-row">
             <div class="name">Hình ảnh:</div>
-            <label id="input-image" *ngIf="avatar === null">
+            <label id="input-image" *ngIf="imageBanner === null">
               <i class="fa fa-image"></i>
-              <input type="file" formControlName="image" name="myfile" accept="*.png.jpg" (change)="showImage($event)" style="display:none">
+              <input type="file" name="myfile" accept="*.png.jpg" (change)="showImage($event)" style="display:none">
             </label>
             <p style="color:red; font-size: 11px" class="ml-2">{{messageImageError}}</p>
-            <div *ngIf="avatar !== null">
-              <img [src]="avatar"
+            <div *ngIf="imageBanner !== null">
+              <img class="border border-dark" [src]="imageBanner"
                    style="width: 150px; height: 110px">
               <div class="icon-hide">
                 <i (click)="removeImage()" class="fa fa-times-circle"></i>
@@ -74,9 +72,9 @@
                 <div class="rs-select2 js-select-simple select--no-search">
                   <mat-form-field class="form-select" appearance="fill">
                     <mat-label>Chọn vị trí hiển thị banner</mat-label>
-                    <mat-select formControlName="position">
+                    <mat-select formControlName="positionId">
                       <mat-option *ngFor="let position of listPosition"
-                                  [value]="position">{{position.positionName}}</mat-option>
+                                  [value]="position.positionId">{{position.positionName}}</mat-option>
                     </mat-select>
                     <div *ngIf="position.invalid && (position.dirty||position.touched)">
                       <p [hidden]="!position.errors.required" style="color: red; font-size: 11px">

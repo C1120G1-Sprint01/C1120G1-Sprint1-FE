@@ -5,6 +5,9 @@ import {AddBannerManagerComponent} from '../add-banner-manager/add-banner-manage
 import {EditBannerManagerComponent} from '../edit-banner-manager/edit-banner-manager.component';
 import {Banner} from '../model/banner';
 import {interval} from 'rxjs';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {LoadingComponent} from '../loading/loading.component';
 
 
 @Component({
@@ -15,10 +18,15 @@ import {interval} from 'rxjs';
 export class ListBannerManagerComponent implements OnInit {
 
   constructor(private bannerManagementService: ServiceBannerService,
-              private dialog: MatDialog) {
+              private dialog: MatDialog,
+              private modalService: NgbModal,
+              private snackBar: MatSnackBar) {
   }
 
   public listBanner: Banner[];
+  public banner: Banner;
+  public bannerCheck: Banner;
+
 
   ngOnInit(): void {
     this.bannerManagementService.showAllAdvertiseBanner().subscribe((data) => {
@@ -41,6 +49,7 @@ export class ListBannerManagerComponent implements OnInit {
       this.ngOnInit();
     });
   }
+
   openFormEditBanner(bannerId) {
     const dialogRef = this.dialog.open(EditBannerManagerComponent, {
       width: '1000px',
@@ -53,7 +62,7 @@ export class ListBannerManagerComponent implements OnInit {
     });
   }
 
-  getTimeDuration(dateDuration: Date) {
+  getTimeDuration(dateDuration: Date, bannerId: number) {
     const seconds = (new Date(dateDuration).getTime() - new Date().getTime()) / 1000;
     const date = Math.floor(seconds / 86400);
     if (date >= 30) {
@@ -68,12 +77,48 @@ export class ListBannerManagerComponent implements OnInit {
       return date + ' ngày';
     } else {
       const hour = Math.floor((seconds % 86400) / 3600);
+      const hourCheck = (seconds % 86400) / 3600;
       if (hour >= 1) {
         return hour + ' giờ';
-      } else {
+      } else if (hour >= 0) {
         return 'sắp hết hạn';
+      } else if (hourCheck <= 0) {
+        this.bannerManagementService.deleteAdvertiseBanner(bannerId).subscribe((data) => {
+          this.ngOnInit();
+        });
       }
     }
   }
 
+  openDeleteBanner(content, bannerChange: Banner) {
+    this.banner = bannerChange;
+    this.modalService.open(content, {windowClass: 'dark-modal'});
+  }
+
+  openLoading() {
+    const dialogRef = this.dialog.open(LoadingComponent, {
+      width: '500px',
+      height: '200px',
+      disableClose: true
+    });
+  }
+
+  deleteBanner(bannerId: number, content2) {
+    this.bannerManagementService.findBannerById(bannerId).subscribe((data) => {
+      this.bannerCheck = data;
+      if (this.bannerCheck === null) {
+        this.modalService.open(content2, {windowClass: 'dark-modal'});
+      } else {
+        this.modalService.dismissAll();
+        this.openLoading();
+        setTimeout(() => {
+          this.bannerManagementService.deleteAdvertiseBanner(bannerId).subscribe((data1) => {
+            this.ngOnInit();
+            this.dialog.closeAll();
+            this.snackBar.open('Xóa Banner Thành Công', 'Ẩn đi', {duration: 6000});
+          });
+        }, 1500);
+      }
+    });
+  }
 }

@@ -23,14 +23,14 @@ export class AddBannerManagerComponent implements OnInit {
   }
 
   public messageImageError;
-  public avatar = null;
+  public imageBanner = null;
   public selectedImage: any = null;
   public listPosition: Position[];
   public listSize: Size[];
   public banner: Banner;
   public dayTime;
   public formCreateBanner: FormGroup;
-  checkImage: boolean;
+  public checkListBanner: Banner[];
 
   ngOnInit(): void {
     this.bannerManagementService.showAllPosition().subscribe((data) => {
@@ -44,15 +44,15 @@ export class AddBannerManagerComponent implements OnInit {
         bannerId: new FormControl(null),
         duration: new FormControl('', [Validators.required]),
         image: new FormControl(''),
-        position: new FormControl('', [Validators.required]),
-        size: new FormControl('', [Validators.required])
+        positionId: new FormControl('', [Validators.required]),
+        sizeId: new FormControl('', [Validators.required])
       }
     );
   }
 
 
   createBanner() {
-    if (this.formCreateBanner.valid) {
+    if (this.formCreateBanner.valid && this.imageBanner !== null) {
       switch (this.formCreateBanner.value.duration) {
         case '1':
           this.dayTime = 7;
@@ -92,7 +92,7 @@ export class AddBannerManagerComponent implements OnInit {
           })).subscribe();
       }
     }
-    if (this.avatar === null){
+    if (this.imageBanner === null) {
       this.messageImageError = '*Không được bỏ trống ảnh';
     }
   }
@@ -115,12 +115,12 @@ export class AddBannerManagerComponent implements OnInit {
       const path = file.substring(file.length - 3).toLowerCase();
       if (path === 'png' || path === 'jpg') {
         const reader = new FileReader();
-        reader.onload = (e: any) => this.avatar = e.target.result;
+        reader.onload = (e: any) => this.imageBanner = e.target.result;
         reader.readAsDataURL(image.target.files[0]);
         this.selectedImage = image.target.files[0];
         this.messageImageError = '';
       } else {
-        this.avatar = null;
+        this.imageBanner = null;
         this.messageImageError = '*Tệp ảnh bạn chọn không hợp lệ!';
         this.selectedImage = null;
       }
@@ -131,7 +131,8 @@ export class AddBannerManagerComponent implements OnInit {
   }
 
   removeImage() {
-    this.avatar = null;
+    this.imageBanner = null;
+    this.selectedImage = null;
   }
 
   get duration() {
@@ -139,12 +140,13 @@ export class AddBannerManagerComponent implements OnInit {
   }
 
   get position() {
-    return this.formCreateBanner.get('position');
+    return this.formCreateBanner.get('positionId');
   }
 
   get size() {
-    return this.formCreateBanner.get('size');
+    return this.formCreateBanner.get('sizeId');
   }
+
   get image() {
     return this.formCreateBanner.get('image');
   }
