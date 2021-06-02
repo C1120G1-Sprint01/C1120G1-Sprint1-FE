@@ -29,6 +29,14 @@
                       *ngIf="refPost.get('posterName').touched && refPost.controls.posterName.errors?.required">
                       Họ tên không được để trống
                     </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('posterName').touched && refPost.controls.posterName.errors?.pattern">
+                      Họ tên không hợp lệ 
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('posterName').touched && refPost.controls.posterName.errors?.maxlength">
+                      Họ tên không được vượt quá 50 ký tự
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -41,6 +49,10 @@
                       *ngIf="refPost.get('phone').touched && refPost.controls.phone.errors?.required">
                       Số điện thoại không được để trống
                     </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('phone').touched && refPost.controls.phone.errors?.pattern">
+                      Số điện thoại không hợp lệ
+                    </span>
                   </div>
                 </td>
               </tr>
@@ -50,8 +62,16 @@
                   <div class="form-group">
                     <input type="text" class="form-control" placeholder="Nhập email" formControlName="email">
                     <span class="small text-danger mt-1"
-                      *ngIf="refPost.get('phone').touched && refPost.controls.email.errors?.required">
+                      *ngIf="refPost.get('email').touched && refPost.controls.email.errors?.required">
                       Email không được để trống
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('email').touched && refPost.controls.email.errors?.email">
+                      Email không hợp lệ 
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('email').touched && refPost.controls.email.errors?.maxlength">
+                      Email không được vượt quá 50 ký tự
                     </span>
                   </div>
                 </td>
@@ -141,7 +161,11 @@
                     <input type="text" class="form-control" placeholder="Nhập tiêu đề" formControlName="title">
                     <span class="small text-danger mt-1"
                       *ngIf="refPost.get('title').touched && refPost.controls.title.errors?.required">
-                      Tiêu đề không được để trống
+                      Tiêu đề không được để trống 
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('title').touched && refPost.controls.title.errors?.maxlength">
+                      Tiêu đề không được vượt quá 50 kí tự
                     </span>
                   </div>
                 </td>
@@ -167,6 +191,14 @@
                     <span class="small text-danger mt-1"
                       *ngIf="refPost.get('price').touched && refPost.controls.price.errors?.required">
                       Giá không được để trống
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('price').touched && refPost.controls.price.errors?.min">
+                      Giá phải lớn hơn bằng 0 và bé hơn 2.000.000.000
+                    </span>
+                    <span class="small text-danger mt-1"
+                      *ngIf="refPost.get('price').touched && refPost.controls.price.errors?.max">
+                      Giá phải lớn hơn bằng 0 và bé hơn 2.000.000.000
                     </span>
                   </div>
                 </td>

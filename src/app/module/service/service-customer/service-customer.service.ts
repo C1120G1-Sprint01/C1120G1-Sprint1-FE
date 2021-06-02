@@ -14,8 +14,8 @@ export class ServiceCustomerService {
 
   constructor(private httpClient: HttpClient) { }
 
-  findAllPostByUsername(page: number): Observable<Post[]> {
-    return this.httpClient.get<Post[]>(`${this.API_URL_LIST}/cus-post-list?page=${page}`);
+  findAllPostByUsername(page: number, username: string): Observable<Post[]> {
+    return this.httpClient.get<Post[]>(`${this.API_URL_LIST}/cus-post-list?page=${page}&&username=${username}`);
   }
 
   findPostById(id: number): Observable<Post> {

@@ -9,15 +9,16 @@ import { ServiceCustomerService } from 'src/app/module/service/service-customer/
 export class ListPostCustomerComponent implements OnInit {
 
   posts;
+  username: string = "username";
 
   constructor(private _serviceCustomer: ServiceCustomerService) { }
 
   ngOnInit(): void {
-    this.onList(0);
+    this.onList(0, this.username);
   }
 
-  onList(page: number) {
-    this._serviceCustomer.findAllPostByUsername(page).subscribe(data => {
+  onList(page: number, username: string) {
+    this._serviceCustomer.findAllPostByUsername(page, username).subscribe(data => {
       this.posts = data;
       console.log("List post", this.posts);
     }, error => {
