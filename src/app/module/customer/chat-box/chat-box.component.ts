@@ -16,8 +16,6 @@ import {MatDialog} from '@angular/material/dialog';
 import {User} from '../../models/user';
 import {District, Province, Ward} from '../../models/address';
 import {EmojiEvent} from "@ctrl/ngx-emoji-mart/ngx-emoji";
-import {Bot} from "../../models/bot";
-import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-chat-box',
@@ -39,7 +37,6 @@ export class ChatBoxComponent implements OnInit {
   loadImage: boolean;
   selectedImages = [];
   tempFile = [];
-  bot: Bot;
 
   emojiPickerVisible = "";
   isEmojiPickerVisible = true;
@@ -96,6 +93,19 @@ export class ChatBoxComponent implements OnInit {
     };
     await this.chatService.refChats.on('value', resp => {
       this.chats = this.chatService.snapshotToArray(resp).filter(x => x.roomName === this.account.userName);
+      let index = this.chats.length;
+      if (index == 0) {
+        let chat: Chat = new Chat();
+        chat.roomName = this.account.userName;
+        chat.nickname = 'admin';
+        chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
+        chat.date = new Date().getTime();
+        chat.type = 'message';
+        chat.message = 'Xin chào ' + this.user.name + '! Chào mừng bạn đến với chức năng trò chuyện trực tuyến cùng chúng tôi';
+        this.chatService.refChats.push().set(chat).then(data => {
+          $('#chat_converse').scrollTop($('#chat_converse')[0].scrollHeight);
+        });
+      }
       this.setTimeForChat();
     });
     this.chatService.refNoti.orderByChild('role').equalTo('admin').on('value', (resp: any) => {
@@ -249,8 +259,7 @@ export class ChatBoxComponent implements OnInit {
       let that = this;
       setTimeout(function () {
         that.botRepMessage(messageUser);
-      }, 2000);
-      // this.botRepMessage(messageUser);
+      }, 1500);
     }
   }
 
@@ -264,7 +273,7 @@ export class ChatBoxComponent implements OnInit {
         mess = 'Vui lòng đợi trong giây lát!!';
       }
       chat.roomName = this.account.userName;
-      chat.nickname = 'abc';
+      chat.nickname = 'admin';
       chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
       chat.date = new Date().getTime();
       chat.type = 'message';

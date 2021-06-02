@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ZoomComponent} from './zoom/zoom.component';
 import {PickerModule} from "@ctrl/ngx-emoji-mart";
 import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [AdminChatComponent, ChatRoomAdminComponent, ZoomComponent],
@@ -24,7 +25,8 @@ import {EmojiModule} from "@ctrl/ngx-emoji-mart/ngx-emoji";
     MatButtonModule,
     MatInputModule,
     PickerModule,
-    EmojiModule
+    EmojiModule,
+    HttpClientModule
   ]
 })
 export class AdminChatModule {

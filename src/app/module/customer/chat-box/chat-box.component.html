@@ -20,10 +20,6 @@
       <p>Chúng tôi kết nối doanh nghiệp với mọi người một cách đơn giản và hiệu quả, hãy hỏi bất cứ điều gì</p>
     </div>
     <div id="chat_converse" class="chat_conversion chat_converse" (scroll)="readAllNoti()">
-      <span class="chat_msg_item chat_msg_item_admin">
-            <div class="chat_avatar">
-               <img src="./assets/image/chatbot+avatar+Cute_V1.png"/>
-            </div>Xin Chào! Tôi có thể giúp gì cho bạn không?</span>
       <div class="m-0" *ngFor="let chat of chats">
         <div class="m-0" *ngIf="chat.nickname === account.userName">
           <div class="clearfix">
@@ -69,7 +65,7 @@
           <i class="far fa-smile-wink fa-lg custom-hover" (click)="show()" style="margin-left: 2px; color: #efb508"></i>
           <button id="fab_send" class="fab-abc btn-sm" (click)="onFormSubmit(chatFormUser.value, 'message')">
             <i style="font-size: 21px !important; color: #f9bc05"
-            class="zmdi zmdi-mail-send"></i>
+               class="zmdi zmdi-mail-send"></i>
           </button>
         </div>
         <input id="chatSend" name="chat_message"

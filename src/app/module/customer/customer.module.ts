@@ -22,7 +22,6 @@ import {PickerModule} from "@ctrl/ngx-emoji-mart";
     PostCustomerModule,
     CommonModule,
     HttpClientModule,
-    FormsModule,
     ReactiveFormsModule,
     FormsModule,
     MatDialogModule,

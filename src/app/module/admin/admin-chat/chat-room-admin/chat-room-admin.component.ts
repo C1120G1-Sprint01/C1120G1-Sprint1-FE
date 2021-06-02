@@ -15,6 +15,7 @@ import {Account, AccountRole, Role} from '../../../models/account';
 import {District, Province, Ward} from '../../../models/address';
 import * as $ from 'jquery';
 import {EmojiEvent} from "@ctrl/ngx-emoji-mart/ngx-emoji";
+import {Bot} from "../../../models/bot";
 
 @Component({
   selector: 'app-chat-room-admin',
@@ -39,9 +40,11 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
   tempFile = [];
   loadImage: boolean;
   notifications = new Array<Notification>();
-
+  bot: Bot;
   emojiPickerVisible = "";
   isEmojiPickerVisible = true;
+  question: string;
+  answer: string;
 
   constructor(private router: Router,
               private route: ActivatedRoute,
@@ -104,9 +107,15 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
   }
 
   getData() {
+    this.answer = null;
+    this.question = null;
     if (this.roomName) {
       this.chatService.refChats.on('value', resp => {
         this.chats = this.chatService.snapshotToArray(resp).filter(x => x.roomName === this.roomName);
+        let length = this.chats.length;
+        if (this.chats[length - 1].message === 'Vui lòng đợi trong giây lát!!') {
+          this.question = this.chats[length - 2].message;
+        }
         this.setTimeForChat();
         setTimeout(function () {
           $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
@@ -156,16 +165,21 @@ export class ChatRoomAdminComponent implements OnInit, OnChanges {
       chat.timeSkip = this.datePipe.transform(new Date(), 'dd/MM/yyyy HH:mm:ss');
       chat.date = new Date().getTime();
       chat.message = form.message.trim();
+      this.answer = form.message.trim();
       chat.type = type;
       this.chatService.refChats.push().set(chat).then(data => {
         this.loadImage = false;
         $('.chat-history').scrollTop($('.chat-history')[0].scrollHeight);
-
       });
-
       const notification = new Notification(chat, false, 'admin', this.account.userName);
       this.chatService.addNewNoti(notification);
-
+      if (this.question != null) {
+        this.bot = {
+          question: this.question,
+          answer: this.answer
+        };
+        this.chatService.studyForBot(this.bot).subscribe();
+      }
     }
   }
 

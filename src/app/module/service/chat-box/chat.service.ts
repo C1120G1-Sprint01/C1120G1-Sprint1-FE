@@ -12,17 +12,23 @@ import {Bot} from "../../models/bot";
 })
 export class ChatService {
   baseUrl = 'http://localhost:8080/api/bot';
+  baseUrl2 = 'http://localhost:8080/api/bot/study';
 
   constructor(private http: HttpClient) {
   }
 
   findAnswerByBot(question: string): Observable<any> {
-    return this.http.post(this.baseUrl, question)
+    return this.http.post<any>(this.baseUrl, question);
+  }
+
+  studyForBot(bot: any): Observable<any> {
+    console.log(bot);
+    return this.http.post<any>(this.baseUrl2, bot);
   }
 
   snapshotToArray = (snapshot: any) => {
     const returnArr = [];
-    snapshot.forEach((childSnapshot: any) => {
+    snapshot.forEach(function (childSnapshot: any) {
       const item = childSnapshot.val();
       item.key = childSnapshot.key;
       returnArr.push(item);

@@ -120,10 +120,9 @@
 }
 
 .chat-admin .chat-history {
-  padding: 20px;
+  padding: 10px;
   border-bottom: 2px solid gray;
   overflow-y: auto;
-  height: 500px;
 }
 
 .chat-admin .chat-history ul {
@@ -132,7 +131,7 @@
 
 .chat-admin .chat-history ul li {
   list-style: none;
-  margin-bottom: 30px
+  margin-bottom: 8px
 }
 
 .chat-admin .chat-history ul li:last-child {
@@ -178,10 +177,13 @@
 }
 
 .chat-admin .chat-history .my-message {
-  background: #e8f1f3;
-  text-align: right;
+  background: linear-gradient(
+    60deg
+    , #008dff, #ff9800);
+  text-align: left;
   padding: 7px;
   font-size: 19px;
+  color: white;
 }
 
 .chat-admin .chat-history .my-message:after {
