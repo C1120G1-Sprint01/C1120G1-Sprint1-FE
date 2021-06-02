@@ -13,7 +13,7 @@ export class DisplayBannerTopComponent implements OnInit {
   constructor(private bannerManagementService: ServiceBannerService) {
   }
   public listBanner: Banner[];
-  showNavigationArrows = true;
+  showNavigationArrows = false;
   showNavigationIndicators = true;
 
   ngOnInit(): void {

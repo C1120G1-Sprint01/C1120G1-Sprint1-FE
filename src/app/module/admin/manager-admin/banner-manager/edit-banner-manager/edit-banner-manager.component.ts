@@ -183,7 +183,7 @@ export class EditBannerManagerComponent implements OnInit {
     if (this.banner.position.positionId !== positionId) {
       switch (positionId) {
         case 1:
-          return this.listBannerTop === 0;
+          return this.listBannerTop <  13;
         case 2:
           return this.listBannerBot === 0;
         case 3:

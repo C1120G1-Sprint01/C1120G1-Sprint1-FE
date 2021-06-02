@@ -218,3 +218,7 @@ input::-webkit-input-placeholder {
 .image-ss{
   position: relative;
 }
+.col-2{
+  margin: 0;
+  padding: 0;
+}

@@ -158,7 +158,7 @@ export class AddBannerManagerComponent implements OnInit {
   checkPositionBanner(positionId: number) {
     switch (positionId) {
       case 1:
-        return this.listBannerTop === 0;
+        return this.listBannerTop < 13;
       case 2:
         return this.listBannerBot === 0;
       case 3:
