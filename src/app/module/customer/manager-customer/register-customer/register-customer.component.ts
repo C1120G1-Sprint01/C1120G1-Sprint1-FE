@@ -121,6 +121,8 @@ export class RegisterCustomerComponent implements OnInit {
   }
 
   // upload anh fire base
+  isMessage1: any;
+  isMessage3: any;
   showPreview(event: any) {
     if (event.target.files && event.target.files[0]) {
       const reader = new FileReader();

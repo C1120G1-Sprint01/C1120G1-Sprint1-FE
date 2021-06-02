@@ -36,13 +36,10 @@ export class EditCategoryComponent implements OnInit {
   }
 
   save() {
-    this.serviceAdminService.updateCategory(this.formEdit.getRawValue()).subscribe(data => {
+    this.serviceAdminService.updateCategory(this.categoryEdit.categoryId,this.formEdit.getRawValue()).subscribe(data => {
       this.toast.success("Chuyên mục cha đã được chỉnh sửa");
       this.router.navigateByUrl('main-category/category')
     })
   }
 
-  back() {
-    this.formEdit.patchValue(this.formEdit);
-  }
 }

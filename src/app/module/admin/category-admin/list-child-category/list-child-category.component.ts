@@ -23,9 +23,12 @@ export class ListChildCategoryComponent implements OnInit {
   }
 
   getDataChildCategory() {
-    this.serviceAdminService.getAllChildCategory(0).subscribe(data => {
-      console.log(data);
-      this.childCategoryList = data;
+    this.serviceAdminService.getAllChildCategory().subscribe(data => {
+      if (data === null) {
+        this.toastrService.warning("Dữ liệu không có", "Thông báo")
+      } else {
+        this.childCategoryList = data;
+      }
     }, error => {
       console.log('lấy dữ liệu bị lỗi');
     });

@@ -25,6 +25,8 @@ import {GetBackPasswordComponent} from "./module/security/get-back-password/get-
 import {AddPostCustomerComponent} from "./module/customer/post-customer/add-post-customer/add-post-customer.component";
 
 const routes: Routes = [
+  //đường dẫn của Tuấn là main-category sẽ vào trang quản lý chuyên mục nha mọi người ^_^
+  //Từ đây, màn hình của bạn nào có link dẫn đến quản lý chuyên mục thì nhập routerlink="/main-category" là vào màn hình của tớ nhé
   {path: 'main-category/category', component: ListCategoryComponent},
   {path: 'main-category', component: MainCategoryComponent},
   {path: 'main-category/child-category', component: ListChildCategoryComponent},
@@ -34,19 +36,13 @@ const routes: Routes = [
   {path: 'main-category/child-category/create-child-category', component: CreateChildCategoryComponent},
   {path: 'main-category/child-category/edit-child-category/:id', component: EditChildCategoryComponent},
   {path: 'main-category/child-category/delete-child-category/:id', component: DeleteChildCategoryComponent},
+  //Đến đây nha, mọi đường dẫn category khác đều là giả mạo nha *_*
   { path: 'user/create', component: RegisterCustomerComponent },
   { path: '', component: ChatCustomerComponent },
   { path: 'admin', redirectTo: 'admin', pathMatch: 'full' },
   { path: 'admin/listUser', component: ListCustomerManagerComponent },
   { path: 'admin/listUser/edit/:id', component: EditCustomerManagerComponent },
   { path: 'admin/listUser/delete', component: DeleteCustomerManagerComponent },
-  {path: 'category', component: ListCategoryComponent},
-  {path: 'category/create', component: CreateCategoryComponent},
-  {path: 'category/edit/:id', component: EditCategoryComponent},
-  {path: 'category/delete/:id', component: DeleteCategoryComponent},
-  {path: 'child-category/create', component: CreateChildCategoryComponent},
-  {path: 'child-category/edit/:id', component: EditChildCategoryComponent},
-  {path: 'child-category/delete/:id', component: DeleteChildCategoryComponent},
   {path: 'user/create', component: RegisterCustomerComponent},
   {path: 'chat', component: ChatCustomerComponent},
   {path: 'admin', redirectTo: 'admin', pathMatch: 'full'},
