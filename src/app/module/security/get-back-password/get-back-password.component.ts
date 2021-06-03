@@ -70,7 +70,12 @@ export class GetBackPasswordComponent implements OnInit {
     if (this.newPwForm.value.newPw != this.newPwForm.value.confirmPw){
       this.pwNotify = "Mật khẩu không khớp. Vui lòng nhập lại mật khẩu";
     } else {
-      alert("OK");
+
+      this.securityService.saveNewPw(this.newPwForm.value.newPw, this.email).subscribe(data => {
+        console.log("OK");
+      }, error => {
+        console.log("get error");
+      })
       this.router.navigateByUrl("homepage");
     }
   }

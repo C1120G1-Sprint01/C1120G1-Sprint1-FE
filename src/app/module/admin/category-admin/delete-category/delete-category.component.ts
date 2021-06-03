@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Category} from "../../../../model/Category";
+import {ServiceAdminService} from "../../../service/service-admin/service-admin.service";
+import {ActivatedRoute, Router} from "@angular/router";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-delete-category',
@@ -7,9 +11,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DeleteCategoryComponent implements OnInit {
 
-  constructor() { }
+  @Input()
+  deleteId: number;
+  @Input()
+  deleteName: string;
+
+  @Output()
+  deleteComplete = new EventEmitter<boolean>();
+
+  constructor(public serviceAdminService: ServiceAdminService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
   }
-
+  deleteCategory() {
+    this.serviceAdminService.deleteCategory(this.deleteId).subscribe(data => {
+      document.getElementById('closeModal').click();
+      this.deleteComplete.emit(true);
+    });
+    this.toastr.success('Xóa Thành Công !', 'Chuyên mục !');
+  }
 }

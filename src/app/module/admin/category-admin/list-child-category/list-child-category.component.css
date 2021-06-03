@@ -1,6 +1,7 @@
 .title{
   font-size: 20px;
   font-weight: bold;
+
 }
 .body{
   width: 100%;
@@ -22,7 +23,7 @@
 .nav-item .nav-link:hover{
   background-color: lightgray;
 }
-.card{
+.card {
   position: relative;
   display: flex;
   flex-direction: column;
